@@ -704,11 +704,57 @@ ul { list-style: none; }
   box-shadow: 0 8px 40px rgba(83,24,235,.08);
 }
 .bv-card-title { font-size: 13px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 20px; }
-.bv-slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.bv-slider-label { font-size: 12px; color: var(--text-3); width: 56px; }
-.bv-slider-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; position: relative; }
-.bv-slider-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: linear-gradient(90deg, var(--purple), var(--purple-light)); }
-.bv-slider-val { font-size: 12px; font-weight: 600; color: var(--text-1); width: 80px; text-align: right; }
+.bv-slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.bv-slider-label { font-size: 12px; color: var(--text-3); width: 56px; font-weight: 600; }
+.bv-slider-track-wrap { flex: 1; position: relative; display: flex; align-items: center; }
+.bv-slider-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 50%, var(--border) 50%, var(--border) 100%);
+  transition: background 0.1s ease;
+}
+.bv-slider-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+}
+.bv-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--purple);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(83,24,235,0.3);
+  margin-top: -5px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.bv-slider-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--purple-light);
+}
+.bv-slider-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--purple);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(83,24,235,0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.bv-slider-range::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  background: var(--purple-light);
+}
+.bv-slider-val { font-size: 12px; font-weight: 600; color: var(--text-1); width: 84px; text-align: right; }
 .bv-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
 .bv-tag {
   font-size: 12px; font-weight: 600;
@@ -1264,138 +1310,8 @@ ul { list-style: none; }
         <div class="frame-tab">Campaigns</div>
         <div class="frame-tab">Analytics</div>
       </div>
-      <div class="frame-body">
-        <!-- Sidebar -->
-        <div class="frame-sidebar">
-          <div class="sidebar-logo">
-            <div class="sidebar-logo-dot">E</div>
-            EnrichLabs
-          </div>
-          <div class="sidebar-item active">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="5" height="5" rx="1.5"/><rect x="8" y="1" width="5" height="5" rx="1.5"/><rect x="1" y="8" width="5" height="5" rx="1.5"/><rect x="8" y="8" width="5" height="5" rx="1.5"/></svg>
-            Overview
-          </div>
-          <div class="sidebar-section-label">Agents</div>
-          <div class="sidebar-item">
-            <div class="sidebar-dot" style="background:#a855f7;"></div> Helena
-          </div>
-          <div class="sidebar-item">
-            <div class="sidebar-dot" style="background:#06b6d4;"></div> Sam
-          </div>
-          <div class="sidebar-item">
-            <div class="sidebar-dot" style="background:#10b981;"></div> Kai
-          </div>
-          <div class="sidebar-item">
-            <div class="sidebar-dot" style="background:#f43f5e;"></div> Angela
-          </div>
-          <div class="sidebar-section-label">Reports</div>
-          <div class="sidebar-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 12V6l5-4 5 4v6"/><rect x="4" y="8" width="2" height="4"/><rect x="8" y="6" width="2" height="6"/></svg>
-            Analytics
-          </div>
-          <div class="sidebar-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3h10M2 7h6M2 11h8"/></svg>
-            Reports
-          </div>
-          <div class="sidebar-avatar-row">
-            <div class="sidebar-avatar" style="background:#5318eb;">Y</div>
-            <div style="font-size:12px;color:#6b6b7d;line-height:1.3;">
-              <div style="font-weight:600;color:#1a1a2e;">Your Team</div>
-              <div>4 active agents</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main area -->
-        <div class="frame-main">
-          <div class="frame-main-header">
-            <div class="frame-main-title">Marketing OS — Live Overview</div>
-            <div class="frame-main-actions">
-              <div class="frame-btn">Export</div>
-              <div class="frame-btn purple">+ New Campaign</div>
-            </div>
-          </div>
-
-          <!-- Agent status cards -->
-          <div class="agents-row">
-            <div class="agent-status-card">
-              <div class="asc-header">
-                <div class="asc-name">Helena</div>
-                <div class="asc-live"><div class="asc-live-dot"></div> Live</div>
-              </div>
-              <div class="asc-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed);">H</div>
-              <div class="asc-task"><span>Writing:</span> "AI Marketing Trends 2026" — SEO article, 1,200 words</div>
-            </div>
-            <div class="agent-status-card">
-              <div class="asc-header">
-                <div class="asc-name">Sam</div>
-                <div class="asc-live"><div class="asc-live-dot"></div> Live</div>
-              </div>
-              <div class="asc-avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2);">S</div>
-              <div class="asc-task"><span>Optimizing:</span> 14 landing pages · target keywords ranked ↑8 positions</div>
-            </div>
-            <div class="agent-status-card">
-              <div class="asc-header">
-                <div class="asc-name">Kai</div>
-                <div class="asc-live"><div class="asc-live-dot"></div> Live</div>
-              </div>
-              <div class="asc-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">K</div>
-              <div class="asc-task"><span>Monitoring:</span> 23 brand mentions on Reddit & X — 2 responded</div>
-            </div>
-            <div class="agent-status-card">
-              <div class="asc-header">
-                <div class="asc-name">Angela</div>
-                <div class="asc-live"><div class="asc-live-dot"></div> Live</div>
-              </div>
-              <div class="asc-avatar" style="background:linear-gradient(135deg,#f43f5e,#e11d48);">A</div>
-              <div class="asc-task"><span>Sending:</span> Weekly newsletter · 4,280 recipients · A/B test active</div>
-            </div>
-          </div>
-
-          <!-- Analytics row -->
-          <div class="analytics-row">
-            <div class="analytics-card">
-              <div class="ac-label">Organic Traffic (30d)</div>
-              <div class="ac-value">48,291</div>
-              <div class="ac-change">↑ 147% vs last month</div>
-              <div class="mini-chart" aria-label="Organic traffic growth chart">
-                <svg viewBox="0 0 280 50" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#5318eb" stop-opacity=".25"/>
-                      <stop offset="100%" stop-color="#5318eb" stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                  <path d="M0,45 C40,42 70,38 100,30 C130,22 160,16 200,10 C230,5 260,3 280,2 L280,50 L0,50Z" fill="url(#g1)"/>
-                  <path d="M0,45 C40,42 70,38 100,30 C130,22 160,16 200,10 C230,5 260,3 280,2" fill="none" stroke="#5318eb" stroke-width="2"/>
-                  <circle cx="280" cy="2" r="3.5" fill="#5318eb"/>
-                </svg>
-              </div>
-            </div>
-            <div class="analytics-card">
-              <div class="ac-label">Campaign Performance</div>
-              <div class="ac-value" style="font-size:20px;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
-                <div style="background:#f9f8fc;border:1px solid #e8e4f0;border-radius:8px;padding:10px;text-align:center;">
-                  <div style="font-size:20px;font-weight:800;color:#1a1a2e;">3.2×</div>
-                  <div style="font-size:10px;color:#9898aa;margin-top:2px;">ROAS</div>
-                </div>
-                <div style="background:#f9f8fc;border:1px solid #e8e4f0;border-radius:8px;padding:10px;text-align:center;">
-                  <div style="font-size:20px;font-weight:800;color:#16a34a;">−62%</div>
-                  <div style="font-size:10px;color:#9898aa;margin-top:2px;">CPA</div>
-                </div>
-                <div style="background:#f9f8fc;border:1px solid #e8e4f0;border-radius:8px;padding:10px;text-align:center;">
-                  <div style="font-size:20px;font-weight:800;color:#5318eb;">42%</div>
-                  <div style="font-size:10px;color:#9898aa;margin-top:2px;">Email Open</div>
-                </div>
-                <div style="background:#f9f8fc;border:1px solid #e8e4f0;border-radius:8px;padding:10px;text-align:center;">
-                  <div style="font-size:20px;font-weight:800;color:#1a1a2e;">+89%</div>
-                  <div style="font-size:10px;color:#9898aa;margin-top:2px;">Conversions</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div class="frame-body" style="display: block; height: auto; padding: 0; background: #000; overflow: hidden; border-radius: 0 0 16px 16px;">
+        <video src="https://videotourl.com/videos/1783699073952-06c8c61a-c7c4-43b8-bedb-7bde06f1fb79.mp4" autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 0 0 16px 16px;"></video>
       </div>
     </div>
   </div>
@@ -1922,26 +1838,47 @@ ul { list-style: none; }
       <div class="reveal delay-2">
         <div class="bv-card">
           <div class="bv-card-title">Brand Voice Configuration</div>
+          
           <div class="bv-slider-row">
             <div class="bv-slider-label">Tone</div>
-            <div class="bv-slider-track"><div class="bv-slider-fill" style="width:68%;"></div></div>
-            <div class="bv-slider-val">Professional</div>
+            <div class="bv-slider-track-wrap">
+              <input type="range" class="bv-slider-range" id="bv-tone" min="0" max="100" value="68">
+            </div>
+            <div class="bv-slider-val" id="bv-tone-val">Professional</div>
           </div>
+          
           <div class="bv-slider-row">
             <div class="bv-slider-label">Style</div>
-            <div class="bv-slider-track"><div class="bv-slider-fill" style="width:82%;"></div></div>
-            <div class="bv-slider-val">Modern</div>
+            <div class="bv-slider-track-wrap">
+              <input type="range" class="bv-slider-range" id="bv-style" min="0" max="100" value="82">
+            </div>
+            <div class="bv-slider-val" id="bv-style-val">Modern</div>
           </div>
+          
           <div class="bv-slider-row">
             <div class="bv-slider-label">Energy</div>
-            <div class="bv-slider-track"><div class="bv-slider-fill" style="width:55%;"></div></div>
-            <div class="bv-slider-val">Dynamic</div>
+            <div class="bv-slider-track-wrap">
+              <input type="range" class="bv-slider-range" id="bv-energy" min="0" max="100" value="55">
+            </div>
+            <div class="bv-slider-val" id="bv-energy-val">Dynamic</div>
           </div>
+          
           <div class="bv-slider-row">
             <div class="bv-slider-label">Formality</div>
-            <div class="bv-slider-track"><div class="bv-slider-fill" style="width:45%;"></div></div>
-            <div class="bv-slider-val">Balanced</div>
+            <div class="bv-slider-track-wrap">
+              <input type="range" class="bv-slider-range" id="bv-formality" min="0" max="100" value="45">
+            </div>
+            <div class="bv-slider-val" id="bv-formality-val">Balanced</div>
           </div>
+
+          <div class="bv-preview-box" style="margin-top: 20px; padding: 16px; background: #fdfdfd; border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.01);">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+              <span>Brand Voice Output Sample</span>
+              <span style="color: var(--purple); font-weight: 700; font-size: 10px;" id="bv-status">✓ On-brand</span>
+            </div>
+            <p id="bv-preview-text" style="font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0; min-height: 60px; transition: opacity 0.25s; font-family: inherit; font-weight: 500;"></p>
+          </div>
+          
           <div class="bv-tags">
             <span class="bv-tag">✓ On-brand</span>
             <span class="bv-tag">✓ Consistent</span>
@@ -2930,6 +2867,101 @@ ul { list-style: none; }
   const statuses = [
     { el: document.querySelector('.asc-task:nth-child(1)'), texts: ['Writing: "AI Marketing Trends 2026"', 'Writing: "10 Ways AI Beats Agencies"', 'Optimizing: Meta ad copy (3 variants)'] },
   ];
+
+  /* ── Brand Voice Interactive Sliders ── */
+  const toneSlider = document.getElementById('bv-tone');
+  const styleSlider = document.getElementById('bv-style');
+  const energySlider = document.getElementById('bv-energy');
+  const formalitySlider = document.getElementById('bv-formality');
+
+  const toneVal = document.getElementById('bv-tone-val');
+  const styleVal = document.getElementById('bv-style-val');
+  const energyVal = document.getElementById('bv-energy-val');
+  const formalityVal = document.getElementById('bv-formality-val');
+
+  const statusLabel = document.getElementById('bv-status');
+  const previewText = document.getElementById('bv-preview-text');
+
+  function getLabel(value, type) {
+    if (type === 'tone') {
+      if (value < 25) return 'Playful';
+      if (value < 50) return 'Casual';
+      if (value < 75) return 'Professional';
+      return 'Authoritative';
+    }
+    if (type === 'style') {
+      if (value < 25) return 'Minimalist';
+      if (value < 50) return 'Friendly';
+      if (value < 75) return 'Bold';
+      return 'Modern';
+    }
+    if (type === 'energy') {
+      if (value < 25) return 'Calm';
+      if (value < 50) return 'Balanced';
+      if (value < 75) return 'Dynamic';
+      return 'Intense';
+    }
+    if (type === 'formality') {
+      if (value < 25) return 'Conversational';
+      if (value < 50) return 'Standard';
+      if (value < 75) return 'Formal';
+      return 'Academic';
+    }
+  }
+
+  const samples = {
+    'Playful-Friendly-Dynamic': "Hey there! 👋 Guess what? Enrich Labs is here to take marketing off your plate. Helena, Sam, Kai, and Angela are ready to jump in and do all the writing, optimizing, and tracking. Pretty cool, right?",
+    'Playful-Bold-Intense': "Boring marketing? No thanks! 💥 Enrich Labs unleashes a pack of AI marketing specialists that crush copy, dominate SEO, and optimize campaigns 24/7. Let's make something epic happen today!",
+    'Casual-Friendly-Balanced': "We built Enrich Labs so you don't have to worry about marketing. Just outline your goals once, and our AI specialists will keep everything running smoothly. No dashboard log-ins required.",
+    'Professional-Modern-Dynamic': "Enrich Labs is the first autonomous marketing platform. Deploy customized AI specialists, authorize their weekly roadmaps, and watch them execute your end-to-end multi-channel strategy 24/7.",
+    'Professional-Bold-Intense': "Deploy autonomous AI specialists that execute your entire marketing strategy around the clock. Helena, Sam, Kai, and Angela work in synchronization to maximize SEO rankings, copy conversions, and paid ad spend.",
+    'Authoritative-Modern-Calm': "Enrich Labs operates as a decentralized autonomous marketing agent framework. By utilizing targeted deep reinforcement models, the platform synthesizes strategy, optimizes budget allocations, and publishes across channels without manual intervention.",
+    'Authoritative-Bold-Intense': "Achieve absolute marketing automation. Enrich Labs deploys specialized AI agents that memorize your brand constraints, continuously generate verified copy, and optimize keyword bids to outperform traditional agencies.",
+    'default': "Enrich Labs aligns your brand guidelines with autonomous execution. Our specialized AI marketers work around the clock, continuously writing copy, running optimizations, and delivering insights straight to your team."
+  };
+
+  let updateTimeout;
+  function updatePreview() {
+    if (!toneSlider || !styleSlider || !energySlider || !formalitySlider) return;
+    
+    const tone = getLabel(toneSlider.value, 'tone');
+    const style = getLabel(styleSlider.value, 'style');
+    const energy = getLabel(energySlider.value, 'energy');
+    const formality = getLabel(formalitySlider.value, 'formality');
+
+    if (toneVal) toneVal.textContent = tone;
+    if (styleVal) styleVal.textContent = style;
+    if (energyVal) energyVal.textContent = energy;
+    if (formalityVal) formalityVal.textContent = formality;
+
+    [toneSlider, styleSlider, energySlider, formalitySlider].forEach(slider => {
+      const val = slider.value;
+      slider.style.background = `linear-gradient(90deg, var(--purple) 0%, var(--purple-light) ${val}%, var(--border) ${val}%, var(--border) 100%)`;
+    });
+
+    let matchKey = `${tone}-${style}-${energy}`;
+    let text = samples[matchKey] || samples[`${tone}-Friendly-Balanced`] || samples[`Professional-Modern-Dynamic`];
+
+    if (statusLabel) statusLabel.textContent = "Writing...";
+    if (previewText) {
+      previewText.style.opacity = 0.3;
+      
+      clearTimeout(updateTimeout);
+      updateTimeout = setTimeout(() => {
+        previewText.textContent = text;
+        previewText.style.opacity = 1;
+        if (statusLabel) statusLabel.textContent = "✓ On-Brand";
+      }, 200);
+    }
+  }
+
+  [toneSlider, styleSlider, energySlider, formalitySlider].forEach(slider => {
+    if (slider) {
+      slider.addEventListener('input', updatePreview);
+    }
+  });
+
+  updatePreview();
 
 })();
 </script>
