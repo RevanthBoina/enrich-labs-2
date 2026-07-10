@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing OS — Enrich Labs Dashboard</title>
+  <meta name="description" content="Manage your AI marketing agents, campaigns, workflows and reports.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-layout">
+
+  <!-- Mock Browser Window Header -->
+  <header class="dashboard-header">
+    <div class="window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <div class="header-tabs">
+      <button class="tab-btn active" data-view="overview">Dashboard</button>
+      <button class="tab-btn" data-view="campaigns">Campaigns</button>
+      <button class="tab-btn" data-view="analytics">Analytics</button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div>
+        <a href="index.html" class="sidebar-logo" aria-label="Enrich Labs Home">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="28" height="28" rx="7" fill="#5318eb"/>
+            <text x="14" y="20" text-anchor="middle" fill="white" font-size="13" font-weight="900" font-family="Inter,sans-serif">E</text>
+          </svg>
+          EnrichLabs
+        </a>
+
+        <div class="sidebar-menu">
+          <div class="menu-section">
+            <ul class="menu-list">
+              <li>
+                <button class="menu-item-btn active" data-view="overview">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                  Overview
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-label">Agents</div>
+            <ul class="menu-list">
+              <li>
+                <button class="menu-item-btn" data-view="agent-helena">
+                  <span class="agent-dot helena"></span>
+                  Helena
+                </button>
+              </li>
+              <li>
+                <button class="menu-item-btn" data-view="agent-sam">
+                  <span class="agent-dot sam"></span>
+                  Sam
+                </button>
+              </li>
+              <li>
+                <button class="menu-item-btn" data-view="agent-kai">
+                  <span class="agent-dot kai"></span>
+                  Kai
+                </button>
+              </li>
+              <li>
+                <button class="menu-item-btn" data-view="agent-angela">
+                  <span class="agent-dot angela"></span>
+                  Angela
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-label">Reports</div>
+            <ul class="menu-list">
+              <li>
+                <button class="menu-item-btn" data-view="analytics">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                  Analytics
+                </button>
+              </li>
+              <li>
+                <button class="menu-item-btn" data-view="reports">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  Reports Center
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="profile-avatar">Y</div>
+        <div class="profile-info">
+          <h4>Your Team</h4>
+          <p id="active-agents-lbl">4 active agents</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Working Panels -->
+    <main class="main-content">
+
+      <!-- ============================================
+           VIEW 1: OVERVIEW SCREEN
+           ============================================ -->
+      <div id="view-overview" class="dashboard-view active">
+        <div class="screen-header">
+          <h1 class="screen-title">Marketing OS — Live Overview</h1>
+          <div class="screen-actions">
+            <button class="btn btn-white" id="export-data-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Export
+            </button>
+            <button class="btn btn-purple" id="new-campaign-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              + New Campaign
+            </button>
+          </div>
+        </div>
+
+        <!-- Agent Live State Grid -->
+        <div class="agents-status-grid">
+          
+          <div class="agent-card" data-agent="helena">
+            <div class="agent-card-header">
+              <span class="agent-card-name">Helena</span>
+              <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="status-text">Live</span>
+              </div>
+            </div>
+            <div class="agent-avatar-circle helena">H</div>
+            <p class="agent-activity"><span>Writing:</span> "AI Marketing Trends 2026" — SEO article, 1,200 words</p>
+          </div>
+
+          <div class="agent-card" data-agent="sam">
+            <div class="agent-card-header">
+              <span class="agent-card-name">Sam</span>
+              <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="status-text">Live</span>
+              </div>
+            </div>
+            <div class="agent-avatar-circle sam">S</div>
+            <p class="agent-activity"><span>Optimizing:</span> 14 landing pages · target keywords ranked ↑8 positions</p>
+          </div>
+
+          <div class="agent-card" data-agent="kai">
+            <div class="agent-card-header">
+              <span class="agent-card-name">Kai</span>
+              <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="status-text">Live</span>
+              </div>
+            </div>
+            <div class="agent-avatar-circle kai">K</div>
+            <p class="agent-activity"><span>Monitoring:</span> 23 brand mentions on Reddit & X — 2 responded</p>
+          </div>
+
+          <div class="agent-card" data-agent="angela">
+            <div class="agent-card-header">
+              <span class="agent-card-name">Angela</span>
+              <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="status-text">Live</span>
+              </div>
+            </div>
+            <div class="agent-avatar-circle angela">A</div>
+            <p class="agent-activity"><span>Sending:</span> Weekly newsletter · 4,280 recipients · A/B test active</p>
+          </div>
+
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="widgets-grid">
+          
+          <!-- Organic Traffic widget -->
+          <div class="widget-card">
+            <div class="widget-title">Organic Traffic (30D)</div>
+            <div class="organic-stats">
+              <div class="organic-number" id="traffic-count">48,291</div>
+              <span class="percentage-badge">↑ 147% vs last month</span>
+            </div>
+            
+            <div class="chart-container">
+              <svg class="chart-svg" viewBox="0 0 500 100">
+                <defs>
+                  <linearGradient id="gradient-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#5318eb" stop-opacity="0.25" />
+                    <stop offset="100%" stop-color="#5318eb" stop-opacity="0.0" />
+                  </linearGradient>
+                </defs>
+                <!-- Grid lines -->
+                <line x1="0" y1="90" x2="500" y2="90" stroke="#f1eff5" stroke-width="1" />
+                <line x1="0" y1="50" x2="500" y2="50" stroke="#f1eff5" stroke-width="1" />
+                <!-- Area -->
+                <path class="chart-fill" d="M 0,90 Q 120,80 250,55 T 500,20 L 500,100 L 0,100 Z" />
+                <!-- Line -->
+                <path class="chart-path" d="M 0,90 Q 120,80 250,55 T 500,20" />
+                <!-- Interactive Dots -->
+                <circle class="chart-point" cx="0" cy="90" r="5" data-val="12,482" data-date="June 10" />
+                <circle class="chart-point" cx="125" cy="78" r="5" data-val="19,890" data-date="June 18" />
+                <circle class="chart-point" cx="250" cy="55" r="5" data-val="28,491" data-date="June 25" />
+                <circle class="chart-point" cx="375" cy="38" r="5" data-val="39,120" data-date="July 02" />
+                <circle class="chart-point" cx="500" cy="20" r="5" data-val="48,291" data-date="July 10" />
+              </svg>
+              <div class="chart-tooltip" id="chart-tooltip">12,482</div>
+            </div>
+          </div>
+
+          <!-- Campaign Performance -->
+          <div class="widget-card">
+            <div class="widget-title">Campaign Performance</div>
+            <div class="performance-grid">
+              <div class="kpi-card">
+                <div class="kpi-value" id="kpi-roas">3.2x</div>
+                <div class="kpi-label">ROAS</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-value green" id="kpi-cpa">-62%</div>
+                <div class="kpi-label">CPA Reduction</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-value" id="kpi-open">42%</div>
+                <div class="kpi-label">Email Open Rate</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-value" id="kpi-conv">+89%</div>
+                <div class="kpi-label">Conversions</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Simulation Log Feed -->
+        <div class="activity-log-card">
+          <div class="widget-title">Live Activity Log</div>
+          <div class="log-list" id="activity-log-list">
+            <div class="log-item">
+              <span class="log-dot" style="background-color: var(--purple);"></span>
+              <div class="log-details">
+                <p class="log-msg"><strong>Helena</strong> completed SEO Optimization task for draft: <em>"AI Marketing Trends 2026"</em>. Readability index scored 94.</p>
+                <div class="log-time">Just now</div>
+              </div>
+            </div>
+            <div class="log-item">
+              <span class="log-dot" style="background-color: var(--green);"></span>
+              <div class="log-details">
+                <p class="log-msg"><strong>Kai</strong> detected a brand reference on Reddit (r/Startups). Drafted and submitted responsive comment detailing integration benefits.</p>
+                <div class="log-time">2 minutes ago</div>
+              </div>
+            </div>
+            <div class="log-item">
+              <span class="log-dot" style="background-color: var(--red);"></span>
+              <div class="log-details">
+                <p class="log-msg"><strong>Angela</strong> generated and analyzed test results for <em>"Weekly Product Update"</em> email sequence. Subject B conversion leads by 12%.</p>
+                <div class="log-time">8 minutes ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================================
+           VIEW 2: CAMPAIGNS VIEW
+           ============================================ -->
+      <div id="view-campaigns" class="dashboard-view">
+        <div class="screen-header">
+          <h1 class="screen-title">Active Campaigns</h1>
+          <button class="btn btn-purple" id="new-campaign-btn-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            + New Campaign
+          </button>
+        </div>
+
+        <div class="campaigns-table-container">
+          <table class="campaigns-table" id="campaigns-table">
+            <thead>
+              <tr>
+                <th>Campaign Name</th>
+                <th>Assigned Agent</th>
+                <th>Channel</th>
+                <th>Budget</th>
+                <th>Status</th>
+                <th>Goal Performance</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="campaigns-table-body">
+              <tr data-id="c1">
+                <td><strong>Organic Growth Push</strong></td>
+                <td>Helena</td>
+                <td>Blog / Content</td>
+                <td>$850/mo</td>
+                <td><span class="campaign-badge active">Active</span></td>
+                <td>↑ 14% Search Visibility</td>
+                <td class="campaign-actions">
+                  <button class="action-btn toggle-status-btn">Pause</button>
+                  <button class="action-btn danger delete-campaign-btn">Delete</button>
+                </td>
+              </tr>
+              <tr data-id="c2">
+                <td><strong>High-Intent Lead Gen</strong></td>
+                <td>Sam</td>
+                <td>Google Search Ads</td>
+                <td>$1,200/mo</td>
+                <td><span class="campaign-badge active">Active</span></td>
+                <td>3.8x ROAS</td>
+                <td class="campaign-actions">
+                  <button class="action-btn toggle-status-btn">Pause</button>
+                  <button class="action-btn danger delete-campaign-btn">Delete</button>
+                </td>
+              </tr>
+              <tr data-id="c3">
+                <td><strong>Brand Awareness Spark</strong></td>
+                <td>Kai</td>
+                <td>Reddit & X Threads</td>
+                <td>$400/mo</td>
+                <td><span class="campaign-badge paused">Paused</span></td>
+                <td>--</td>
+                <td class="campaign-actions">
+                  <button class="action-btn toggle-status-btn">Resume</button>
+                  <button class="action-btn danger delete-campaign-btn">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================================
+           VIEW 3: ANALYTICS DETAIL VIEW
+           ============================================ -->
+      <div id="view-analytics" class="dashboard-view">
+        <div class="screen-header">
+          <h1 class="screen-title">Advanced Performance Analytics</h1>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+          <div class="widget-card" style="text-align: center;">
+            <div class="widget-title">Average Cost Per Acquisition</div>
+            <div class="organic-number" style="color: var(--green);">$8.40</div>
+            <p style="font-size:12px; color: var(--text-muted); margin-top:8px;">Down 32% since agent activation</p>
+          </div>
+          <div class="widget-card" style="text-align: center;">
+            <div class="widget-title">Agent Execution Time</div>
+            <div class="organic-number">24/7</div>
+            <p style="font-size:12px; color: var(--text-muted); margin-top:8px;">0.0ms delay between task triggers</p>
+          </div>
+          <div class="widget-card" style="text-align: center;">
+            <div class="widget-title">Net Return On Investment</div>
+            <div class="organic-number" style="color: var(--purple);">420%</div>
+            <p style="font-size:12px; color: var(--text-muted); margin-top:8px;">Estimated yearly yield increase</p>
+          </div>
+        </div>
+
+        <div class="widget-card">
+          <div class="widget-title">Marketing Conversion Funnel</div>
+          <div style="display: flex; flex-direction: column; gap: 20px; margin-top:24px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
+                <span>Total Impressions (Ad Platforms & Organic Search)</span>
+                <span>350,000</span>
+              </div>
+              <div style="background-color: var(--bg-main); height: 12px; border-radius: 6px; overflow: hidden;">
+                <div style="background-color: var(--purple); width: 100%; height: 100%;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
+                <span>Qualified Visits (Clicks & Referral)</span>
+                <span>87,500 (25% Conversion)</span>
+              </div>
+              <div style="background-color: var(--bg-main); height: 12px; border-radius: 6px; overflow: hidden;">
+                <div style="background-color: var(--cyan); width: 25%; height: 100%;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
+                <span>Trial Activations & Signups</span>
+                <span>12,250 (14% Conversion)</span>
+              </div>
+              <div style="background-color: var(--bg-main); height: 12px; border-radius: 6px; overflow: hidden;">
+                <div style="background-color: var(--green); width: 14%; height: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           VIEW 4: HELENA WORKSPACE
+           ============================================ -->
+      <div id="view-agent-helena" class="dashboard-view">
+        <div class="agent-workspace">
+          
+          <div class="agent-profile-sidebar">
+            <div class="agent-avatar-circle helena">H</div>
+            <h2>Helena</h2>
+            <p class="title">AI Digital Marketing Specialist</p>
+            <div class="status-toggle-box">
+              <span style="font-size:12px; font-weight:600;">Status:</span>
+              <button class="action-btn agent-status-toggle" data-agent="helena">Active</button>
+            </div>
+            
+            <div class="agent-settings-panel">
+              <div class="setting-group">
+                <label>Target Tone & Style</label>
+                <input type="text" class="setting-input" value="Professional, authoritative SaaS copywriting" id="h-tone">
+              </div>
+              <div class="setting-group">
+                <label>Daily Budget Limit</label>
+                <input type="text" class="setting-input" value="$50.00" id="h-budget">
+              </div>
+              <div class="setting-group">
+                <label>Core Target Keywords</label>
+                <input type="text" class="setting-input" value="AI Agent, Marketing automation, B2B SaaS" id="h-keywords">
+              </div>
+              <button class="btn btn-purple" style="width:100%; justify-content:center; margin-top:12px;" onclick="saveAgentSettings('Helena')">Save Settings</button>
+            </div>
+          </div>
+
+          <div class="agent-main-workspace">
+            <div class="workspace-widget">
+              <div class="widget-title">Active Draft Queue</div>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Currently writing and optimizing drafts for publish schedule.</p>
+              <div style="padding:16px; background-color: var(--bg-main); border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <h4 style="font-size:14px; font-weight:700; margin:0 0 4px;">"The Ultimate Guide to Agentic Marketing Operations"</h4>
+                  <p style="font-size:12px; color: var(--text-muted); margin:0;">Target Word Count: 1,500 words · SEO Focus: Marketing agents</p>
+                </div>
+                <span class="campaign-badge active">Drafting (42%)</span>
+              </div>
+            </div>
+
+            <div class="workspace-widget">
+              <div class="widget-title">Completed Worklogs & Publications</div>
+              <div class="task-preview-list">
+                <div class="task-preview-card">
+                  <div class="task-info">
+                    <h4>"AI Marketing Trends 2026"</h4>
+                    <p>Published to WordPress & Webflow CMS</p>
+                    <div class="task-meta">1,240 words · 4 core keywords integrated</div>
+                  </div>
+                  <a href="#" class="btn btn-white" onclick="event.preventDefault(); alert('Previewing Draft: AI Marketing Trends 2026. Content meets standard SEO guidelines.');">Preview Live</a>
+                </div>
+                <div class="task-preview-card">
+                  <div class="task-info">
+                    <h4>"How to Reduce CPA by 62% Using Automated Workflows"</h4>
+                    <p>Published to WordPress</p>
+                    <div class="task-meta">980 words · Authoritative B2B Tone</div>
+                  </div>
+                  <a href="#" class="btn btn-white" onclick="event.preventDefault(); alert('Previewing Draft: How to Reduce CPA. Content meets standard SEO guidelines.');">Preview Live</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================
+           VIEW 5: SAM WORKSPACE
+           ============================================ -->
+      <div id="view-agent-sam" class="dashboard-view">
+        <div class="agent-workspace">
+          
+          <div class="agent-profile-sidebar">
+            <div class="agent-avatar-circle sam">S</div>
+            <h2>Sam</h2>
+            <p class="title">AI SEO & GEO Manager</p>
+            <div class="status-toggle-box">
+              <span style="font-size:12px; font-weight:600;">Status:</span>
+              <button class="action-btn agent-status-toggle" data-agent="sam">Active</button>
+            </div>
+            
+            <div class="agent-settings-panel">
+              <div class="setting-group">
+                <label>Optimization Target</label>
+                <input type="text" class="setting-input" value="Google SEO & LLM Engine Search Responses (GEO)" id="s-target">
+              </div>
+              <div class="setting-group">
+                <label>Optimization Frequency</label>
+                <input type="text" class="setting-input" value="Continuous real-time crawl scans" id="s-freq">
+              </div>
+              <div class="setting-group">
+                <label>Priority Pages</label>
+                <input type="text" class="setting-input" value="/index, /pricing, /integrations" id="s-pages">
+              </div>
+              <button class="btn btn-purple" style="width:100%; justify-content:center; margin-top:12px;" onclick="saveAgentSettings('Sam')">Save Settings</button>
+            </div>
+          </div>
+
+          <div class="agent-main-workspace">
+            <div class="workspace-widget">
+              <div class="widget-title">Active Index Scanning</div>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Currently crawling external index logs to discover GEO opportunities.</p>
+              <div style="padding:16px; background-color: var(--bg-main); border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <h4 style="font-size:14px; font-weight:700; margin:0 0 4px;">Crawling Perplexity & ChatGPT Search Indices</h4>
+                  <p style="font-size:12px; color: var(--text-muted); margin:0;">Scanning brand references for term: "Best AI marketing software"</p>
+                </div>
+                <span class="campaign-badge active">Crawling</span>
+              </div>
+            </div>
+
+            <div class="workspace-widget">
+              <div class="widget-title">Recent SEO Enhancements</div>
+              <div class="task-preview-list">
+                <div class="task-preview-card">
+                  <div class="task-info">
+                    <h4>Added Schema Markup to /pricing</h4>
+                    <p>Google Index Verification Completed</p>
+                    <div class="task-meta">Improved FAQ snippet positioning on SERPs</div>
+                  </div>
+                  <span class="campaign-badge active" style="background-color: var(--green-light); color:#065f46;">Verified</span>
+                </div>
+                <div class="task-preview-card">
+                  <div class="task-info">
+                    <h4>Optimized H2 Headings on Homepage</h4>
+                    <p>Internal keyword density balanced</p>
+                    <div class="task-meta">Primary focus term: "AI Marketing Agents"</div>
+                  </div>
+                  <span class="campaign-badge active" style="background-color: var(--green-light); color:#065f46;">Verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================
+           VIEW 6: KAI WORKSPACE
+           ============================================ -->
+      <div id="view-agent-kai" class="dashboard-view">
+        <div class="agent-workspace">
+          
+          <div class="agent-profile-sidebar">
+            <div class="agent-avatar-circle kai">K</div>
+            <h2>Kai</h2>
+            <p class="title">AI Social Listening Manager</p>
+            <div class="status-toggle-box">
+              <span style="font-size:12px; font-weight:600;">Status:</span>
+              <button class="action-btn agent-status-toggle" data-agent="kai">Active</button>
+            </div>
+            
+            <div class="agent-settings-panel">
+              <div class="setting-group">
+                <label>Monitored Channels</label>
+                <input type="text" class="setting-input" value="Reddit, Twitter (X), LinkedIn Forums" id="k-channels">
+              </div>
+              <div class="setting-group">
+                <label>Trigger Keywords</label>
+                <input type="text" class="setting-input" value="Enrich Labs, need marketing agent, marketing automation tool" id="k-triggers">
+              </div>
+              <div class="setting-group">
+                <label>Response Sentiment</label>
+                <input type="text" class="setting-input" value="Helpful, non-intrusive, educational" id="k-sentiment">
+              </div>
+              <button class="btn btn-purple" style="width:100%; justify-content:center; margin-top:12px;" onclick="saveAgentSettings('Kai')">Save Settings</button>
+            </div>
+          </div>
+
+          <div class="agent-main-workspace">
+            <div class="workspace-widget">
+              <div class="widget-title">Active Listening Streams</div>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Scanning channels for discussions matching priority triggers.</p>
+              <div style="padding:16px; background-color: var(--bg-main); border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <h4 style="font-size:14px; font-weight:700; margin:0 0 4px;">Twitter / Reddit live firehose streams</h4>
+                  <p style="font-size:12px; color: var(--text-muted); margin:0;">Active triggers: "marketing agent", "enrichlabs"</p>
+                </div>
+                <span class="campaign-badge active">Monitoring</span>
+              </div>
+            </div>
+
+            <div class="workspace-widget">
+              <div class="widget-title">Recent Conversations & Mentions</div>
+              <div class="task-preview-list">
+                <div class="task-preview-card">
+                  <div class="task-info">
+                    <h4>Mention in r/marketing: "How to scale content output?"</h4>
+                    <p>Kai responded with comprehensive analysis of agent workflows</p>
+                    <div class="task-meta">Post Score: +24 Upvotes · Referral Traffic: +142 visits</div>
+                  </div>
+                  <a href="#" class="btn btn-white" onclick="event.preventDefault(); alert('Conversational Log:\n\nUser: We are struggling to keep up with daily blog publishing. Any automation recommendations?\n\nKai: One workflow that has yielded excellent results is pairing structured agentic systems like Helena with SEO keyword triggers. They draft B2B posts that align with organic parameters, letting you scale output 10x while maintaining brand tone.');">View Thread</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================
+           VIEW 7: ANGELA WORKSPACE
+           ============================================ -->
+      <div id="view-agent-angela" class="dashboard-view">
+        <div class="agent-workspace">
+          
+          <div class="agent-profile-sidebar">
+            <div class="agent-avatar-circle angela">A</div>
+            <h2>Angela</h2>
+            <p class="title">AI Email Marketing Specialist</p>
+            <div class="status-toggle-box">
+              <span style="font-size:12px; font-weight:600;">Status:</span>
+              <button class="action-btn agent-status-toggle" data-agent="angela">Active</button>
+            </div>
+            
+            <div class="agent-settings-panel">
+              <div class="setting-group">
+                <label>Assigned List</label>
+                <input type="text" class="setting-input" value="Primary newsletter, Active Leads list" id="a-list">
+              </div>
+              <div class="setting-group">
+                <label>Daily Budget Cap</label>
+                <input type="text" class="setting-input" value="$150.00" id="a-budget">
+              </div>
+              <div class="setting-group">
+                <label>A/B Testing parameters</label>
+                <input type="text" class="setting-input" value="Subject Line, CTA placement" id="a-ab">
+              </div>
+              <button class="btn btn-purple" style="width:100%; justify-content:center; margin-top:12px;" onclick="saveAgentSettings('Angela')">Save Settings</button>
+            </div>
+          </div>
+
+          <div class="agent-main-workspace">
+            <div class="workspace-widget">
+              <div class="widget-title">Active Email Sequences</div>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Managing outbound sequences, drip campaigns, and scheduled newsletters.</p>
+              <div style="padding:16px; background-color: var(--bg-main); border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <h4 style="font-size:14px; font-weight:700; margin:0 0 4px;">"Trial Signups Welcome Series" — Drip Sequence</h4>
+                  <p style="font-size:12px; color: var(--text-muted); margin:0;">Active steps: Day 1 (Intro), Day 3 (Demo Video), Day 7 (Upgrade Offer)</p>
+                </div>
+                <span class="campaign-badge active">Active Dispatch</span>
+              </div>
+            </div>
+
+            <div class="workspace-widget">
+              <div class="widget-title">Completed Outbound Dispatches</div>
+              <div class="task-preview-list">
+                <div class="task-preview-card">
+                  <div class="task-info">
+                    <h4>"Weekly Newsletter - 4,280 Recipients"</h4>
+                    <p>Dispatched to Primary Newsletter Subscribers</p>
+                    <div class="task-meta">Subject A Open Rate: 42.1% · Subject B Open Rate: 43.6% · CTR: 8.4%</div>
+                  </div>
+                  <a href="#" class="btn btn-white" onclick="event.preventDefault(); alert('Newsletter Template Preview:\n\nTitle: Marketing OS 2026 Upgrade\n\nOutlining features of automated agent systems, showing how Sam optimized 14 landing pages and improved keywords rankings.');">Preview Template</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================
+           VIEW 8: REPORTS CENTER
+           ============================================ -->
+      <div id="view-reports" class="dashboard-view">
+        <div class="screen-header">
+          <h1 class="screen-title">Reports Download Center</h1>
+        </div>
+
+        <div class="reports-layout">
+          
+          <div class="report-form-group">
+            <div class="widget-title">Configure & Generate Custom Report</div>
+            <div class="form-group" style="margin-top:20px;">
+              <label for="report-type">Report Structure Type</label>
+              <select class="form-input" id="report-type">
+                <option value="Executive Summary">Executive Summary (Performance overview)</option>
+                <option value="Traffic Breakdown">Traffic Breakdown (Organic & Referrals)</option>
+                <option value="Agent Productivity Logs">Agent Productivity Logs (Completed task timeline)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="report-range">Time Range Parameters</label>
+              <select class="form-input" id="report-range">
+                <option value="7D">Past 7 Days</option>
+                <option value="30D">Past 30 Days</option>
+                <option value="90D">Past 90 Days</option>
+              </select>
+            </div>
+            <button class="btn btn-purple" style="width:100%; justify-content:center;" id="generate-report-btn">Generate & Download Report</button>
+          </div>
+
+          <div class="report-form-group">
+            <div class="widget-title">Historical Reports Archive</div>
+            <div class="report-downloads-grid" style="margin-top:20px;">
+              <div class="download-report-card">
+                <div>
+                  <h4 style="font-size:14px; font-weight:700; margin:0 0- 4px;">Executive_Summary_June_2026.pdf</h4>
+                  <p style="font-size:12px; color: var(--text-muted); margin:0;">Generated: June 30, 2026 · Size: 1.2 MB</p>
+                </div>
+                <button class="btn btn-white" onclick="alert('Downloading Executive_Summary_June_2026.pdf (Simulated)');">Download</button>
+              </div>
+              <div class="download-report-card">
+                <div>
+                  <h4 style="font-size:14px; font-weight:700; margin:0 0- 4px;">Organic_Traffic_Growth_Q2_2026.xlsx</h4>
+                  <p style="font-size:12px; color: var(--text-muted); margin:0;">Generated: June 15, 2026 · Size: 4.8 MB</p>
+                </div>
+                <button class="btn btn-white" onclick="alert('Downloading Organic_Traffic_Growth_Q2_2026.xlsx (Simulated)');">Download</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- + NEW CAMPAIGN DIALOG MODAL WIZARD -->
+  <div class="modal-overlay" id="new-campaign-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Create New Campaign</h3>
+        <span class="modal-close-btn" id="modal-close-x">&times;</span>
+      </div>
+      <form id="new-campaign-form">
+        <div class="form-group">
+          <label for="c-name">Campaign Name</label>
+          <input type="text" class="form-input" id="c-name" placeholder="e.g. Summer Outreach Push" required>
+        </div>
+        <div class="form-group">
+          <label for="c-agent">Assigned Specialist Agent</label>
+          <select class="form-input" id="c-agent">
+            <option value="Helena">Helena (Blog & Content)</option>
+            <option value="Sam">Sam (SEO & Crawl Engine Optimization)</option>
+            <option value="Kai">Kai (Social Listening & Outreach Forums)</option>
+            <option value="Angela">Angela (Outbound Email sequences)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="c-channel">Execution Channel</label>
+          <input type="text" class="form-input" id="c-channel" value="Google Search / Meta Ads" required>
+        </div>
+        <div class="form-group">
+          <label for="c-budget">Assigned Monthly Budget</label>
+          <input type="text" class="form-input" id="c-budget" value="$500/mo" required>
+        </div>
+        <div class="form-group">
+          <label for="c-performance">Primary Performance Goal Target</label>
+          <input type="text" class="form-input" id="c-performance" value="3.5x ROAS minimum" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" id="modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-purple">Launch Campaign</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT STATE CONTROLLER -->
+  <script>
+    // Live database arrays to track state
+    let campaignsList = [
+      { id: 'c1', name: 'Organic Growth Push', agent: 'Helena', channel: 'Blog / Content', budget: '$850/mo', status: 'Active', goal: '↑ 14% Search Visibility' },
+      { id: 'c2', name: 'High-Intent Lead Gen', agent: 'Sam', channel: 'Google Search Ads', budget: '$1,200/mo', status: 'Active', goal: '3.8x ROAS' },
+      { id: 'c3', name: 'Brand Awareness Spark', agent: 'Kai', channel: 'Reddit & X Threads', budget: '$400/mo', status: 'Paused', goal: '--' }
+    ];
+
+    let agentStatuses = {
+      helena: true,
+      sam: true,
+      kai: true,
+      angela: true
+    };
+
+    // Navigation and View switcher
+    function switchView(viewName) {
+      // Hide all views
+      document.querySelectorAll('.dashboard-view').forEach(view => {
+        view.classList.remove('active');
+      });
+      // Show selected view
+      const targetView = document.getElementById('view-' + viewName);
+      if (targetView) {
+        targetView.classList.add('active');
+      }
+
+      // Update sidebar nav highlights
+      document.querySelectorAll('.menu-item-btn').forEach(btn => {
+        if (btn.getAttribute('data-view') === viewName) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Update top header tabs highlights
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-view') === viewName) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Bind navigation click triggers
+    document.querySelectorAll('[data-view]').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetView = trigger.getAttribute('data-view');
+        switchView(targetView);
+      });
+    });
+
+    // Modal Create Dialog controllers
+    const modal = document.getElementById('new-campaign-modal');
+    const openBtns = [
+      document.getElementById('new-campaign-btn'),
+      document.getElementById('new-campaign-btn-2')
+    ];
+    const closeX = document.getElementById('modal-close-x');
+    const cancelBtn = document.getElementById('modal-cancel-btn');
+
+    function openModal() {
+      modal.classList.add('open');
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.getElementById('new-campaign-form').reset();
+    }
+
+    openBtns.forEach(btn => { if (btn) btn.addEventListener('click', openModal); });
+    if (closeX) closeX.addEventListener('click', closeModal);
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+    // Launch Campaign Submit handler
+    const form = document.getElementById('new-campaign-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const cName = document.getElementById('c-name').value;
+        const cAgent = document.getElementById('c-agent').value;
+        const cChannel = document.getElementById('c-channel').value;
+        const cBudget = document.getElementById('c-budget').value;
+        const cGoal = document.getElementById('c-performance').value;
+        
+        const newId = 'c' + (campaignsList.length + 1);
+        
+        const newCampaign = {
+          id: newId,
+          name: cName,
+          agent: cAgent,
+          channel: cChannel,
+          budget: cBudget,
+          status: 'Active',
+          goal: cGoal
+        };
+
+        campaignsList.unshift(newCampaign);
+        renderCampaignsTable();
+        closeModal();
+
+        // Trigger log update
+        addActivityLog(cAgent, `successfully initialized and dispatched new campaign: <strong>${cName}</strong> on channel <em>${cChannel}</em>.`);
+        alert(`Campaign "${cName}" successfully launched and assigned to ${cAgent}!`);
+      });
+    }
+
+    // Render Campaigns Table Dynamic Logic
+    function renderCampaignsTable() {
+      const tbody = document.getElementById('campaigns-table-body');
+      if (!tbody) return;
+      
+      tbody.innerHTML = '';
+      campaignsList.forEach(camp => {
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-id', camp.id);
+        
+        tr.innerHTML = `
+          <td><strong>${camp.name}</strong></td>
+          <td>${camp.agent}</td>
+          <td>${camp.channel}</td>
+          <td>${camp.budget}</td>
+          <td><span class="campaign-badge ${camp.status === 'Active' ? 'active' : 'paused'}">${camp.status}</span></td>
+          <td>${camp.status === 'Active' ? camp.goal : '--'}</td>
+          <td class="campaign-actions">
+            <button class="action-btn toggle-status-btn">${camp.status === 'Active' ? 'Pause' : 'Resume'}</button>
+            <button class="action-btn danger delete-campaign-btn">Delete</button>
+          </td>
+        `;
+        
+        tbody.appendChild(tr);
+      });
+
+      bindTableActionTriggers();
+    }
+
+    // Bind table buttons action listeners
+    function bindTableActionTriggers() {
+      // Toggle Pause/Resume Campaign
+      document.querySelectorAll('.toggle-status-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const tr = btn.closest('tr');
+          const id = tr.getAttribute('data-id');
+          const camp = campaignsList.find(c => c.id === id);
+          if (camp) {
+            camp.status = camp.status === 'Active' ? 'Paused' : 'Active';
+            renderCampaignsTable();
+            addActivityLog(camp.agent, `status toggled to <strong>${camp.status}</strong> for campaign <em>"${camp.name}"</em>.`);
+          }
+        });
+      });
+
+      // Delete Campaign
+      document.querySelectorAll('.delete-campaign-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const tr = btn.closest('tr');
+          const id = tr.getAttribute('data-id');
+          const campIndex = campaignsList.findIndex(c => c.id === id);
+          if (campIndex > -1) {
+            const name = campaignsList[campIndex].name;
+            const agentName = campaignsList[campIndex].agent;
+            campaignsList.splice(campIndex, 1);
+            renderCampaignsTable();
+            addActivityLog(agentName, `deleted and recalled campaign <em>"${name}"</em> from task queue.`);
+          }
+        });
+      });
+    }
+
+    // Add Simulated Log feed item
+    function addActivityLog(agent, msgText) {
+      const list = document.getElementById('activity-log-list');
+      if (!list) return;
+
+      const logItem = document.createElement('div');
+      logItem.className = 'log-item';
+      
+      let dotColor = 'var(--purple)';
+      if (agent.toLowerCase() === 'sam') dotColor = 'var(--cyan)';
+      else if (agent.toLowerCase() === 'kai') dotColor = 'var(--green)';
+      else if (agent.toLowerCase() === 'angela') dotColor = 'var(--red)';
+
+      logItem.innerHTML = `
+        <span class="log-dot" style="background-color: ${dotColor};"></span>
+        <div class="log-details">
+          <p class="log-msg"><strong>${agent}</strong> ${msgText}</p>
+          <div class="log-time">Just now</div>
+        </div>
+      `;
+
+      list.prepend(logItem);
+      // Keep only recent 8 logs to avoid screen clutter
+      if (list.children.length > 8) {
+        list.removeChild(list.lastChild);
+      }
+    }
+
+    // Save agent specific workspace console settings
+    function saveAgentSettings(agentName) {
+      alert(`Settings successfully saved for ${agentName}. Agent parameters updated in active queue.`);
+      addActivityLog(agentName, `active settings configuration updated by team manager.`);
+    }
+
+    // Toggle active state of agent
+    function toggleAgentState(agentId) {
+      agentStatuses[agentId] = !agentStatuses[agentId];
+      
+      // Update global count
+      const activeCount = Object.values(agentStatuses).filter(v => v).length;
+      const label = document.getElementById('active-agents-lbl');
+      if (label) label.textContent = `${activeCount} active agent${activeCount !== 1 ? 's' : ''}`;
+
+      // Update workspace toggles
+      document.querySelectorAll(`.agent-status-toggle[data-agent="${agentId}"]`).forEach(btn => {
+        btn.textContent = agentStatuses[agentId] ? 'Active' : 'Paused';
+        if (agentStatuses[agentId]) {
+          btn.style.color = '';
+          btn.style.borderColor = '';
+        } else {
+          btn.style.color = 'var(--text-muted)';
+          btn.style.borderColor = 'var(--border-color)';
+        }
+      });
+
+      // Update Overview Live card status lights
+      const card = document.querySelector(`.agent-card[data-agent="${agentId}"]`);
+      if (card) {
+        const ind = card.querySelector('.live-indicator');
+        const st = card.querySelector('.status-text');
+        if (agentStatuses[agentId]) {
+          ind.classList.remove('paused');
+          st.textContent = 'Live';
+        } else {
+          ind.classList.add('paused');
+          st.textContent = 'Paused';
+        }
+      }
+
+      addActivityLog(agentId.charAt(0).toUpperCase() + agentId.slice(1), `status updated to <strong>${agentStatuses[agentId] ? 'Active (Live)' : 'Paused'}</strong>.`);
+    }
+
+    // Bind workspace toggles
+    document.querySelectorAll('.agent-status-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const agent = btn.getAttribute('data-agent');
+        toggleAgentState(agent);
+      });
+    });
+
+    // Mock CSV Data Export
+    const exportBtn = document.getElementById('export-data-btn');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Campaign Name,Assigned Agent,Channel,Budget,Status,Goal Performance\n";
+        
+        campaignsList.forEach(c => {
+          csvContent += `"${c.name}","${c.agent}","${c.channel}","${c.budget}","${c.status}","${c.goal}"\n`;
+        });
+        
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "EnrichLabs_Campaign_Performance_Overview.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        alert("Campaign data successfully compiled and download triggered!");
+      });
+    }
+
+    // Interactive chart hover tooltips
+    const points = document.querySelectorAll('.chart-point');
+    const tooltip = document.getElementById('chart-tooltip');
+    
+    points.forEach(point => {
+      point.addEventListener('mouseenter', (e) => {
+        const val = point.getAttribute('data-val');
+        const date = point.getAttribute('data-date');
+        
+        tooltip.innerHTML = `<strong>${val}</strong><br>${date}`;
+        tooltip.style.opacity = '1';
+        
+        const bbox = point.getBoundingClientRect();
+        const containerBbox = point.closest('.chart-container').getBoundingClientRect();
+        
+        const left = bbox.left - containerBbox.left + (bbox.width / 2);
+        const top = bbox.top - containerBbox.top;
+        
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+      });
+
+      point.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+      });
+    });
+
+    // Dynamic Mock Report Builder download
+    const genReportBtn = document.getElementById('generate-report-btn');
+    if (genReportBtn) {
+      genReportBtn.addEventListener('click', () => {
+        const rType = document.getElementById('report-type').value;
+        const rRange = document.getElementById('report-range').value;
+        
+        let docContent = `ENRICH LABS AI MARKETING OS - EXECUTION REPORT\n`;
+        docContent += `==============================================\n`;
+        docContent += `Report Structure Focus: ${rType}\n`;
+        docContent += `Time Frame Range: ${rRange}\n`;
+        docContent += `Generated: ${new Date().toLocaleString()}\n\n`;
+        
+        docContent += `SUMMARY METRICS:\n`;
+        docContent += `----------------\n`;
+        docContent += `Organic Traffic (30D): 48,291 visitors\n`;
+        docContent += `Average Campaign ROAS: 3.2x\n`;
+        docContent += `CPA Reduction: -62%\n`;
+        docContent += `Email Open Rate: 42%\n`;
+        docContent += `Conversion Uplift: +89%\n\n`;
+        
+        docContent += `ACTIVE CAMPAIGNS REGISTER:\n`;
+        docContent += `-------------------------\n`;
+        campaignsList.forEach((c, idx) => {
+          docContent += `${idx + 1}. [${c.status.toUpperCase()}] Campaign: ${c.name} | Specialist: ${c.agent} | Budget: ${c.budget} | Target: ${c.goal}\n`;
+        });
+        
+        const dataUri = 'data:text/plain;charset=utf-8,' + encodeURIComponent(docContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", dataUri);
+        link.setAttribute("download", `EnrichLabs_${rType.replace(/\s+/g, '_')}_Report.txt`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        alert(`Custom report generated successfully. Download triggered for ${rType} (${rRange}).`);
+      });
+    }
+
+    // Periodical Simulated logs queue updating
+    const simLogPhrases = [
+      { agent: 'Helena', msg: 'completed SEO scans on target blog drafts. Balanced internal link weights for 6 priority pages.' },
+      { agent: 'Helena', msg: 'finalized B2B copywriting prompt rules. Content structure scoring hit target metric 9.2.' },
+      { agent: 'Sam', msg: 'optimized meta description strings across 3 landing page templates. Reindexing trigger submitted.' },
+      { agent: 'Sam', msg: 'analyzed Perplexity Search brand citations. Structured schema payload updated to prioritize B2B workflows.' },
+      { agent: 'Kai', msg: 'flagged relevant Twitter discussion regarding automated marketing agents. Posted helpful integration thread.' },
+      { agent: 'Kai', msg: 'scanned r/marketing for user question "how to scale content operations?". Logged informative case study response.' },
+      { agent: 'Angela', msg: 'launched A/B subject experiment for primary newsletter list. Tracking open index variance.' },
+      { agent: 'Angela', msg: 'compiled campaign metrics for email sequences. Drip open rates increased by 4.2% overall.' }
+    ];
+
+    setInterval(() => {
+      // Find active agents to select from
+      const activeAgentNames = Object.keys(agentStatuses).filter(k => agentStatuses[k]).map(k => k.charAt(0).toUpperCase() + k.slice(1));
+      if (activeAgentNames.length === 0) return;
+
+      // Select random phrase
+      const randomPhrase = simLogPhrases[Math.floor(Math.random() * simLogPhrases.length)];
+      
+      // Make sure the chosen agent is active
+      if (activeAgentNames.includes(randomPhrase.agent)) {
+        addActivityLog(randomPhrase.agent, randomPhrase.msg);
+      }
+    }, 9000);
+
+    // Initial render
+    renderCampaignsTable();
+  </script>
+</body>
+</html>
