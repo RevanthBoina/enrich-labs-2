@@ -622,7 +622,23 @@ ul { list-style: none; }
   background: linear-gradient(90deg, var(--purple), var(--purple-light));
   z-index: 0;
 }
-.hw-step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+.hw-step {
+  text-align: center; padding: 0 20px; position: relative; z-index: 1;
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+.hw-step:nth-child(1) { animation-delay: 0s; }
+.hw-step:nth-child(2) { animation-delay: 1s; }
+.hw-step:nth-child(3) { animation-delay: 2s; }
+.hw-step:nth-child(4) { animation-delay: 3s; }
+
+.hw-step:hover {
+  animation-play-state: paused;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
 .hw-num {
   width: 72px; height: 72px; border-radius: var(--radius-lg);
   background: #fff; border: 2px solid var(--border);
