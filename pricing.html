@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing – Enrich Labs AI Marketing Agents</title>
+  <meta name="description" content="Simple, transparent pricing for AI marketing agents. Start from $39/month per specialist. Free 3-day trial, no credit card required.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+
+  <!-- NAVBAR (same as homepage — include via JS partial in production) -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Enrich Labs home">
+        <span class="logo-text">Enrich<span class="logo-accent">Labs</span></span>
+      </a>
+      <div class="nav-center">
+        <ul class="nav-links" role="list">
+          <li class="nav-item"><a href="../index.html#agents" class="nav-link">Agents</a></li>
+          <li class="nav-item"><a href="../index.html#solutions" class="nav-link">Solutions</a></li>
+          <li class="nav-item"><a href="pricing.html" class="nav-link" aria-current="page">Pricing</a></li>
+          <li class="nav-item"><a href="blog/index.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">Company</a></li>
+        </ul>
+      </div>
+      <div class="nav-actions">
+        <a href="login.html" class="nav-link nav-login">Log in</a>
+        <a href="signup.html" class="btn btn-primary btn-sm" id="cta-nav">Get Started</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="pricing-hero">
+      <div class="container">
+        <div class="section-tag">Pricing</div>
+        <h1 class="section-heading">Simple, transparent pricing.</h1>
+        <p>Pick the specialists you need. Start small and scale as you grow.<br>Every plan includes a 3-day free trial — no credit card required.</p>
+
+        <div class="pricing-toggle">
+          <span class="toggle-label active">Monthly</span>
+          <button class="toggle-btn" aria-label="Toggle annual/monthly billing" id="billing-toggle"></button>
+          <span class="toggle-label">Annual</span>
+          <span class="save-badge">Save 25%</span>
+        </div>
+
+        <div class="pricing-plans">
+          <!-- Starter -->
+          <div class="plan-card" id="starter">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">$39<span>/mo</span></div>
+            <p class="plan-desc">1 AI specialist of your choice. Perfect for solopreneurs and early-stage startups.</p>
+            <a href="signup.html?plan=starter" class="btn btn-outline plan-cta" id="cta-starter">Start free trial →</a>
+            <ul class="plan-features">
+              <li>1 AI marketing specialist (Helena, Sam, Kai, or Angela)</li>
+              <li>All core automations & workflows</li>
+              <li>Daily email performance reports</li>
+              <li>1 integration (WordPress, Shopify, etc.)</li>
+              <li>Brand voice setup</li>
+              <li>Email support (48hr response)</li>
+              <li>3-day free trial</li>
+            </ul>
+          </div>
+
+          <!-- Growth -->
+          <div class="plan-card featured-plan" id="growth">
+            <div class="plan-badge">Most Popular</div>
+            <div class="plan-name">Growth</div>
+            <div class="plan-price">$99<span>/mo</span></div>
+            <p class="plan-desc">Up to 3 AI specialists. For growing teams that need full marketing coverage.</p>
+            <a href="signup.html?plan=growth" class="btn btn-primary plan-cta" id="cta-growth">Start free trial →</a>
+            <ul class="plan-features">
+              <li>Up to 3 AI marketing specialists</li>
+              <li>Everything in Starter</li>
+              <li>Unlimited integrations</li>
+              <li>Custom brand library & tone settings</li>
+              <li>Weekly strategy reviews</li>
+              <li>Slack notifications & alerts</li>
+              <li>Priority email support (12hr response)</li>
+              <li>Campaign approval workflow</li>
+            </ul>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="plan-card" id="enterprise">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">Custom</div>
+            <p class="plan-desc">Full AI team + custom integrations. For companies that need maximum scale and control.</p>
+            <a href="contact.html" class="btn btn-outline plan-cta" id="cta-enterprise">Contact sales →</a>
+            <ul class="plan-features">
+              <li>All 4 AI specialists (Helena, Sam, Kai, Angela)</li>
+              <li>Everything in Growth</li>
+              <li>Dedicated Customer Success Manager</li>
+              <li>Custom workflows & automations</li>
+              <li>SLA & uptime guarantees</li>
+              <li>GDPR DPA & compliance support</li>
+              <li>Custom data residency</li>
+              <li>24/7 priority support</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="text-align:center; font-size:13px; color:var(--col-text-3);">All plans billed monthly or annually · Cancel anytime · No setup fees</p>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="comparison-section">
+      <div class="container">
+        <h2 class="section-heading" style="margin-bottom:48px;">Compare plans.</h2>
+        <div style="overflow-x:auto;">
+          <table class="comparison-table" role="table" aria-label="Plan feature comparison">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Starter</th>
+                <th scope="col" class="highlight-col">Growth ★</th>
+                <th scope="col">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-category"><td colspan="4">AI Specialists</td></tr>
+              <tr><td>Number of AI specialists</td><td>1</td><td>Up to 3</td><td>All 4</td></tr>
+              <tr><td>Helena (Digital Marketer)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Sam (SEO Manager)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Kai (Social Listening)</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Angela (Email Marketer)</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr class="row-category"><td colspan="4">Automation & Execution</td></tr>
+              <tr><td>Core automations</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Custom workflows</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+              <tr><td>Campaign approval workflow</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>24/7 autonomous execution</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr class="row-category"><td colspan="4">Reporting</td></tr>
+              <tr><td>Daily email reports</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Weekly strategy reviews</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Custom dashboards</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+              <tr><td>Slack / email alerts</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr class="row-category"><td colspan="4">Integrations</td></tr>
+              <tr><td>Number of integrations</td><td>1</td><td>Unlimited</td><td>Unlimited + custom</td></tr>
+              <tr><td>CMS (WordPress, Webflow)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Ad platforms (Google, Meta, TikTok)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>Email (Mailchimp, Klaviyo)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>CRM (HubSpot)</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr class="row-category"><td colspan="4">Support & Security</td></tr>
+              <tr><td>Email support</td><td>48hr</td><td>12hr</td><td>24/7</td></tr>
+              <tr><td>Dedicated success manager</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+              <tr><td>SOC 2 compliance</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+              <tr><td>GDPR DPA</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+              <tr><td>SLA guarantee</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" style="background:var(--col-bg);">
+      <div class="container">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-heading">Pricing questions answered.</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" id="pfaq-q1" aria-controls="pfaq-a1">Can I switch plans?<span class="faq-chevron">▾</span></button>
+            <div class="faq-a" id="pfaq-a1" hidden><p>Yes, you can upgrade or downgrade at any time. Changes take effect at your next billing cycle. Unused days are prorated.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" id="pfaq-q2" aria-controls="pfaq-a2">What counts as a specialist?<span class="faq-chevron">▾</span></button>
+            <div class="faq-a" id="pfaq-a2" hidden><p>Each named AI agent (Helena, Sam, Kai, Angela) counts as one specialist. You can choose which specialists to activate per plan.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" id="pfaq-q3" aria-controls="pfaq-a3">Is there a setup fee?<span class="faq-chevron">▾</span></button>
+            <div class="faq-a" id="pfaq-a3" hidden><p>No setup fees on any plan. Enterprise includes a free onboarding session with our team.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" id="pfaq-q4" aria-controls="pfaq-a4">Do you offer refunds?<span class="faq-chevron">▾</span></button>
+            <div class="faq-a" id="pfaq-a4" hidden><p>We offer a 30-day money-back guarantee for your first paid month if you're not satisfied.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section final-cta-section">
+      <div class="container">
+        <div class="final-cta-inner">
+          <div class="final-cta-bg-orb"></div>
+          <h2 class="section-heading">Start free today.</h2>
+          <p class="section-subheading">3-day trial, no credit card. Cancel anytime.</p>
+          <div class="final-cta-buttons">
+            <a href="signup.html" class="btn btn-primary btn-xl" id="final-cta-pricing">Start Free Trial</a>
+            <a href="contact.html" class="btn btn-ghost btn-xl">Contact Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (abbreviated — shared partial in production) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding:32px 0;">
+        <p class="footer-copyright">© 2026 Enrich Labs Inc. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="legal/privacy.html">Privacy Policy</a>
+          <a href="legal/terms.html">Terms of Service</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
