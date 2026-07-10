@@ -547,14 +547,35 @@ ul { list-style: none; }
 .usecases-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 60px; }
 .uc-card {
   background: var(--off-white); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 28px 24px;
+  border-radius: var(--radius-lg); padding: 20px;
   transition: transform .25s, box-shadow .25s, border-color .25s;
 }
 .uc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(83,24,235,.1); border-color: rgba(83,24,235,.2); }
 .uc-card.featured { background: var(--purple-dark); border-color: var(--purple); }
 .uc-card.featured .uc-title { color: #fff; }
 .uc-card.featured .uc-desc  { color: rgba(255,255,255,.65); }
-.uc-emoji { font-size: 28px; margin-bottom: 14px; }
+.uc-visual {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+}
+.uc-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.uc-card.featured .uc-visual {
+  border-color: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+}
+.uc-card.featured .uc-visual img {
+  filter: brightness(0.95);
+}
 .uc-title { font-size: 18px; font-weight: 700; color: var(--text-1); margin-bottom: 10px; }
 .uc-desc { font-size: 14px; color: var(--text-3); line-height: 1.65; }
 
@@ -730,17 +751,63 @@ ul { list-style: none; }
 .an-ch-pct { width: 32px; text-align: right; color: var(--text-3); font-weight: 600; }
 
 /* ══════════════════════════════════
-   TESTIMONIALS
+   TESTIMONIALS (Pitch style horizontal marquee tickers)
 ══════════════════════════════════ */
 .testimonials { background: var(--off-white); }
-.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 60px; }
-.testi-card {
-  background: #fff; border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 28px;
-  display: flex; flex-direction: column;
-  transition: transform .25s, box-shadow .25s;
+.testi-ticker-container {
+  overflow: hidden;
+  margin-top: 56px;
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-.testi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(83,24,235,.08); }
+.testi-ticker {
+  display: flex;
+  width: max-content;
+}
+.testi-track {
+  display: flex;
+  gap: 24px;
+  padding: 10px 0;
+  animation: marquee 50s linear infinite;
+  width: max-content;
+}
+.testi-track.reverse {
+  animation: marquee-reverse 50s linear infinite;
+}
+.testi-ticker:hover .testi-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.testi-card-ticker {
+  width: 380px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(83,24,235,.02);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.testi-card-ticker:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(83,24,235,.08);
+}
 .testi-stars { color: #f59e0b; font-size: 15px; letter-spacing: 2px; margin-bottom: 16px; }
 .testi-quote { font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 24px; flex: 1; font-style: italic; }
 .testi-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
@@ -760,6 +827,25 @@ ul { list-style: none; }
   background: radial-gradient(circle at 10% 20%, rgba(243, 232, 255, 0.45) 0%, rgba(255, 255, 255, 1) 50%, rgba(254, 249, 195, 0.45) 100%);
   padding: 100px 32px;
   overflow: hidden;
+}
+.workflows-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
+}
+.workflows-title {
+  font-size: clamp(32px, 5.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.08;
+  color: #0c021c;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+}
+.workflows-subtitle {
+  font-size: clamp(16px, 1.8vw, 19px);
+  color: #6b6b7d;
+  font-weight: 400;
 }
 .pill-badge {
   display: inline-block;
@@ -1597,22 +1683,30 @@ ul { list-style: none; }
     </div>
     <div class="usecases-grid">
       <div class="uc-card featured reveal">
-        <div class="uc-emoji">🚀</div>
+        <div class="uc-visual">
+          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile01.png" alt="Startups & SMBs" loading="lazy">
+        </div>
         <div class="uc-title">Startups & SMBs</div>
         <div class="uc-desc">Compete like an enterprise from day one. Launch full marketing programs with AI agents that scale as you grow.</div>
       </div>
       <div class="uc-card reveal delay-1">
-        <div class="uc-emoji">🏢</div>
+        <div class="uc-visual">
+          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile02.png" alt="Agencies" loading="lazy">
+        </div>
         <div class="uc-title">Agencies</div>
         <div class="uc-desc">Deliver more results for your clients at a fraction of the cost. Scale your roster without expanding your team.</div>
       </div>
       <div class="uc-card reveal delay-2">
-        <div class="uc-emoji">🛒</div>
+        <div class="uc-visual">
+          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile03.png" alt="E-commerce" loading="lazy">
+        </div>
         <div class="uc-title">E-commerce</div>
         <div class="uc-desc">Turn traffic into sales with continuous SEO, paid ads, and email flows working 24/7. Your agents never stop selling.</div>
       </div>
       <div class="uc-card reveal delay-3">
-        <div class="uc-emoji">⚡</div>
+        <div class="uc-visual">
+          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile04.png" alt="Enterprise" loading="lazy">
+        </div>
         <div class="uc-title">Enterprise</div>
         <div class="uc-desc">Scale complex marketing ops with collaborative AI agents, custom integrations, and dedicated success management.</div>
       </div>
@@ -2286,47 +2380,214 @@ ul { list-style: none; }
      TESTIMONIALS
 ═══════════════════════════════════════════ -->
 <section class="section testimonials" id="testimonials">
-  <div class="section-inner">
+  <div class="section-inner" style="overflow: hidden; padding-bottom: 0;">
     <div class="section-centered reveal">
       <span class="section-label">Customer Stories</span>
       <h2 class="section-title">What our clients say.</h2>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
-        <p class="testi-quote">"Enrich Labs has been a game-changer. Helena writes better SEO content than our in-house team — and she never takes a day off. We doubled our organic traffic in 60 days."</p>
-        <div class="testi-author">
-          <!-- Replace .testi-avatar with <img src="testimonials/jane.jpg" alt="Jane Doe"> when available -->
-          <div class="testi-avatar" aria-hidden="true">JD</div>
-          <div>
-            <div class="testi-name">Jane Doe</div>
-            <div class="testi-role">Marketing Director, Acme Corp</div>
+
+    <!-- Ticker Row 1 (flows left) -->
+    <div class="testi-ticker-container reveal">
+      <div class="testi-ticker">
+        <div class="testi-track">
+          <!-- Card 1 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Enrich Labs has been a game-changer. Helena writes better SEO content than our in-house team — and she never takes a day off. We doubled our organic traffic in 60 days."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">JD</div>
+              <div>
+                <div class="testi-name">Jane Doe</div>
+                <div class="testi-role">Marketing Director, Acme Corp</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="testi-card reveal delay-1">
-        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
-        <p class="testi-quote">"Our campaigns run themselves now. Enrich feels like having a complete marketing department at a fraction of the cost. ROI shot up from day one."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:#059669;" aria-hidden="true">JS</div>
-          <div>
-            <div class="testi-name">John Smith</div>
-            <div class="testi-role">CEO, Shop&Save</div>
+          <!-- Card 2 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Our campaigns run themselves now. Enrich feels like having a complete marketing department at a fraction of the cost. ROI shot up from day one."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#059669;">JS</div>
+              <div>
+                <div class="testi-name">John Smith</div>
+                <div class="testi-role">CEO, Shop&Save</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="testi-card reveal delay-2">
-        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
-        <p class="testi-quote">"Sam's SEO work is phenomenal. In 3 months we went from page 4 to page 1 for all our target keywords. I still can't believe an AI did this autonomously."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:#0891b2;" aria-hidden="true">MS</div>
-          <div>
-            <div class="testi-name">Miguel Santos</div>
-            <div class="testi-role">Marketing Lead, ShopSmart</div>
+          <!-- Card 3 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Sam's SEO work is phenomenal. In 3 months we went from page 4 to page 1 for all our target keywords. I still can't believe an AI did this autonomously."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#0891b2;">MS</div>
+              <div>
+                <div class="testi-name">Miguel Santos</div>
+                <div class="testi-role">Marketing Lead, ShopSmart</div>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"If more than one person on the team is producing marketing assets, consistency drops. But that's easily solved with Enrich. Highly recommended!"</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#ef4444;">JV</div>
+              <div>
+                <div class="testi-name">Jelle van Schaick</div>
+                <div class="testi-role">Head of Growth, SunFlow</div>
+              </div>
+            </div>
+          </div>
+          <!-- Repeat Cards for seamless loop -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Enrich Labs has been a game-changer. Helena writes better SEO content than our in-house team — and she never takes a day off. We doubled our organic traffic in 60 days."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">JD</div>
+              <div>
+                <div class="testi-name">Jane Doe</div>
+                <div class="testi-role">Marketing Director, Acme Corp</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Our campaigns run themselves now. Enrich feels like having a complete marketing department at a fraction of the cost. ROI shot up from day one."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#059669;">JS</div>
+              <div>
+                <div class="testi-name">John Smith</div>
+                <div class="testi-role">CEO, Shop&Save</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Sam's SEO work is phenomenal. In 3 months we went from page 4 to page 1 for all our target keywords. I still can't believe an AI did this autonomously."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#0891b2;">MS</div>
+              <div>
+                <div class="testi-name">Miguel Santos</div>
+                <div class="testi-role">Marketing Lead, ShopSmart</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"If more than one person on the team is producing marketing assets, consistency drops. But that's easily solved with Enrich. Highly recommended!"</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#ef4444;">JV</div>
+              <div>
+                <div class="testi-name">Jelle van Schaick</div>
+                <div class="testi-role">Head of Growth, SunFlow</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Ticker Row 2 (flows right) -->
+    <div class="testi-ticker-container reveal" style="margin-top: 24px; margin-bottom: 40px;">
+      <div class="testi-ticker">
+        <div class="testi-track reverse">
+          <!-- Card 5 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"We wanted a high-performing tool that let us launch and scale content via URLs and agents. Enrich has been a godsend for our team."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#a855f7;">MR</div>
+              <div>
+                <div class="testi-name">Mees Rutten</div>
+                <div class="testi-role">Founder, SparkleCorp</div>
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"It's game-changing. Pitch's aesthetic and Enrich's execution make it a powerful B2B strategy partner. Absolute delight to work with."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#ec4899;">RM</div>
+              <div>
+                <div class="testi-name">Ravi Mehta</div>
+                <div class="testi-role">Product Advisor, TechStars</div>
+              </div>
+            </div>
+          </div>
+          <!-- Card 7 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Kai listens to brand references across Reddit & Twitter and responds automatically. Our user acquisition has grown 3x."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#10b981;">TD</div>
+              <div>
+                <div class="testi-name">Tara Dabir</div>
+                <div class="testi-role">Director of Business Dev</div>
+              </div>
+            </div>
+          </div>
+          <!-- Card 8 -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Angela sends thousands of personalized emails based on custom A/B subject triggers. Our outbound efficiency is up by 80%."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#3b82f6;">EK</div>
+              <div>
+                <div class="testi-name">Edwin Khodabakchian</div>
+                <div class="testi-role">CEO, Percept</div>
+              </div>
+            </div>
+          </div>
+          <!-- Repeat Cards for seamless loop -->
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"We wanted a high-performing tool that let us launch and scale content via URLs and agents. Enrich has been a godsend for our team."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#a855f7;">MR</div>
+              <div>
+                <div class="testi-name">Mees Rutten</div>
+                <div class="testi-role">Founder, SparkleCorp</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"It's game-changing. Pitch's aesthetic and Enrich's execution make it a powerful B2B strategy partner. Absolute delight to work with."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#ec4899;">RM</div>
+              <div>
+                <div class="testi-name">Ravi Mehta</div>
+                <div class="testi-role">Product Advisor, TechStars</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Kai listens to brand references across Reddit & Twitter and responds automatically. Our user acquisition has grown 3x."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#10b981;">TD</div>
+              <div>
+                <div class="testi-name">Tara Dabir</div>
+                <div class="testi-role">Director of Business Dev</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-ticker">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Angela sends thousands of personalized emails based on custom A/B subject triggers. Our outbound efficiency is up by 80%."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background:#3b82f6;">EK</div>
+              <div>
+                <div class="testi-name">Edwin Khodabakchian</div>
+                <div class="testi-role">CEO, Percept</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div style="text-align:center;margin-top:40px;" class="reveal">
       <a href="#" class="tk-cta" style="font-size:15px;" id="see-stories">See all customer stories →</a>
     </div>
