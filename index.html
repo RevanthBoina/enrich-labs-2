@@ -738,26 +738,112 @@ ul { list-style: none; }
 .testi-role { font-size: 12px; color: var(--text-4); }
 
 /* ══════════════════════════════════
-   INTEGRATIONS
-══════════════════════════════════ */
-.integrations { background: #fff; }
-.integrations-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; margin-top: 48px; margin-bottom: 40px; }
-.int-card {
-  background: var(--off-white); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 18px 12px;
-  text-align: center; cursor: default;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
+   WORKFLOWS / INTEGRATIONS
+   ══════════════════════════════════ */
+.integrations {
+  background: radial-gradient(circle at 10% 20%, rgba(243, 232, 255, 0.45) 0%, rgba(255, 255, 255, 1) 50%, rgba(254, 249, 195, 0.45) 100%);
+  padding: 100px 32px;
+  overflow: hidden;
 }
-.int-card:hover { transform: translateY(-3px); border-color: rgba(83,24,235,.3); box-shadow: 0 6px 20px rgba(83,24,235,.1); }
-.int-icon-box {
-  width: 44px; height: 44px; border-radius: 10px;
-  background: #fff; border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 8px; font-size: 10px; font-weight: 700;
-  color: var(--text-3);
+.pill-badge {
+  display: inline-block;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
 }
-.int-name { font-size: 11px; font-weight: 600; color: var(--text-3); }
-.integrations-footer { text-align: center; }
+.highlight-green {
+  background: #d9f99d;
+  color: #0c021c;
+  padding: 2px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  font-style: normal;
+}
+.workflows-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.workflows-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 32px 20px;
+  align-items: center;
+  margin-top: 56px;
+}
+.workflow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.item-grey {
+  color: #71717a;
+  padding: 10px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.item-grey .item-icon {
+  color: #9ca3af;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+.item-grey .item-text {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #52525b;
+}
+.item-grey:hover {
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+  color: #1a1a2e;
+}
+.item-grey:hover .item-icon {
+  color: #5318eb;
+}
+.item-highlight {
+  background: #f0f9ff;
+  border: 1.5px solid #bae6fd;
+  border-radius: 20px;
+  padding: 32px 20px;
+  color: #0284c7;
+  box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.08), 0 8px 10px -6px rgba(14, 165, 233, 0.08);
+  transform: translateY(-16px);
+  cursor: pointer;
+}
+.item-highlight .item-icon {
+  color: #0284c7;
+  margin-bottom: 16px;
+  transform: scale(1.1);
+}
+.item-highlight .item-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #0369a1;
+}
+.item-highlight:hover {
+  background: #e0f2fe;
+  border-color: #7dd3fc;
+  transform: translateY(-20px) scale(1.02);
+  box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.15);
+}
+.workflows-grid > div:nth-child(8n+1) { transform: translateY(-8px); }
+.workflows-grid > div:nth-child(8n+2) { transform: translateY(8px); }
+.workflows-grid > div:nth-child(8n+7) { transform: translateY(-8px); }
+.workflows-grid > .item-highlight { transform: translateY(-24px); }
+.workflows-grid > .item-highlight:hover { transform: translateY(-28px) scale(1.02); }
+.integrations-footer { text-align: center; margin-top: 56px; }
 .integrations-footer p { font-size: 14px; color: var(--text-4); margin-top: 12px; }
 
 /* ══════════════════════════════════
@@ -921,7 +1007,10 @@ ul { list-style: none; }
 @media (max-width: 1024px) {
   .agents-grid { grid-template-columns: 1fr; }
   .testi-grid  { grid-template-columns: repeat(2,1fr); }
-  .integrations-grid { grid-template-columns: repeat(4,1fr); }
+  .workflows-grid { grid-template-columns: repeat(4, 1fr); gap: 32px 24px; }
+  .workflows-grid > div { transform: none !important; }
+  .item-highlight { transform: none !important; }
+  .item-highlight:hover { transform: translateY(-4px) !important; }
   .usecases-grid { grid-template-columns: repeat(2,1fr); }
   .hw-steps  { grid-template-columns: repeat(2,1fr); gap: 40px; }
   .hw-steps::before { display: none; }
@@ -936,7 +1025,7 @@ ul { list-style: none; }
   .tk-panel.active { grid-template-columns: 1fr; gap: 40px; }
   .usecases-grid { grid-template-columns: 1fr; }
   .testi-grid { grid-template-columns: 1fr; }
-  .integrations-grid { grid-template-columns: repeat(3,1fr); }
+  .workflows-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
   .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
   .footer-top { grid-template-columns: 1fr; gap: 48px; }
   .footer-links-grid { grid-template-columns: repeat(2,1fr); }
@@ -946,7 +1035,7 @@ ul { list-style: none; }
   .agents-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
-  .integrations-grid { grid-template-columns: repeat(2,1fr); }
+  .workflows-grid { grid-template-columns: 1fr; gap: 20px; }
   .footer-links-grid { grid-template-columns: 1fr; }
   .an-kpis { grid-template-columns: 1fr 1fr; }
 }
@@ -1759,31 +1848,421 @@ ul { list-style: none; }
      INTEGRATIONS
 ═══════════════════════════════════════════ -->
 <section class="section integrations" id="integrations">
-  <div class="section-inner">
-    <div class="section-centered reveal">
-      <span class="section-label">Integrations</span>
-      <h2 class="section-title">Weave Enrich into<br>your existing stack.</h2>
-      <p class="section-sub">Connect to your CRM, CMS, ad platforms, and email tools — so your agents always have the data they need and can push results everywhere.</p>
+  <div class="workflows-header reveal">
+    <span class="pill-badge">Capabilities</span>
+    <h1 class="workflows-title">+50 core AI marketing workflows thoughtfully crafted from <em class="highlight-green">human expertise</em></h1>
+    <p class="workflows-subtitle">Readily available for your execution support</p>
+  </div>
+
+  <div class="workflows-container reveal">
+    <div class="workflows-grid">
+
+      <!-- COLUMN 1 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Keyword Research SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <path d="M11 7a4 4 0 0 0-4 4"></path>
+          </svg>
+        </div>
+        <div class="item-text">Keyword<br>research</div>
+      </div>
+      
+      <!-- COLUMN 2 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Comment Responses SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <path d="M12 7v4"></path>
+            <path d="M12 14h.01"></path>
+          </svg>
+        </div>
+        <div class="item-text">Comment<br>responses</div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Performance Dashboards SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <line x1="15" y1="3" x2="15" y2="21"></line>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="3" y1="15" x2="21" y2="15"></line>
+          </svg>
+        </div>
+        <div class="item-text">Performance<br>dashboards</div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Google Ads Setup SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="item-text">Google Ads<br>setup</div>
+      </div>
+
+      <!-- COLUMN 5 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Competitor Analysis SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 20V10M12 20V4M6 20v-6"></path>
+            <circle cx="12" cy="4" r="1"></circle>
+          </svg>
+        </div>
+        <div class="item-text">Competitor<br>analysis</div>
+      </div>
+
+      <!-- COLUMN 6 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Reddit Monitoring SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-4 0v-2a2 2 0 0 1 2-2z"></path>
+            <path d="M12 2v3"></path>
+          </svg>
+        </div>
+        <div class="item-text">Reddit<br>monitoring</div>
+      </div>
+
+      <!-- COLUMN 7 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Internal Linking SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </div>
+        <div class="item-text">Internal<br>linking</div>
+      </div>
+
+      <!-- COLUMN 8 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Ad Copy Writing SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <div class="item-text">Ad copy<br>writing</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 1 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Audience Tracking SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="item-text">Audience<br>tracking</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 2 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Blog Writing SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <line x1="10" y1="9" x2="8" y2="9"></line>
+          </svg>
+        </div>
+        <div class="item-text">Blog<br>writing</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 3 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Meta Ads Creation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <path d="M2 12h20"></path>
+          </svg>
+        </div>
+        <div class="item-text">Meta ads<br>creation</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 4 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Twitter Engagement SVG -->
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+            <path d="M4 20l6.768 -6.768M20 4l-6.768 6.768"></path>
+          </svg>
+        </div>
+        <div class="item-text">Twitter (X)<br>engagement</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 5 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Email Sequences SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="item-text">Email<br>sequences</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 6 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Meta Tag Generation SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+        </div>
+        <div class="item-text">Meta tag<br>generation</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 7 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- ROI Tracking SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+        </div>
+        <div class="item-text">ROI<br>tracking</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 8 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Trend Detection SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="item-text">Trend<br>detection</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 1 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- A/B Testing SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3v12a6 6 0 0 0 6 6a6 6 0 0 0 6-6V3"></path>
+            <line x1="6" y1="9" x2="18" y2="9"></line>
+          </svg>
+        </div>
+        <div class="item-text">A/B<br>testing</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 2 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Content Gap Analysis SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="12" y1="3" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div class="item-text">Content gap<br>analysis</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 3 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Influencer Outreach SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="item-text">Influencer<br>outreach</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 4 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- GEO Optimization SVG (Gear) -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+        <div class="item-text">GEO<br>optimization</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 5 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Growth Forecasting SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"></path>
+            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+          </svg>
+        </div>
+        <div class="item-text">Growth<br>forecasting</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 6 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Community Moderation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="item-text">Community<br>moderation</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 7 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Newsletter Creation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="M8 14h8"></path>
+            <path d="M8 18h5"></path>
+          </svg>
+        </div>
+        <div class="item-text">Newsletter<br>creation</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 8 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Content Refresh SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+          </svg>
+        </div>
+        <div class="item-text">Content<br>refresh</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 1 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- UGC Curation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="item-text">UGC<br>curation</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 2 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Retargeting Campaigns SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <div class="item-text">Retargeting<br>campaigns</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 3 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Content Publishing SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <div class="item-text">Content<br>publishing</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 4 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Monthly Reports SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <div class="item-text">Monthly<br>reports</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 5 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Product Page Copy SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </div>
+        <div class="item-text">Product<br>page copy</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 6 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Landing Page Copy SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+        </div>
+        <div class="item-text">Landing page<br>copy</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 7 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Optimization Alerts SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div class="item-text">Optimization<br>alerts</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 8 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Social Post Creation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </div>
+        <div class="item-text">Social post<br>creation</div>
+      </div>
+
     </div>
-    <div class="integrations-grid reveal">
-      <!-- Replace .int-icon-box text with <img src="integrations/[name].svg" alt="[Name]"> when assets are available -->
-      <div class="int-card"><div class="int-icon-box">WP</div><div class="int-name">WordPress</div></div>
-      <div class="int-card"><div class="int-icon-box">SF</div><div class="int-name">Shopify</div></div>
-      <div class="int-card"><div class="int-icon-box">MC</div><div class="int-name">Mailchimp</div></div>
-      <div class="int-card"><div class="int-icon-box">KL</div><div class="int-name">Klaviyo</div></div>
-      <div class="int-card"><div class="int-icon-box">GA</div><div class="int-name">Google Ads</div></div>
-      <div class="int-card"><div class="int-icon-box">FB</div><div class="int-name">Meta Ads</div></div>
-      <div class="int-card"><div class="int-icon-box">TT</div><div class="int-name">TikTok</div></div>
-      <div class="int-card"><div class="int-icon-box">G4</div><div class="int-name">Google Analytics</div></div>
-      <div class="int-card"><div class="int-icon-box">HS</div><div class="int-name">HubSpot</div></div>
-      <div class="int-card"><div class="int-icon-box">SL</div><div class="int-name">Slack</div></div>
-      <div class="int-card"><div class="int-icon-box">WF</div><div class="int-name">Webflow</div></div>
-      <div class="int-card"><div class="int-icon-box">NO</div><div class="int-name">Notion</div></div>
-    </div>
-    <div class="integrations-footer reveal">
-      <a href="integrations.html" class="btn-cta-outline" id="explore-integrations">Explore all integrations →</a>
-      <p>+ dozens more added every month</p>
-    </div>
+  </div>
+
+  <div class="integrations-footer reveal">
+    <a href="integrations.html" class="btn-cta-outline" id="explore-integrations">Explore all workflows →</a>
+    <p>+ dozens more added every month</p>
   </div>
 </section>
 
