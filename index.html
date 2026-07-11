@@ -1188,7 +1188,7 @@ ul { list-style: none; }
   .an-kpis { grid-template-columns: 1fr 1fr; }
 }
 
-</style>
+<link rel="stylesheet" href="css/solutions.css">
 </head>
 <body>
 
@@ -1591,44 +1591,207 @@ ul { list-style: none; }
      USE CASES  (Pitch: "for people who mean business")
 ═══════════════════════════════════════════ -->
 <section class="section usecases" id="solutions">
+  <!-- Ambient background -->
+  <div class="sol-ambient">
+    <div class="sol-orb sol-orb--1"></div>
+    <div class="sol-orb sol-orb--2"></div>
+    <div class="sol-orb sol-orb--3"></div>
+  </div>
+
   <div class="section-inner">
-    <div class="reveal">
-      <span class="section-label">Solutions</span>
-      <h2 class="section-title">Enrich is for businesses<br>that mean growth.</h2>
-      <p class="section-sub">Join 1,000+ companies that use Enrich to automate and amplify their marketing — without the overhead of a full in-house team.</p>
-    </div>
-    <div class="usecases-grid">
-      <div class="uc-card featured reveal">
-        <div class="uc-visual">
-          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile01.png" alt="Startups & SMBs" loading="lazy">
-        </div>
-        <div class="uc-title">Startups & SMBs</div>
-        <div class="uc-desc">Compete like an enterprise from day one. Launch full marketing programs with AI agents that scale as you grow.</div>
+    <div class="sol-header">
+      <div class="sol-reveal">
+        <span class="section-label">Solutions</span>
+        <h2 class="section-title">Enrich is for businesses<br>that mean <span class="sol-growth-word">growth.</span></h2>
+        <p class="section-sub">Join 1,000+ companies that use Enrich to automate and amplify their marketing — without the overhead of a full in-house team.</p>
       </div>
-      <div class="uc-card reveal delay-1">
+      
+      <!-- Floating icons showcase to the right of header -->
+      <div class="sol-floating-icons sol-reveal sol-reveal-delay-1">
+        <svg class="sol-connections-svg">
+          <!-- Connection lines -->
+          <path class="sol-connection-line" d="M 60,60 C 180,30 250,50 280,40" />
+          <path class="sol-connection-line" d="M 280,40 C 310,80 340,90 350,130" />
+          <path class="sol-connection-line" d="M 350,130 C 280,150 240,150 200,160" />
+          <path class="sol-connection-line" d="M 200,160 C 140,170 100,170 60,60" />
+          <path class="sol-connection-line" d="M 280,40 C 240,100 120,130 200,160" />
+
+          <!-- Particle lines -->
+          <path class="sol-particle-line" d="M 60,60 C 180,30 250,50 280,40" />
+          <path class="sol-particle-line" d="M 280,40 C 310,80 340,90 350,130" style="animation-delay: 0.5s;" />
+          <path class="sol-particle-line" d="M 350,130 C 280,150 240,150 200,160" style="animation-delay: 1s;" />
+          <path class="sol-particle-line" d="M 200,160 C 140,170 100,170 60,60" style="animation-delay: 1.5s;" />
+        </svg>
+
+        <div class="sol-float-icon sol-float-icon--purple" style="top: 30px; left: 30px;">
+          <!-- User group icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #5318eb;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div class="sol-float-icon" style="top: 10px; left: 250px;">
+          <!-- Bar chart icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #7c3aed;"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+        <div class="sol-float-icon sol-float-icon--green" style="top: 100px; left: 320px;">
+          <!-- Target icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </div>
+        <div class="sol-float-icon sol-float-icon--pink" style="top: 130px; left: 170px;">
+          <!-- Lightning bolt icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ec4899;"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="usecases-grid">
+      <!-- Card 1: Startups & SMBs -->
+      <div class="uc-card sol-reveal sol-reveal-delay-1" data-solution="startups">
         <div class="uc-visual">
-          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile02.png" alt="Agencies" loading="lazy">
+          <div class="uc-live-demo uc-demo-startups">
+            <!-- Simulated sliders -->
+            <div class="demo-slider-row">
+              <span class="demo-slider-label">Time to Launch</span>
+              <div class="demo-slider-track">
+                <div class="demo-slider-fill demo-slider-fill--blue" style="width: 80%;"></div>
+                <div class="demo-slider-thumb" style="left: 80%;"></div>
+              </div>
+              <span class="demo-slider-value">80%</span>
+            </div>
+            <div class="demo-slider-row">
+              <span class="demo-slider-label">Marketing Cost</span>
+              <div class="demo-slider-track">
+                <div class="demo-slider-fill demo-slider-fill--pink" style="width: 60%;"></div>
+                <div class="demo-slider-thumb" style="left: 60%;"></div>
+              </div>
+              <span class="demo-slider-value">60%</span>
+            </div>
+            <div class="demo-slider-row">
+              <span class="demo-slider-label">Growth</span>
+              <div class="demo-slider-track">
+                <div class="demo-slider-fill demo-slider-fill--green" style="width: 90%;"></div>
+                <div class="demo-slider-thumb" style="left: 90%;"></div>
+              </div>
+              <span class="demo-slider-value">90%</span>
+            </div>
+
+            <!-- Fake cursor -->
+            <svg class="demo-cursor" viewBox="0 0 24 24" fill="none" style="top: 50%; left: 60%; position: absolute; width: 18px; height: 18px;">
+              <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l5.24-5.25h6.76c.45 0 .67-.54.35-.85L6.35 2.85c-.3-.3-.85-.08-.85.36z" fill="#000" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+
+            <!-- Success Pop -->
+            <div class="demo-success-pop">✓ Optimizing Growth</div>
+          </div>
+        </div>
+        <div class="uc-title">Startups &amp; SMBs</div>
+        <div class="uc-desc">Compete like an enterprise from day one. Launch full marketing programs with AI agents that scale as you grow.</div>
+        <div class="uc-card-footer">
+          <div class="uc-cta-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Agencies -->
+      <div class="uc-card sol-reveal sol-reveal-delay-2" data-solution="agencies">
+        <div class="uc-visual">
+          <div class="uc-live-demo uc-demo-agencies">
+            <div class="demo-task-list">
+              <div class="demo-task-item">
+                <span class="demo-status-dot demo-status-dot--done"></span>
+                <span class="demo-task-name">New campaign launched</span>
+                <span class="demo-task-status demo-task-status--done">✓ Done</span>
+              </div>
+              <div class="demo-task-item">
+                <span class="demo-status-dot demo-status-dot--done"></span>
+                <span class="demo-task-name">SEO rankings improved</span>
+                <span class="demo-task-status demo-task-status--done">✓ Done</span>
+              </div>
+              <div class="demo-task-item">
+                <span class="demo-status-dot demo-status-dot--progress"></span>
+                <span class="demo-task-name">Lead pipeline growth</span>
+                <span class="demo-task-status demo-task-status--progress">⏳ Working</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="uc-title">Agencies</div>
         <div class="uc-desc">Deliver more results for your clients at a fraction of the cost. Scale your roster without expanding your team.</div>
+        <div class="uc-card-footer">
+          <div class="uc-cta-arrow">→</div>
+        </div>
       </div>
-      <div class="uc-card reveal delay-2">
+
+      <!-- Card 3: E-commerce -->
+      <div class="uc-card sol-reveal sol-reveal-delay-3" data-solution="ecommerce">
         <div class="uc-visual">
-          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile03.png" alt="E-commerce" loading="lazy">
+          <div class="uc-live-demo uc-demo-ecommerce">
+            <div class="demo-ecom-header">
+              <span class="demo-revenue-counter">$24,847</span>
+              <span class="demo-sale-ping"></span>
+            </div>
+            <div class="demo-mini-chart">
+              <div class="demo-chart-bar" style="height: 40%;"></div>
+              <div class="demo-chart-bar" style="height: 65%;"></div>
+              <div class="demo-chart-bar" style="height: 50%;"></div>
+              <div class="demo-chart-bar" style="height: 85%;"></div>
+              <div class="demo-chart-bar" style="height: 70%;"></div>
+            </div>
+            <div class="demo-order-area">
+              <div class="demo-order-notification">
+                <span class="demo-order-icon">📦</span>
+                <span class="demo-order-text">New order</span>
+                <span class="demo-order-amount">+$2,140</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="uc-title">E-commerce</div>
         <div class="uc-desc">Turn traffic into sales with continuous SEO, paid ads, and email flows working 24/7. Your agents never stop selling.</div>
+        <div class="uc-card-footer">
+          <div class="uc-cta-arrow">→</div>
+        </div>
       </div>
-      <div class="uc-card reveal delay-3">
+
+      <!-- Card 4: Enterprise -->
+      <div class="uc-card sol-reveal sol-reveal-delay-4" data-solution="enterprise">
         <div class="uc-visual">
-          <img src="https://www.enrichlabs.ai/assets/images/homepage-redesign/bento/tile04.png" alt="Enterprise" loading="lazy">
+          <div class="uc-live-demo uc-demo-enterprise">
+            <div class="demo-integration-grid">
+              <div class="demo-int-icon" style="color: #00a1e0;">sf</div>
+              <div class="demo-int-icon" style="color: #0077b5;">in</div>
+              <div class="demo-int-icon" style="color: #4285f4;">G</div>
+              <div class="demo-int-icon" style="color: #1877f2;">∞</div>
+              <div class="demo-int-icon" style="color: #107c41;">X</div>
+              <div class="demo-int-icon" style="color: #00c7b7;">sf</div>
+              <div class="demo-int-icon" style="color: #95bf47;">S</div>
+              <div class="demo-int-icon" style="color: #ff7a59;">hub</div>
+              <div class="demo-int-icon" style="color: #4a154b;">Sl</div>
+              <div class="demo-int-icon" style="color: #000000;">N</div>
+              <div class="demo-int-icon" style="color: #f25f22;">ga</div>
+              <div class="demo-int-icon" style="color: #8c8c9e;">+</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="demo-status-badge">✓ Connected</span>
+            </div>
+          </div>
         </div>
         <div class="uc-title">Enterprise</div>
         <div class="uc-desc">Scale complex marketing ops with collaborative AI agents, custom integrations, and dedicated success management.</div>
+        <div class="uc-card-footer">
+          <div class="uc-cta-arrow">→</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Modal Overlay for Expansions -->
+<div class="sol-modal-overlay" id="sol-modal-overlay">
+  <div class="sol-modal-card">
+    <button class="sol-modal-close" aria-label="Close modal">✕</button>
+    <div class="sol-modal-body">
+      <!-- Filled dynamically by JavaScript -->
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════
      HOW IT WORKS
@@ -3007,9 +3170,8 @@ ul { list-style: none; }
   });
 
   updatePreview();
-
 })();
 </script>
-
+<script src="js/solutions.js"></script>
 </body>
 </html>
