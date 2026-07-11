@@ -2221,45 +2221,821 @@ ul { list-style: none; }
 }
 
 /* ══════════════════════════════════
-   FINAL CTA  (Pitch: big centered section)
+   AI COMMAND CENTER - GRAND FINALE
 ══════════════════════════════════ */
-.final-cta {
-  background: var(--purple-dark);
-  padding: 120px 32px;
-  text-align: center;
-  position: relative; overflow: hidden;
+.ai-command-center {
+  background: linear-gradient(180deg, #1a0a2e 0%, #0c021c 50%, #0f0a1a 100%);
+  padding: 100px 32px 80px;
+  position: relative;
+  overflow: hidden;
 }
-.final-cta::before {
+.ai-command-center::before {
   content: '';
-  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-  width: 800px; height: 800px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(198,165,255,.15), transparent 65%);
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(83, 24, 235, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(34, 197, 94, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
-.final-cta h2 {
-  font-size: clamp(40px, 6vw, 72px);
-  font-weight: 800; letter-spacing: -.05em; line-height: 1.05;
-  color: #fff; margin-bottom: 20px; position: relative;
+.ai-grid-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(83, 24, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(83, 24, 235, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, black, transparent);
+  pointer-events: none;
 }
-.final-cta h2 em { font-style: normal; color: var(--green); }
-.final-cta p { font-size: 18px; color: rgba(255,255,255,.65); max-width: 480px; margin: 0 auto 40px; position: relative; }
-.final-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+.ai-particles {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ai-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(83, 24, 235, 0.6);
+  border-radius: 50%;
+  animation: aiParticleFloat 15s infinite ease-in-out;
+}
+@keyframes aiParticleFloat {
+  0%, 100% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-20px) translateX(50px); opacity: 0; }
+}
+.ai-flow-lines {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ai-flow-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(83, 24, 235, 0.5), transparent);
+  animation: flowLine 8s infinite linear;
+}
+@keyframes flowLine {
+  0% { transform: translateX(-100%); width: 200px; }
+  100% { transform: translateX(calc(100vw + 200px)); width: 300px; }
+}
+.ai-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  position: relative;
+  z-index: 2;
+}
+.ai-headline {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: aiFadeIn 0.8s ease 0.2s forwards;
+}
+.ai-headline em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--green), #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@keyframes aiFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.ai-subheadline {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  opacity: 0;
+  animation: aiFadeIn 0.8s ease 0.4s forwards;
+}
+/* Orchestration Timeline */
+.ai-orchestration {
+  max-width: 1100px;
+  margin: 0 auto 50px;
+  position: relative;
+  z-index: 2;
+}
+.ai-timeline-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+}
+.ai-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.ai-timeline-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ai-specialists {
+  display: flex;
+  gap: 8px;
+}
+.ai-specialist-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: badgePop 0.4s ease forwards;
+}
+.ai-specialist-badge:nth-child(1) { animation-delay: 0.5s; }
+.ai-specialist-badge:nth-child(2) { animation-delay: 0.6s; }
+.ai-specialist-badge:nth-child(3) { animation-delay: 0.7s; }
+.ai-specialist-badge:nth-child(4) { animation-delay: 0.8s; }
+@keyframes badgePop {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.ai-specialist-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.ai-specialist-badge .dot.helena { background: #c084fc; }
+.ai-specialist-badge .dot.sam { background: #60a5fa; }
+.ai-specialist-badge .dot.kai { background: #34d399; }
+.ai-specialist-badge .dot.angela { background: #f472b6; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+.ai-timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.ai-timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%);
+}
+.ai-timeline-progress {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--blue), var(--green));
+  transform: translateY(-50%);
+  width: 0;
+  transition: width 2s ease;
+  box-shadow: 0 0 20px rgba(83, 24, 235, 0.5);
+}
+.ai-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.ai-node.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+.ai-node-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.ai-node.active .ai-node-icon {
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  border-color: transparent;
+  box-shadow: 0 0 30px rgba(83, 24, 235, 0.5);
+  transform: scale(1.1);
+}
+.ai-node.completed .ai-node-icon {
+  background: var(--green);
+  border-color: transparent;
+}
+.ai-node-icon svg {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.ai-node.active .ai-node-icon svg,
+.ai-node.completed .ai-node-icon svg {
+  color: white;
+}
+.ai-node-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  transition: color 0.3s ease;
+}
+.ai-node.active .ai-node-label,
+.ai-node.completed .ai-node-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+/* Live Activity Feed */
+.ai-activity-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+.ai-activity-feed {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+}
+.ai-panel-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-panel-title .live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+.ai-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 180px;
+  overflow: hidden;
+}
+.ai-feed-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: feedSlide 0.4s ease forwards;
+}
+@keyframes feedSlide {
+  to { opacity: 1; transform: translateX(0); }
+}
+.ai-feed-item .feed-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ai-feed-item .feed-icon svg {
+  width: 14px;
+  height: 14px;
+}
+.ai-feed-item .feed-icon.success { background: rgba(34, 197, 94, 0.2); color: var(--green); }
+.ai-feed-item .feed-icon.info { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.ai-feed-item .feed-icon.warning { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+.ai-feed-item .feed-text { flex: 1; }
+.ai-feed-item .feed-time {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.ai-feed-item.fade-out {
+  animation: feedFadeOut 0.4s ease forwards;
+}
+@keyframes feedFadeOut {
+  to { opacity: 0; transform: translateX(20px); }
+}
+/* Metrics Graph */
+.ai-metrics-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+}
+.ai-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ai-metric {
+  text-align: center;
+}
+.ai-metric-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+.ai-metric-value.up { color: var(--green); }
+.ai-metric-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ai-chart {
+  margin-top: 16px;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+.ai-chart-bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--purple), transparent);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.5s ease;
+}
+/* Regional Pulse */
+.ai-regional-panel {
+  grid-column: span 2;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+}
+.ai-regional-map {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 12px;
+  position: relative;
+}
+.ai-region {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ai-region-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--purple);
+  position: relative;
+}
+.ai-region-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(83, 24, 235, 0.3);
+  animation: regionPulse 2s infinite;
+}
+@keyframes regionPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+.ai-region-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+}
+/* AI Status Panel */
+.ai-status-panel {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  position: relative;
+  z-index: 2;
+}
+.ai-status-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.ai-status-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.ai-status-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-4px);
+}
+.ai-status-icon {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-status-icon svg { width: 18px; height: 18px; }
+.ai-status-icon.purple { background: rgba(83, 24, 235, 0.2); color: #a78bfa; }
+.ai-status-icon.blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.ai-status-icon.green { background: rgba(34, 197, 94, 0.2); color: #34d399; }
+.ai-status-icon.orange { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+.ai-status-icon.pink { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+.ai-status-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+.ai-status-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ai-status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--green);
+}
+/* CTA Section */
+.ai-cta-section {
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+}
+.ai-cta-progress {
+  max-width: 400px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin: 0 auto 30px;
+  overflow: hidden;
+}
+.ai-cta-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--blue), var(--green));
+  border-radius: 2px;
+  width: 0;
+  transition: width 3s ease;
+}
+.ai-cta-title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: white;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: aiFadeIn 0.8s ease 1.5s forwards;
+}
+.ai-cta-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--green), #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ai-cta-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: aiFadeIn 0.8s ease 1.7s forwards;
+}
+.ai-cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: aiFadeIn 0.8s ease 1.9s forwards;
+}
 .btn-cta-white {
-  font-size: 15px; font-weight: 700;
-  background: #fff; color: var(--purple);
-  padding: 14px 30px; border-radius: var(--radius-full);
-  box-shadow: 0 4px 24px rgba(0,0,0,.25);
-  transition: background .2s, transform .15s;
+  font-size: 15px;
+  font-weight: 700;
+  background: #fff;
+  color: var(--purple);
+  padding: 16px 36px;
+  border-radius: 50px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
-.btn-cta-white:hover { background: var(--purple-bg); transform: translateY(-2px); }
+.btn-cta-white::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, var(--purple), var(--blue), var(--green), var(--purple));
+  background-size: 300% 100%;
+  border-radius: 52px;
+  z-index: -1;
+  animation: borderGlow 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-cta-white:hover::before {
+  opacity: 1;
+}
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+.btn-cta-white::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+.btn-cta-white:active::after {
+  width: 300px;
+  height: 300px;
+}
+.btn-cta-white:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(83, 24, 235, 0.4);
+}
 .btn-cta-ghost {
-  font-size: 15px; font-weight: 600;
-  border: 1.5px solid rgba(255,255,255,.3); color: #fff;
-  padding: 14px 30px; border-radius: var(--radius-full);
-  transition: background .2s, border-color .2s;
+  font-size: 15px;
+  font-weight: 600;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 36px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
 }
-.btn-cta-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
-.final-cta-note { font-size: 13px; color: rgba(255,255,255,.4); margin-top: 20px; position: relative; }
+.btn-cta-ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+.ai-cta-note {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 20px;
+  opacity: 0;
+  animation: aiFadeIn 0.8s ease 2.1s forwards;
+}
+/* Footer Transition */
+.footer-transition {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 1));
+  pointer-events: none;
+}
+.site-footer {
+  background: #0a0a0f;
+  border-top: none;
+  position: relative;
+}
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(83, 24, 235, 0.3), transparent);
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 80px;
+  padding: 60px 32px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.footer-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+.footer-brand-logo-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--purple);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: white;
+}
+.footer-tagline {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+}
+.footer-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.footer-social {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+.footer-social:hover {
+  background: var(--purple);
+  color: white;
+  transform: translateY(-2px);
+}
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+}
+.footer-col h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+.footer-col:hover h4 {
+  color: white;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-col li {
+  margin-bottom: 10px;
+}
+.footer-col a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+.footer-col a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--purple);
+  transition: width 0.3s ease;
+}
+.footer-col a:hover {
+  color: white;
+}
+.footer-col a:hover::after {
+  width: 100%;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-legal a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+/* Platform Status */
+.platform-status {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  padding: 0 32px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+.platform-status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.platform-status-item .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.platform-status-item .status-dot.green { background: var(--green); }
+.platform-status-item .status-dot.pulse { animation: pulse 2s infinite; }
+/* Responsive */
+@media (max-width: 1024px) {
+  .ai-timeline { flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .ai-timeline::before { display: none; }
+  .ai-activity-panel { grid-template-columns: 1fr; }
+  .ai-regional-panel { grid-column: span 1; }
+  .ai-status-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-links-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .ai-command-center { padding: 60px 20px 40px; }
+  .ai-timeline-container { padding: 20px; }
+  .ai-specialists { display: none; }
+  .ai-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .ai-status-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .footer-links-grid { grid-template-columns: repeat(2, 1fr); }
+  .platform-status { flex-wrap: wrap; gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-particle, .ai-flow-line, .ai-region-dot::after, .ai-status-dot.pulse,
+  .ai-specialist-badge .dot, .ai-panel-title .live-dot {
+    animation: none !important;
+  }
+  .ai-headline, .ai-subheadline, .ai-cta-title, .ai-cta-subtitle, .ai-cta-btns, .ai-cta-note,
+  .ai-node, .ai-feed-item, .ai-specialist-badge {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
 
 /* ══════════════════════════════════
    FOOTER  (Pitch exact structure)
@@ -4290,17 +5066,227 @@ ul { list-style: none; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     FINAL CTA
+     AI COMMAND CENTER - GRAND FINALE
 ═══════════════════════════════════════════ -->
-<section class="final-cta" id="get-started">
-  <h2>More output.<br><em>Zero overhead.</em></h2>
-  <p>Your AI marketing team is ready. Start your free trial today — no setup fees, no contracts.</p>
-  <div class="final-cta-btns">
-    <a href="dashboard.html" class="btn-cta-white" id="final-cta-primary">Get started for free</a>
-    <a href="#" class="btn-cta-ghost" id="final-cta-secondary">Contact sales</a>
+<div class="footer-transition"></div>
+<section class="ai-command-center" id="get-started">
+  <div class="ai-grid-bg"></div>
+  <div class="ai-particles">
+    <div class="ai-particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="ai-particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="ai-particle" style="left: 35%; animation-delay: 4s;"></div>
+    <div class="ai-particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="ai-particle" style="left: 65%; animation-delay: 8s;"></div>
+    <div class="ai-particle" style="left: 80%; animation-delay: 10s;"></div>
+    <div class="ai-particle" style="left: 90%; animation-delay: 12s;"></div>
   </div>
-  <p class="final-cta-note">Free 3-day trial · No credit card · Cancel anytime</p>
+  <div class="ai-flow-lines">
+    <div class="ai-flow-line" style="top: 20%; animation-delay: 0s;"></div>
+    <div class="ai-flow-line" style="top: 40%; animation-delay: 3s;"></div>
+    <div class="ai-flow-line" style="top: 60%; animation-delay: 6s;"></div>
+    <div class="ai-flow-line" style="top: 80%; animation-delay: 9s;"></div>
+  </div>
+  
+  <div class="ai-header">
+    <h2 class="ai-headline">Autonomous AI Marketing<br>Is Now <em>Executing</em></h2>
+    <p class="ai-subheadline">Watch as your AI marketing team works 24/7 — researching, strategizing, creating, optimizing, and delivering results while you focus on growth.</p>
+  </div>
+  
+  <div class="ai-orchestration">
+    <div class="ai-timeline-container">
+      <div class="ai-timeline-header">
+        <span class="ai-timeline-title">AI Campaign Orchestration</span>
+        <div class="ai-specialists">
+          <span class="ai-specialist-badge"><span class="dot helena"></span>Helena</span>
+          <span class="ai-specialist-badge"><span class="dot sam"></span>Sam</span>
+          <span class="ai-specialist-badge"><span class="dot kai"></span>Kai</span>
+          <span class="ai-specialist-badge"><span class="dot angela"></span>Angela</span>
+        </div>
+      </div>
+      <div class="ai-timeline">
+        <div class="ai-timeline-progress" id="ai-timeline-progress"></div>
+        <div class="ai-node" data-step="1">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <span class="ai-node-label">Research</span>
+        </div>
+        <div class="ai-node" data-step="2">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <span class="ai-node-label">Strategy</span>
+        </div>
+        <div class="ai-node" data-step="3">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <span class="ai-node-label">Content</span>
+        </div>
+        <div class="ai-node" data-step="4">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <span class="ai-node-label">SEO</span>
+        </div>
+        <div class="ai-node" data-step="5">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span class="ai-node-label">Social</span>
+        </div>
+        <div class="ai-node" data-step="6">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span class="ai-node-label">Email</span>
+        </div>
+        <div class="ai-node" data-step="7">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 8V6a5 5 0 0 1 10 0v2"/></svg>
+          </div>
+          <span class="ai-node-label">Paid Ads</span>
+        </div>
+        <div class="ai-node" data-step="8">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span class="ai-node-label">Analytics</span>
+        </div>
+        <div class="ai-node" data-step="9">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <span class="ai-node-label">Optimization</span>
+        </div>
+        <div class="ai-node" data-step="10">
+          <div class="ai-node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <span class="ai-node-label">Reporting</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ai-activity-panel">
+      <div class="ai-activity-feed">
+        <div class="ai-panel-title"><span class="live-dot"></span>Live Activity</div>
+        <div class="ai-feed-list" id="ai-feed-list"></div>
+      </div>
+      
+      <div class="ai-metrics-panel">
+        <div class="ai-panel-title">Campaign Health</div>
+        <div class="ai-metrics-grid">
+          <div class="ai-metric">
+            <div class="ai-metric-value up" id="metric-roi">+127%</div>
+            <div class="ai-metric-label">ROI</div>
+          </div>
+          <div class="ai-metric">
+            <div class="ai-metric-value up" id="metric-traffic">+89%</div>
+            <div class="ai-metric-label">Traffic</div>
+          </div>
+          <div class="ai-metric">
+            <div class="ai-metric-value up" id="metric-conversions">+45%</div>
+            <div class="ai-metric-label">Conversions</div>
+          </div>
+        </div>
+        <div class="ai-chart" id="ai-chart"></div>
+      </div>
+      
+      <div class="ai-regional-panel">
+        <div class="ai-panel-title">Global Campaign Activity</div>
+        <div class="ai-regional-map">
+          <div class="ai-region">
+            <div class="ai-region-dot"></div>
+            <span class="ai-region-label">North America</span>
+          </div>
+          <div class="ai-region">
+            <div class="ai-region-dot" style="background: #60a5fa;"></div>
+            <span class="ai-region-label">Europe</span>
+          </div>
+          <div class="ai-region">
+            <div class="ai-region-dot" style="background: #34d399;"></div>
+            <span class="ai-region-label">Asia Pacific</span>
+          </div>
+          <div class="ai-region">
+            <div class="ai-region-dot" style="background: #fbbf24;"></div>
+            <span class="ai-region-label">LATAM</span>
+          </div>
+          <div class="ai-region">
+            <div class="ai-region-dot" style="background: #f472b6;"></div>
+            <span class="ai-region-label">MENA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ai-status-panel">
+    <div class="ai-status-grid">
+      <div class="ai-status-card">
+        <div class="ai-status-icon purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+        </div>
+        <div class="ai-status-value" id="ai-active-agents">4</div>
+        <div class="ai-status-label">Active Agents</div>
+        <div class="ai-status-indicator"><span class="status-dot green pulse"></span> Online</div>
+      </div>
+      <div class="ai-status-card">
+        <div class="ai-status-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="ai-status-value" id="ai-running-workflows">12</div>
+        <div class="ai-status-label">Running Workflows</div>
+        <div class="ai-status-indicator"><span class="status-dot green pulse"></span> Active</div>
+      </div>
+      <div class="ai-status-card">
+        <div class="ai-status-icon green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="ai-status-value" id="ai-completed">847</div>
+        <div class="ai-status-label">Completed Today</div>
+        <div class="ai-status-indicator">+23 this hour</div>
+      </div>
+      <div class="ai-status-card">
+        <div class="ai-status-icon orange">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+        <div class="ai-status-value" id="ai-queued">34</div>
+        <div class="ai-status-label">Queued Tasks</div>
+        <div class="ai-status-indicator">Processing...</div>
+      </div>
+      <div class="ai-status-card">
+        <div class="ai-status-icon pink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="ai-status-value" id="ai-integrations">50+</div>
+        <div class="ai-status-label">Integrations</div>
+        <div class="ai-status-indicator"><span class="status-dot green pulse"></span> Connected</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ai-cta-section">
+    <div class="ai-cta-progress">
+      <div class="ai-cta-progress-fill" id="ai-cta-progress"></div>
+    </div>
+    <h2 class="ai-cta-title">Your AI Marketing Team<br>Is <em>Ready Now</em></h2>
+    <p class="ai-cta-subtitle">Start your free trial today — no setup fees, no contracts, no waiting.</p>
+    <div class="ai-cta-btns">
+      <a href="dashboard.html" class="btn-cta-white" id="final-cta-primary">Start Free Trial</a>
+      <a href="#" class="btn-cta-ghost" id="final-cta-secondary">Contact Sales</a>
+    </div>
+    <p class="ai-cta-note">Free 3-day trial · No credit card · Cancel anytime</p>
+  </div>
 </section>
+
+<!-- Platform Status -->
+<div class="platform-status">
+  <div class="platform-status-item"><span class="status-dot green pulse"></span> All Systems Operational</div>
+  <div class="platform-status-item"><span class="status-dot green pulse"></span> 4 Active AI Agents</div>
+  <div class="platform-status-item"><span class="status-dot green pulse"></span> 12 Campaigns Running</div>
+  <div class="platform-status-item"><span class="status-dot green pulse"></span> 50+ Integrations</div>
+</div>
 
 </main>
 
