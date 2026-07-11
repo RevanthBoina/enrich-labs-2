@@ -3126,6 +3126,7 @@ ul { list-style: none; }
 }
 </style>
 <link rel="stylesheet" href="css/solutions.css">
+<link rel="stylesheet" href="css/specialists.css">
 </head>
 <body>
 
@@ -3781,6 +3782,8 @@ ul { list-style: none; }
      AGENTS  (Meet the team)
 ═══════════════════════════════════════════ -->
 <section class="section agents" id="agents">
+  <div class="agents-ambient-glow"></div>
+  <canvas id="agents-particles"></canvas>
   <div class="section-inner">
     <div class="section-centered reveal">
       <span class="section-label">AI Specialists</span>
@@ -3798,6 +3801,29 @@ ul { list-style: none; }
         <div class="ac-name">Helena</div>
         <div class="ac-role">AI Digital Marketing Specialist</div>
         <div class="ac-desc">Helena learns your brand inside out and builds a comprehensive digital marketing strategy. She writes SEO content, manages paid ads, handles email flows, and reports results daily to your inbox — all autonomously.</div>
+        <div class="specialist-display">
+          <div class="autoplay-progress"></div>
+          <div class="avatar-container">
+            <svg class="avatar-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="#f3e8ff" stroke="#a855f7" stroke-width="3" />
+              <circle cx="35" cy="45" r="5" fill="#1e1b4b" />
+              <circle cx="65" cy="45" r="5" fill="#1e1b4b" />
+              <path d="M 35 60 Q 50 70 65 60" fill="none" stroke="#1e1b4b" stroke-width="3" stroke-linecap="round" />
+              <rect x="25" y="38" width="20" height="14" rx="3" fill="none" stroke="#a855f7" stroke-width="2" />
+              <rect x="55" y="38" width="20" height="14" rx="3" fill="none" stroke="#a855f7" stroke-width="2" />
+              <line x1="45" y1="45" x2="55" y2="45" stroke="#a855f7" stroke-width="2" />
+            </svg>
+            <div class="orbiting-widget orbit-1" title="Google Ads"><span style="font-size:12px;font-weight:bold;color:#ea4335;">G</span></div>
+            <div class="orbiting-widget orbit-2" title="Meta Ads"><span style="font-size:12px;font-weight:bold;color:#1877f2;">M</span></div>
+            <div class="orbiting-widget orbit-3" title="SEO"><span style="font-size:10px;font-weight:bold;color:#a855f7;">SEO</span></div>
+            <div class="orbiting-widget orbit-4" title="Analytics"><span style="font-size:12px;font-weight:bold;color:#f4b400;">📊</span></div>
+          </div>
+          <div class="anim-container visuals-helena">
+            <div class="kpi-counter" id="helena-kpi">Leads: <span class="counter-value">1,240</span></div>
+            <canvas id="helena-mini-chart" width="160" height="40" class="mini-chart"></canvas>
+            <div class="mini-status">Optimizing ad spend...</div>
+          </div>
+        </div>
         <div class="ac-tags">
           <span class="ac-tag">SEO Content</span>
           <span class="ac-tag">Google Ads</span>
@@ -3825,6 +3851,39 @@ ul { list-style: none; }
         <div class="ac-name">Sam</div>
         <div class="ac-role">AI SEO / GEO Manager</div>
         <div class="ac-desc">Sam specializes in search. He conducts deep keyword research, optimizes your website and content for rankings, and tracks SEO performance by region — ensuring your brand stays on page one.</div>
+        <div class="specialist-display">
+          <div class="autoplay-progress"></div>
+          <div class="avatar-container">
+            <svg class="avatar-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="#e0f7fa" stroke="#06b6d4" stroke-width="3" />
+              <circle cx="35" cy="45" r="5" fill="#0f172a" />
+              <circle cx="65" cy="45" r="5" fill="#0f172a" />
+              <path d="M 40 65 Q 50 55 60 65" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round" />
+              <path d="M 15 35 Q 50 15 85 35 Z" fill="#06b6d4" />
+              <path d="M 25 35 L 75 35" stroke="#0891b2" stroke-width="3" />
+            </svg>
+            <div class="orbiting-widget orbit-1" title="Keyword"><span style="font-size:12px;">🔑</span></div>
+            <div class="orbiting-widget orbit-2" title="Global"><span style="font-size:12px;">🌐</span></div>
+            <div class="orbiting-widget orbit-3" title="Search"><span style="font-size:12px;">🔍</span></div>
+            <div class="orbiting-widget orbit-4" title="Chart"><span style="font-size:12px;">📈</span></div>
+          </div>
+          <div class="anim-container visuals-sam">
+            <div class="seo-tracker">
+              <svg class="seo-gauge" viewBox="0 0 36 36" width="50" height="50">
+                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e2e8f0" stroke-width="3" />
+                <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" />
+                <text x="18" y="21.5" class="percentage" font-size="8" font-weight="bold" text-anchor="middle" fill="#0891b2">92%</text>
+              </svg>
+            </div>
+            <div class="rank-movement">
+              <ul class="scrolling-keywords">
+                <li>enrichlabs.com <span class="up-arrow">↑2</span></li>
+                <li>ai marketing <span class="up-arrow">↑4</span></li>
+                <li>autonomous agency <span class="up-arrow">↑8</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div class="ac-tags">
           <span class="ac-tag">Keyword Research</span>
           <span class="ac-tag">On-page SEO</span>
@@ -3852,6 +3911,33 @@ ul { list-style: none; }
         <div class="ac-name">Kai</div>
         <div class="ac-role">AI Social Listening Manager</div>
         <div class="ac-desc">Kai monitors social media and forums 24/7. He engages with your audience, responds to comments and mentions, alerts you to trends, and flags any PR issues before they escalate.</div>
+        <div class="specialist-display">
+          <div class="autoplay-progress"></div>
+          <div class="avatar-container">
+            <svg class="avatar-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="#ecfdf5" stroke="#10b981" stroke-width="3" />
+              <circle cx="35" cy="45" r="5" fill="#064e3b" />
+              <circle cx="65" cy="45" r="5" fill="#064e3b" />
+              <path d="M 35 60 Q 50 72 65 60" fill="none" stroke="#064e3b" stroke-width="3" stroke-linecap="round" />
+              <path d="M 20 50 A 30 30 0 0 1 80 50" fill="none" stroke="#10b981" stroke-width="4" />
+              <rect x="15" y="45" width="8" height="15" rx="3" fill="#059669" />
+              <rect x="77" y="45" width="8" height="15" rx="3" fill="#059669" />
+            </svg>
+            <div class="orbiting-widget orbit-1" title="Reddit"><span style="font-size:12px;font-weight:bold;color:#ff4500;">R</span></div>
+            <div class="orbiting-widget orbit-2" title="Chat"><span style="font-size:12px;">💬</span></div>
+            <div class="orbiting-widget orbit-3" title="Sentiment"><span style="font-size:12px;">😊</span></div>
+            <div class="orbiting-widget orbit-4" title="Alert"><span style="font-size:12px;">⚠️</span></div>
+          </div>
+          <div class="anim-container visuals-kai">
+            <div class="social-chatter">
+              <div class="bubble active">"Great tool for startups!"</div>
+              <div class="bubble">"How does it compare?"</div>
+            </div>
+            <div class="sentiment-bar">
+              <div class="sentiment-fill" style="width: 88%"></div>
+            </div>
+          </div>
+        </div>
         <div class="ac-tags">
           <span class="ac-tag">Social Monitoring</span>
           <span class="ac-tag">Reddit Engagement</span>
@@ -3879,6 +3965,34 @@ ul { list-style: none; }
         <div class="ac-name">Angela</div>
         <div class="ac-role">AI Email Marketing Specialist</div>
         <div class="ac-desc">Angela automates your entire email marketing operation. She crafts campaigns and drip sequences, A/B tests subject lines, segments your list, and sends newsletters that keep your audience engaged and converting.</div>
+        <div class="specialist-display">
+          <div class="autoplay-progress"></div>
+          <div class="avatar-container">
+            <svg class="avatar-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="#fff1f2" stroke="#f43f5e" stroke-width="3" />
+              <circle cx="35" cy="45" r="5" fill="#4c0519" />
+              <circle cx="65" cy="45" r="5" fill="#4c0519" />
+              <path d="M 35 60 Q 50 68 65 60" fill="none" stroke="#4c0519" stroke-width="3" stroke-linecap="round" />
+              <path d="M 35 25 L 50 35 L 65 25 Z" fill="#f43f5e" />
+            </svg>
+            <div class="orbiting-widget orbit-1" title="Mail"><span style="font-size:12px;">✉️</span></div>
+            <div class="orbiting-widget orbit-2" title="Automation"><span style="font-size:12px;">⚙️</span></div>
+            <div class="orbiting-widget orbit-3" title="List"><span style="font-size:12px;">📋</span></div>
+            <div class="orbiting-widget orbit-4" title="Flow"><span style="font-size:12px;">⚡</span></div>
+          </div>
+          <div class="anim-container visuals-angela">
+            <div class="email-flow">
+              <svg class="flow-svg" viewBox="0 0 200 60" width="100%" height="40">
+                <path d="M 20,30 L 100,30 L 180,30" fill="none" stroke="#e2e8f0" stroke-width="2" class="flow-path" />
+                <circle cx="20" cy="30" r="6" fill="#f43f5e" class="node node-start" />
+                <circle cx="100" cy="30" r="6" fill="#f43f5e" class="node node-mid" />
+                <circle cx="180" cy="30" r="6" fill="#f43f5e" class="node node-end" />
+                <circle cx="20" cy="30" r="3" fill="#fff" class="node-pulse" />
+              </svg>
+            </div>
+            <div class="subscriber-ticker">Subscribers: <span id="sub-count">4,280</span></div>
+          </div>
+        </div>
         <div class="ac-tags">
           <span class="ac-tag">Email Campaigns</span>
           <span class="ac-tag">Drip Sequences</span>
@@ -5795,6 +5909,16 @@ ul { list-style: none; }
   }
 })();
 </script>
+<!-- Workspace Overlay Modal -->
+<div class="workspace-overlay" id="workspace-overlay" aria-hidden="true">
+  <div class="workspace-content" role="dialog" aria-modal="true" aria-labelledby="workspace-title">
+    <button class="close-workspace" aria-label="Close workspace">×</button>
+    <h2 class="workspace-title" id="workspace-title">Specialist Workspace</h2>
+    <div id="workspace-dynamic-content"></div>
+  </div>
+</div>
+
 <script src="js/solutions.js"></script>
+<script src="js/specialists.js" defer></script>
 </body>
 </html>
