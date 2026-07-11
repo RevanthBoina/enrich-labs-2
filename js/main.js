@@ -89,27 +89,133 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ─── FAQ ACCORDION ─── */
-  const faqButtons = document.querySelectorAll('.faq-q');
+  /* ─── PREMIUM FAQ ACCORDION ─── */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const faqButtons = document.querySelectorAll('.faq-btn');
+  const faqItems = document.querySelectorAll('.faq-item');
+  const faqSection = document.querySelector('.premium-faq');
+  
+  let idleTimer = null;
+  let idleIndex = 0;
+  let isUserInteracting = false;
+  
+  const openFaq = (btn) => {
+    if (prefersReducedMotion) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.closest('.faq-item').querySelector('.faq-body').classList.add('open');
+      btn.classList.add('open');
+      return;
+    }
+    
+    const wasOpen = btn.classList.contains('open');
+    
+    // Close all
+    faqButtons.forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.classList.remove('open');
+      b.closest('.faq-item').querySelector('.faq-body')?.classList.remove('open');
+    });
+    
+    // Open clicked if it was closed
+    if (!wasOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.classList.add('open');
+      const body = btn.closest('.faq-item').querySelector('.faq-body');
+      if (body) body.classList.add('open');
+      
+      // Smooth scroll to opened item
+      setTimeout(() => {
+        btn.closest('.faq-item').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  };
+  
   faqButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      const answer = document.getElementById(btn.getAttribute('aria-controls'));
-
-      // Close all
-      faqButtons.forEach(b => {
-        b.setAttribute('aria-expanded', 'false');
-        const a = document.getElementById(b.getAttribute('aria-controls'));
-        if (a) a.hidden = true;
-      });
-
-      // Toggle current
-      if (!isExpanded) {
-        btn.setAttribute('aria-expanded', 'true');
-        if (answer) answer.hidden = false;
-      }
+      isUserInteracting = true;
+      clearIdleCycle();
+      openFaq(btn);
+      setTimeout(() => { isUserInteracting = false; }, 2000);
     });
+    
+    // Hover glow effect
+    if (!prefersReducedMotion) {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const glow = btn.querySelector('.faq-glow');
+        if (glow && !btn.classList.contains('open')) {
+          glow.style.width = '0';
+          glow.style.left = x + 'px';
+          glow.style.right = 'auto';
+          setTimeout(() => { glow.style.left = '0'; glow.style.width = '100%'; }, 10);
+        }
+      });
+    }
   });
+  
+  // Idle auto-cycle
+  const startIdleCycle = () => {
+    if (idleTimer || faqItems.length === 0) return;
+    idleIndex = 0;
+    
+    const cycle = () => {
+      if (isUserInteracting) {
+        idleTimer = setTimeout(cycle, 1000);
+        return;
+      }
+      
+      faqItems.forEach(item => item.classList.remove('idle-active'));
+      const btn = faqItems[idleIndex].querySelector('.faq-btn');
+      openFaq(btn);
+      faqItems[idleIndex].classList.add('idle-active');
+      
+      idleIndex = (idleIndex + 1) % faqItems.length;
+      idleTimer = setTimeout(cycle, 5000);
+    };
+    
+    cycle();
+  };
+  
+  const clearIdleCycle = () => {
+    if (idleTimer) {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+    }
+    faqItems.forEach(item => item.classList.remove('idle-active'));
+  };
+  
+  // Start idle mode after 15 seconds of no interaction
+  if (faqSection && !prefersReducedMotion) {
+    let interactionTimer;
+    const resetIdleTimer = () => {
+      clearTimeout(interactionTimer);
+      clearIdleCycle();
+      interactionTimer = setTimeout(startIdleCycle, 15000);
+    };
+    
+    ['mousemove', 'mouseenter', 'touchstart', 'scroll'].forEach(evt => {
+      faqSection.addEventListener(evt, resetIdleTimer, { passive: true });
+    });
+    
+    resetIdleTimer();
+  }
+  
+  // Intersection observer for entrance animations
+  if (faqSection && !prefersReducedMotion) {
+    const faqObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.faq-label, .faq-title, .faq-item').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      faqObserver.observe(el);
+    });
+  }
 
   /* ─── SCROLL REVEAL (Intersection Observer) ─── */
   const revealEls = document.querySelectorAll(

@@ -195,6 +195,272 @@
       padding: 24px 16px;
     }
   }
+
+  /* ─────────────────────────────────────────────
+     CAPABILITIES SECTION STYLES
+  ───────────────────────────────────────────── */
+  .capabilities-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #faf5ff 0%, #fff 50%, #f0fdf4 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .capabilities-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(83, 24, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
+    animation: floatBg 20s ease-in-out infinite;
+  }
+  @keyframes floatBg {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-2%, 2%) rotate(1deg); }
+  }
+  .cap-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .cap-header h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    color: #0c021c;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+  .cap-header p {
+    font-size: 18px;
+    color: #6b6b7d;
+  }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cap-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid rgba(83, 24, 235, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .cap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .cap-card:hover::before {
+    transform: scaleX(1);
+  }
+  .cap-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(83, 24, 235, 0.12);
+    border-color: rgba(83, 24, 235, 0.2);
+  }
+  .cap-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: transform 0.4s ease;
+  }
+  .cap-card:hover .cap-icon {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  .cap-icon.voice { background: linear-gradient(135deg, #f5f0ff, #ede9fe); color: #7c3aed; }
+  .cap-icon.speed { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); color: #0284c7; }
+  .cap-icon.learning { background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: #16a34a; }
+  .cap-icon.workflow { background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #ea580c; }
+  .cap-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .cap-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0c021c;
+    margin-bottom: 8px;
+  }
+  .cap-card p {
+    font-size: 14px;
+    color: #6b6b7d;
+    line-height: 1.5;
+  }
+  .cap-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f3f4f6;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+  }
+  .cap-card:hover .cap-stat {
+    background: var(--purple);
+    color: white;
+  }
+  .cap-stat .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #16a34a;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+  /* Card entrance animations */
+  .cap-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  .cap-card:nth-child(1) { animation-delay: 0.1s; }
+  .cap-card:nth-child(2) { animation-delay: 0.2s; }
+  .cap-card:nth-child(3) { animation-delay: 0.3s; }
+  .cap-card:nth-child(4) { animation-delay: 0.4s; }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /* Modal styles */
+  .cap-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(12, 2, 28, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .cap-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cap-modal-content {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cap-modal.active .cap-modal-content {
+    transform: scale(1) translateY(0);
+  }
+  .cap-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.2s ease;
+  }
+  .cap-modal-close:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+  }
+  .cap-modal h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0c021c;
+    margin-bottom: 12px;
+  }
+  .cap-modal p {
+    color: #6b6b7d;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .cap-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cap-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .cap-features li:last-child {
+    border-bottom: none;
+  }
+  .cap-features .check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  /* Responsive */
+  @media (max-width: 900px) {
+    .cap-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 24px;
+    }
+  }
+  @media (max-width: 600px) {
+    .cap-grid {
+      grid-template-columns: 1fr;
+    }
+    .capabilities-section {
+      padding: 80px 0;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -674,6 +940,68 @@
 
     </div>
   </div>
+
+    <!-- CAPABILITIES SECTION -->
+    <section class="capabilities-section" id="capabilities">
+      <div class="cap-header">
+        <h2>AI Agent Capabilities</h2>
+        <p>Specialist agents that learn, adapt, and execute your marketing strategy</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card" data-cap="voice">
+          <div class="cap-icon voice">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+            </svg>
+          </div>
+          <h3>Brand Voice</h3>
+          <p>AI agents maintain consistent messaging across all channels</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Active</div>
+        </div>
+        <div class="cap-card" data-cap="speed">
+          <div class="cap-icon speed">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3>Real-Time Execution</h3>
+          <p>Instant response to market changes and opportunities</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Live</div>
+        </div>
+        <div class="cap-card" data-cap="learning">
+          <div class="cap-icon learning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Continuous Learning</h3>
+          <p>Agents improve from every interaction and campaign</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Learning</div>
+        </div>
+        <div class="cap-card" data-cap="workflow">
+          <div class="cap-icon workflow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3>Workflow Automation</h3>
+          <p>Seamless integration with your existing tools</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Ready</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES MODAL -->
+    <div class="cap-modal" id="cap-modal">
+      <div class="cap-modal-content">
+        <button class="cap-modal-close" onclick="closeCapModal()">×</button>
+        <div id="cap-modal-body"></div>
+      </div>
+    </div>
+
 </main>
 
 <!-- FOOTER -->
@@ -778,6 +1106,128 @@
       burger.setAttribute('aria-expanded', String(!open));
     });
   }
+
+  // Capabilities Modal Data
+  const capData = {
+    voice: {
+      title: 'Brand Voice',
+      desc: 'AI agents maintain your brand voice consistently across all marketing channels. Every piece of content is crafted to reflect your unique tone, style, and messaging guidelines.',
+      features: [
+        'Tone consistency across 50+ channels',
+        'Learning from your brand guidelines',
+        'Auto-adjust for platform nuances',
+        'Approval workflow integration'
+      ]
+    },
+    speed: {
+      title: 'Real-Time Execution',
+      desc: 'React instantly to market changes, competitor moves, and customer behavior. Our AI agents work 24/7 to seize opportunities the moment they arise.',
+      features: [
+        'Sub-second response times',
+        '24/7 monitoring and execution',
+        'Instant A/B testing deployment',
+        'Real-time performance optimization'
+      ]
+    },
+    learning: {
+      title: 'Continuous Learning',
+      desc: 'Every campaign, every interaction, every result teaches our AI agents something new. They get smarter over time, adapting to your business.',
+      features: [
+        'Campaign performance analysis',
+        'Customer behavior pattern learning',
+        'A/B test result optimization',
+        'Seasonal trend adaptation'
+      ]
+    },
+    workflow: {
+      title: 'Workflow Automation',
+      desc: 'Connect your existing tools and let AI agents handle the repetitive work. Focus on strategy while automation handles execution.',
+      features: [
+        '50+ native integrations',
+        'Custom API connections',
+        'Zapier & Make support',
+        'Webhook automation'
+      ]
+    }
+  };
+
+  // Open modal
+  function openCapModal(cap) {
+    const data = capData[cap];
+    if (!data) return;
+    
+    const featuresHtml = data.features.map(f => `
+      <li>
+        <span class="check">✓</span>
+        <span>${f}</span>
+      </li>
+    `).join('');
+    
+    document.getElementById('cap-modal-body').innerHTML = `
+      <h3>${data.title}</h3>
+      <p>${data.desc}</p>
+      <ul class="cap-features">${featuresHtml}</ul>
+    `;
+    document.getElementById('cap-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close modal
+  function closeCapModal() {
+    document.getElementById('cap-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Card click handlers
+  document.querySelectorAll('.cap-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const cap = card.dataset.cap;
+      if (cap) openCapModal(cap);
+    });
+  });
+
+  // Close on overlay click
+  document.getElementById('cap-modal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'cap-modal') closeCapModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCapModal();
+  });
+
+  // Hover tilt effect for cards
+  const capCards = document.querySelectorAll('.cap-card');
+  capCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Intersection Observer for scroll animations
+  const capObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.cap-card').forEach(card => {
+    card.style.animationPlayState = 'paused';
+    capObserver.observe(card);
+  });
+
 </script>
 
 </body>
