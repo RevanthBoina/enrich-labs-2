@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflows & Capabilities — Enrich Labs AI Marketing Agents</title>
+<meta name="description" content="Explore +50 core AI marketing workflows built with human expertise. SEO, Keyword research, ad copywriting, email sequences and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ─────────────────────────────────────────────
+     WORKFLOWS / INTEGRATIONS PAGE SPECIFIC STYLES
+  ───────────────────────────────────────────── */
+  .workflows-page {
+    background: radial-gradient(circle at 10% 20%, rgba(243, 232, 255, 0.45) 0%, rgba(255, 255, 255, 1) 50%, rgba(254, 249, 195, 0.45) 100%);
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+  }
+  .workflows-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+  }
+  .pill-badge {
+    display: inline-block;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: var(--radius-full);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .workflows-title {
+    font-size: clamp(32px, 5.5vw, 60px);
+    font-weight: 800;
+    line-height: 1.08;
+    color: #0c021c;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+  }
+  .highlight-green {
+    background: #d9f99d;
+    color: #0c021c;
+    padding: 2px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    font-style: normal;
+  }
+  .workflows-subtitle {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: #6b6b7d;
+    font-weight: 400;
+  }
+
+  /* Grid Layout for Workflows */
+  .workflows-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  .workflows-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 32px 20px;
+    align-items: center;
+  }
+
+  /* Card Item Base Style */
+  .workflow-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Grey Muted Items */
+  .item-grey {
+    color: #71717a;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+  .item-grey .item-icon {
+    color: #9ca3af;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+  .item-grey .item-text {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #52525b;
+  }
+  .item-grey:hover {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+    color: #1a1a2e;
+  }
+  .item-grey:hover .item-icon {
+    color: var(--purple);
+  }
+
+  /* Highlighted Blue Items */
+  .item-highlight {
+    background: #f0f9ff;
+    border: 1.5px solid #bae6fd;
+    border-radius: 20px;
+    padding: 32px 20px;
+    color: #0284c7;
+    box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.08), 0 8px 10px -6px rgba(14, 165, 233, 0.08);
+    transform: translateY(-16px);
+    cursor: pointer;
+  }
+  .item-highlight .item-icon {
+    color: #0284c7;
+    margin-bottom: 16px;
+    transform: scale(1.1);
+  }
+  .item-highlight .item-text {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #0369a1;
+  }
+  .item-highlight:hover {
+    background: #e0f2fe;
+    border-color: #7dd3fc;
+    transform: translateY(-20px) scale(1.02);
+    box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.15);
+  }
+
+  /* Custom offsets for specific columns to match the staggered organic look */
+  .workflows-grid > div:nth-child(8n+1) { /* Col 1 */
+    transform: translateY(-8px);
+  }
+  .workflows-grid > div:nth-child(8n+2) { /* Col 2 */
+    transform: translateY(8px);
+  }
+  .workflows-grid > div:nth-child(8n+7) { /* Col 7 */
+    transform: translateY(-8px);
+  }
+  
+  /* Override highlighted translations to keep them floating higher */
+  .workflows-grid > .item-highlight {
+    transform: translateY(-24px);
+  }
+  .workflows-grid > .item-highlight:hover {
+    transform: translateY(-28px) scale(1.02);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1200px) {
+    .workflows-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px 24px;
+    }
+    .workflows-grid > div {
+      transform: none !important;
+    }
+    .item-highlight {
+      transform: none !important;
+    }
+    .item-highlight:hover {
+      transform: translateY(-4px) !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .workflows-page {
+      padding-top: 100px;
+    }
+    .workflows-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .workflows-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .item-highlight {
+      padding: 24px 16px;
+    }
+  }
+
+  /* ─────────────────────────────────────────────
+     CAPABILITIES SECTION STYLES
+  ───────────────────────────────────────────── */
+  .capabilities-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #faf5ff 0%, #fff 50%, #f0fdf4 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .capabilities-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(83, 24, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
+    animation: floatBg 20s ease-in-out infinite;
+  }
+  @keyframes floatBg {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-2%, 2%) rotate(1deg); }
+  }
+  .cap-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .cap-header h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    color: #0c021c;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+  .cap-header p {
+    font-size: 18px;
+    color: #6b6b7d;
+  }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cap-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid rgba(83, 24, 235, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .cap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .cap-card:hover::before {
+    transform: scaleX(1);
+  }
+  .cap-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(83, 24, 235, 0.12);
+    border-color: rgba(83, 24, 235, 0.2);
+  }
+  .cap-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: transform 0.4s ease;
+  }
+  .cap-card:hover .cap-icon {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  .cap-icon.voice { background: linear-gradient(135deg, #f5f0ff, #ede9fe); color: #7c3aed; }
+  .cap-icon.speed { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); color: #0284c7; }
+  .cap-icon.learning { background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: #16a34a; }
+  .cap-icon.workflow { background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #ea580c; }
+  .cap-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .cap-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0c021c;
+    margin-bottom: 8px;
+  }
+  .cap-card p {
+    font-size: 14px;
+    color: #6b6b7d;
+    line-height: 1.5;
+  }
+  .cap-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f3f4f6;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+  }
+  .cap-card:hover .cap-stat {
+    background: var(--purple);
+    color: white;
+  }
+  .cap-stat .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #16a34a;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+  /* Card entrance animations */
+  .cap-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  .cap-card:nth-child(1) { animation-delay: 0.1s; }
+  .cap-card:nth-child(2) { animation-delay: 0.2s; }
+  .cap-card:nth-child(3) { animation-delay: 0.3s; }
+  .cap-card:nth-child(4) { animation-delay: 0.4s; }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /* Modal styles */
+  .cap-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(12, 2, 28, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .cap-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cap-modal-content {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cap-modal.active .cap-modal-content {
+    transform: scale(1) translateY(0);
+  }
+  .cap-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.2s ease;
+  }
+  .cap-modal-close:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+  }
+  .cap-modal h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0c021c;
+    margin-bottom: 12px;
+  }
+  .cap-modal p {
+    color: #6b6b7d;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .cap-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cap-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .cap-features li:last-child {
+    border-bottom: none;
+  }
+  .cap-features .check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  /* Responsive */
+  @media (max-width: 900px) {
+    .cap-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 24px;
+    }
+  }
+  @media (max-width: 600px) {
+    .cap-grid {
+      grid-template-columns: 1fr;
+    }
+    .capabilities-section {
+      padding: 80px 0;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Enrich Labs">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="28" height="28" rx="7" fill="#5318eb"/>
+        <text x="14" y="20" text-anchor="middle" fill="white" font-size="13" font-weight="900" font-family="Inter,sans-serif">E</text>
+      </svg>
+      Enrich<span style="color:#5318eb">Labs</span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li class="nav-item">
+        <a href="index.html#agents" class="nav-link" id="nav-agents">
+          Agents <span class="nav-chevron">▾</span>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#card-helena" class="drop-item" role="menuitem">
+            <div class="drop-icon" style="background:#f5f0ff;">🧠</div>
+            <div class="drop-info"><strong>Helena</strong><span>AI Digital Marketing Specialist</span></div>
+          </a>
+          <a href="index.html#card-sam" class="drop-item" role="menuitem">
+            <div class="drop-icon" style="background:#f0f9ff;">🔍</div>
+            <div class="drop-info"><strong>Sam</strong><span>AI SEO / GEO Manager</span></div>
+          </a>
+          <a href="index.html#card-kai" class="drop-item" role="menuitem">
+            <div class="drop-icon" style="background:#f0fff7;">💬</div>
+            <div class="drop-info"><strong>Kai</strong><span>AI Social Listening Manager</span></div>
+          </a>
+          <a href="index.html#card-angela" class="drop-item" role="menuitem">
+            <div class="drop-icon" style="background:#fff5f8;">📧</div>
+            <div class="drop-info"><strong>Angela</strong><span>AI Email Marketing Specialist</span></div>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="index.html#solutions" class="nav-link">
+          Solutions <span class="nav-chevron">▾</span>
+        </a>
+        <div class="nav-dropdown narrow" role="menu">
+          <a href="#" class="drop-item-sm" role="menuitem">Startups & SMBs</a>
+          <a href="#" class="drop-item-sm" role="menuitem">Agencies</a>
+          <a href="#" class="drop-item-sm" role="menuitem">E-commerce</a>
+          <a href="#" class="drop-item-sm" role="menuitem">Enterprise</a>
+        </div>
+      </li>
+      <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+      <li><a href="integrations.html" class="nav-link active">Integrations</a></li>
+      <li><a href="#" class="nav-link">Blog</a></li>
+      <li><a href="#" class="nav-link">Company</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="dashboard.html" class="btn-login" id="nav-login">Log in</a>
+      <a href="dashboard.html" class="btn-cta" id="nav-get-started">Get Started</a>
+    </div>
+
+    <button class="nav-burger" aria-label="Open menu" aria-expanded="false" id="burger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main class="workflows-page">
+  <div class="workflows-header">
+    <span class="pill-badge">Capabilities</span>
+    <h1 class="workflows-title">+50 core AI marketing workflows thoughtfully crafted from <em class="highlight-green">human expertise</em></h1>
+    <p class="workflows-subtitle">Readily available for your execution support</p>
+  </div>
+
+  <div class="workflows-container">
+    <div class="workflows-grid">
+
+      <!-- COLUMN 1 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Keyword Research SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <path d="M11 7a4 4 0 0 0-4 4"></path>
+          </svg>
+        </div>
+        <div class="item-text">Keyword<br>research</div>
+      </div>
+      
+      <!-- COLUMN 2 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Comment Responses SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <path d="M12 7v4"></path>
+            <path d="M12 14h.01"></path>
+          </svg>
+        </div>
+        <div class="item-text">Comment<br>responses</div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Performance Dashboards SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <line x1="15" y1="3" x2="15" y2="21"></line>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="3" y1="15" x2="21" y2="15"></line>
+          </svg>
+        </div>
+        <div class="item-text">Performance<br>dashboards</div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Google Ads Setup SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="item-text">Google Ads<br>setup</div>
+      </div>
+
+      <!-- COLUMN 5 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Competitor Analysis SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 20V10M12 20V4M6 20v-6"></path>
+            <circle cx="12" cy="4" r="1"></circle>
+          </svg>
+        </div>
+        <div class="item-text">Competitor<br>analysis</div>
+      </div>
+
+      <!-- COLUMN 6 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Reddit Monitoring SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-4 0v-2a2 2 0 0 1 2-2z"></path>
+            <path d="M12 2v3"></path>
+          </svg>
+        </div>
+        <div class="item-text">Reddit<br>monitoring</div>
+      </div>
+
+      <!-- COLUMN 7 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Internal Linking SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </div>
+        <div class="item-text">Internal<br>linking</div>
+      </div>
+
+      <!-- COLUMN 8 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Ad Copy Writing SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <div class="item-text">Ad copy<br>writing</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 1 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Audience Tracking SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="item-text">Audience<br>tracking</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 2 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Blog Writing SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <line x1="10" y1="9" x2="8" y2="9"></line>
+          </svg>
+        </div>
+        <div class="item-text">Blog<br>writing</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 3 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Meta Ads Creation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <path d="M2 12h20"></path>
+          </svg>
+        </div>
+        <div class="item-text">Meta ads<br>creation</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 4 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Twitter Engagement SVG -->
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+            <path d="M4 20l6.768 -6.768M20 4l-6.768 6.768"></path>
+          </svg>
+        </div>
+        <div class="item-text">Twitter (X)<br>engagement</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 5 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Email Sequences SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="item-text">Email<br>sequences</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 6 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Meta Tag Generation SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+        </div>
+        <div class="item-text">Meta tag<br>generation</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 7 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- ROI Tracking SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+        </div>
+        <div class="item-text">ROI<br>tracking</div>
+      </div>
+
+      <!-- ROW 2, COLUMN 8 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Trend Detection SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="item-text">Trend<br>detection</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 1 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- A/B Testing SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3v12a6 6 0 0 0 6 6a6 6 0 0 0 6-6V3"></path>
+            <line x1="6" y1="9" x2="18" y2="9"></line>
+          </svg>
+        </div>
+        <div class="item-text">A/B<br>testing</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 2 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Content Gap Analysis SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="12" y1="3" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div class="item-text">Content gap<br>analysis</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 3 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Influencer Outreach SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="item-text">Influencer<br>outreach</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 4 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- GEO Optimization SVG (Gear) -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+        <div class="item-text">GEO<br>optimization</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 5 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Growth Forecasting SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"></path>
+            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+          </svg>
+        </div>
+        <div class="item-text">Growth<br>forecasting</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 6 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Community Moderation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="item-text">Community<br>moderation</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 7 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Newsletter Creation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="M8 14h8"></path>
+            <path d="M8 18h5"></path>
+          </svg>
+        </div>
+        <div class="item-text">Newsletter<br>creation</div>
+      </div>
+
+      <!-- ROW 3, COLUMN 8 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Content Refresh SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+          </svg>
+        </div>
+        <div class="item-text">Content<br>refresh</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 1 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- UGC Curation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="item-text">UGC<br>curation</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 2 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Retargeting Campaigns SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <div class="item-text">Retargeting<br>campaigns</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 3 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Content Publishing SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <div class="item-text">Content<br>publishing</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 4 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Monthly Reports SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <div class="item-text">Monthly<br>reports</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 5 -->
+      <div class="workflow-item item-highlight">
+        <div class="item-icon">
+          <!-- Product Page Copy SVG -->
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </div>
+        <div class="item-text">Product<br>page copy</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 6 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Landing Page Copy SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+        </div>
+        <div class="item-text">Landing page<br>copy</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 7 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Optimization Alerts SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div class="item-text">Optimization<br>alerts</div>
+      </div>
+
+      <!-- ROW 4, COLUMN 8 -->
+      <div class="workflow-item item-grey">
+        <div class="item-icon">
+          <!-- Social Post Creation SVG -->
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </div>
+        <div class="item-text">Social post<br>creation</div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- CAPABILITIES SECTION -->
+    <section class="capabilities-section" id="capabilities">
+      <div class="cap-header">
+        <h2>AI Agent Capabilities</h2>
+        <p>Specialist agents that learn, adapt, and execute your marketing strategy</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card" data-cap="voice">
+          <div class="cap-icon voice">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+            </svg>
+          </div>
+          <h3>Brand Voice</h3>
+          <p>AI agents maintain consistent messaging across all channels</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Active</div>
+        </div>
+        <div class="cap-card" data-cap="speed">
+          <div class="cap-icon speed">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3>Real-Time Execution</h3>
+          <p>Instant response to market changes and opportunities</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Live</div>
+        </div>
+        <div class="cap-card" data-cap="learning">
+          <div class="cap-icon learning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Continuous Learning</h3>
+          <p>Agents improve from every interaction and campaign</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Learning</div>
+        </div>
+        <div class="cap-card" data-cap="workflow">
+          <div class="cap-icon workflow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3>Workflow Automation</h3>
+          <p>Seamless integration with your existing tools</p>
+          <div class="cap-stat"><span class="pulse-dot"></span> Ready</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES MODAL -->
+    <div class="cap-modal" id="cap-modal">
+      <div class="cap-modal-content">
+        <button class="cap-modal-close" onclick="closeCapModal()">×</button>
+        <div id="cap-modal-body"></div>
+      </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">
+          <div class="footer-brand-logo-icon">E</div>
+          EnrichLabs
+        </div>
+        <p class="footer-tagline">AI Marketing Agents That Execute<br>Your Entire Strategy 24/7.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/company/enrich-labs-ai/" class="footer-social" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.instagram.com/enrichlabs/" class="footer-social" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://www.youtube.com/@enrichlabs" class="footer-social" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.8 8.001a2.75 2.75 0 00-1.934-1.946C18.078 5.6 12 5.6 12 5.6s-6.078 0-7.866.455A2.75 2.75 0 002.2 8.001 28.9 28.9 0 001.75 12a28.9 28.9 0 00.45 3.999 2.75 2.75 0 001.934 1.946C5.922 18.4 12 18.4 12 18.4s6.078 0 7.866-.455a2.75 2.75 0 001.934-1.946A28.9 28.9 0 0022.25 12a28.9 28.9 0 00-.45-3.999zM10 15V9l5.25 3L10 15z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <h4>Platforms</h4>
+          <ul>
+            <li><a href="https://www.enrichlabs.ai/" target="_blank" rel="noopener">Enrich Labs</a></li>
+            <li><a href="https://www.maximise.ai/" target="_blank" rel="noopener">Maximise.ai</a></li>
+            <li><a href="https://www.inboxkit.ai/" target="_blank" rel="noopener">InboxKit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Agents</h4>
+          <ul>
+            <li><a href="index.html#card-helena">Helena – Digital Marketer</a></li>
+            <li><a href="index.html#card-sam">Sam – SEO Manager</a></li>
+            <li><a href="index.html#card-kai">Kai – Social Listening</a></li>
+            <li><a href="index.html#card-angela">Angela – Email Marketer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="#">Startups & SMBs</a></li>
+            <li><a href="#">Agencies</a></li>
+            <li><a href="#">E-commerce</a></li>
+            <li><a href="#">Enterprise</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Customer Stories</a></li>
+            <li><a href="integrations.html">Integrations</a></li>
+            <li><a href="#">Help Center</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Enrich Labs Inc. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Settings</a>
+        <a href="#">GDPR</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu trigger logic
+  const burger = document.getElementById('burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? '' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '72px';
+      navLinks.style.left = '0'; navLinks.style.right = '0';
+      navLinks.style.background = '#fff';
+      navLinks.style.padding = '16px 24px 24px';
+      navLinks.style.borderBottom = '1px solid #e8e4f0';
+      navLinks.style.boxShadow = '0 8px 24px rgba(0,0,0,.08)';
+      burger.setAttribute('aria-expanded', String(!open));
+    });
+  }
+
+  // Capabilities Modal Data
+  const capData = {
+    voice: {
+      title: 'Brand Voice',
+      desc: 'AI agents maintain your brand voice consistently across all marketing channels. Every piece of content is crafted to reflect your unique tone, style, and messaging guidelines.',
+      features: [
+        'Tone consistency across 50+ channels',
+        'Learning from your brand guidelines',
+        'Auto-adjust for platform nuances',
+        'Approval workflow integration'
+      ]
+    },
+    speed: {
+      title: 'Real-Time Execution',
+      desc: 'React instantly to market changes, competitor moves, and customer behavior. Our AI agents work 24/7 to seize opportunities the moment they arise.',
+      features: [
+        'Sub-second response times',
+        '24/7 monitoring and execution',
+        'Instant A/B testing deployment',
+        'Real-time performance optimization'
+      ]
+    },
+    learning: {
+      title: 'Continuous Learning',
+      desc: 'Every campaign, every interaction, every result teaches our AI agents something new. They get smarter over time, adapting to your business.',
+      features: [
+        'Campaign performance analysis',
+        'Customer behavior pattern learning',
+        'A/B test result optimization',
+        'Seasonal trend adaptation'
+      ]
+    },
+    workflow: {
+      title: 'Workflow Automation',
+      desc: 'Connect your existing tools and let AI agents handle the repetitive work. Focus on strategy while automation handles execution.',
+      features: [
+        '50+ native integrations',
+        'Custom API connections',
+        'Zapier & Make support',
+        'Webhook automation'
+      ]
+    }
+  };
+
+  // Open modal
+  function openCapModal(cap) {
+    const data = capData[cap];
+    if (!data) return;
+    
+    const featuresHtml = data.features.map(f => `
+      <li>
+        <span class="check">✓</span>
+        <span>${f}</span>
+      </li>
+    `).join('');
+    
+    document.getElementById('cap-modal-body').innerHTML = `
+      <h3>${data.title}</h3>
+      <p>${data.desc}</p>
+      <ul class="cap-features">${featuresHtml}</ul>
+    `;
+    document.getElementById('cap-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close modal
+  function closeCapModal() {
+    document.getElementById('cap-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Card click handlers
+  document.querySelectorAll('.cap-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const cap = card.dataset.cap;
+      if (cap) openCapModal(cap);
+    });
+  });
+
+  // Close on overlay click
+  document.getElementById('cap-modal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'cap-modal') closeCapModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCapModal();
+  });
+
+  // Hover tilt effect for cards
+  const capCards = document.querySelectorAll('.cap-card');
+  capCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Intersection Observer for scroll animations
+  const capObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.cap-card').forEach(card => {
+    card.style.animationPlayState = 'paused';
+    capObserver.observe(card);
+  });
+
+</script>
+
+</body>
+</html>
