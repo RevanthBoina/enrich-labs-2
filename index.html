@@ -682,84 +682,880 @@ ul { list-style: none; }
 .hw-step strong { color: var(--purple); }
 
 /* ══════════════════════════════════
-   BRAND VOICE (Pitch: "stay on brand" section)
+   BRAND INTELLIGENCE - Premium Section
 ══════════════════════════════════ */
-.brand-voice { background: var(--off-white); }
-.bv-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.bv-points { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
-.bv-point { display: flex; gap: 16px; align-items: flex-start; }
-.bv-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: #fff; border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(83,24,235,.06);
+.brand-intelligence {
+  background: var(--off-white);
+  position: relative;
+  overflow: hidden;
+  padding: 120px 32px;
 }
-.bv-point h4 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 4px; }
-.bv-point p  { font-size: 14px; color: var(--text-3); line-height: 1.65; }
-/* Brand voice mock UI */
-.bv-card {
-  background: #fff; border: 1px solid var(--border);
-  border-radius: var(--radius-xl); padding: 28px;
-  box-shadow: 0 8px 40px rgba(83,24,235,.08);
+
+.bi-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
-.bv-card-title { font-size: 13px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 20px; }
-.bv-slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.bv-slider-label { font-size: 12px; color: var(--text-3); width: 56px; font-weight: 600; }
-.bv-slider-track-wrap { flex: 1; position: relative; display: flex; align-items: center; }
-.bv-slider-range {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
+
+/* Ambient Background Elements */
+.bi-ambient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bi-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.bi-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(83, 24, 235, 0.15), transparent 70%);
+  top: -100px;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.bi-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(198, 165, 255, 0.2), transparent 70%);
+  bottom: 10%;
+  left: 5%;
+  animation-delay: -7s;
+}
+
+.bi-orb-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(83, 24, 235, 0.1), transparent 70%);
+  top: 40%;
+  left: 30%;
+  animation-delay: -14s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20px, -30px) scale(1.05); }
+  50% { transform: translate(-10px, 20px) scale(0.95); }
+  75% { transform: translate(30px, 10px) scale(1.02); }
+}
+
+/* Floating Particles */
+.bi-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.bi-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--purple);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: particleFloat 15s linear infinite;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
+
+/* Orbital Rings */
+.bi-orbital-ring {
+  position: absolute;
+  border: 1px solid rgba(83, 24, 235, 0.1);
+  border-radius: 50%;
+  animation: orbitalRotate 30s linear infinite;
+}
+
+.ring-1 {
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  right: -100px;
+  transform: translateY(-50%);
+  animation-duration: 35s;
+}
+
+.ring-2 {
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  animation-duration: 25s;
+  animation-direction: reverse;
+}
+
+.ring-3 {
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  right: 100px;
+  transform: translateY(-50%);
+  animation-duration: 20s;
+}
+
+@keyframes orbitalRotate {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* AI Nodes */
+.bi-ai-node {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--purple);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(83, 24, 235, 0.5);
+  animation: nodePulse 3s ease-in-out infinite;
+}
+
+.node-1 {
+  top: 20%;
+  right: 15%;
+  animation-delay: 0s;
+}
+
+.node-2 {
+  top: 60%;
+  right: 25%;
+  animation-delay: -1s;
+}
+
+.node-3 {
+  top: 40%;
+  right: 5%;
+  animation-delay: -2s;
+}
+
+@keyframes nodePulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; box-shadow: 0 0 20px rgba(83, 24, 235, 0.5); }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 30px rgba(83, 24, 235, 0.8); }
+}
+
+/* Connection Paths */
+.bi-connection-paths {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, transparent 49.5%, rgba(83, 24, 235, 0.03) 49.5%, rgba(83, 24, 235, 0.03) 50.5%, transparent 50.5%),
+    linear-gradient(0deg, transparent 49.5%, rgba(83, 24, 235, 0.03) 49.5%, rgba(83, 24, 235, 0.03) 50.5%, transparent 50.5%);
+  background-size: 60px 60px;
+}
+
+/* Header */
+.bi-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.bi-header .section-title {
+  margin-top: 16px;
+}
+
+.bi-header .section-title em {
+  font-style: normal;
+  color: var(--purple);
+}
+
+/* Main Grid */
+.bi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Capability Cards */
+.bi-capabilities {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bi-cap-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bi-cap-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-xl);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.bi-cap-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(83, 24, 235, 0.12);
+}
+
+.bi-cap-card:hover::before {
+  border-color: var(--purple);
+  animation: borderGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.bi-cap-icon-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.bi-cap-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--purple-bg), #fff);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bi-cap-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--purple);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bi-cap-card:hover .bi-cap-icon {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+
+.bi-cap-card:hover .bi-cap-icon svg {
+  color: #fff;
+  transform: rotate(5deg) scale(1.1);
+}
+
+.bi-cap-icon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(83, 24, 235, 0.2), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.bi-cap-card:hover .bi-cap-icon-glow {
+  opacity: 1;
+}
+
+.bi-cap-content {
+  flex: 1;
+}
+
+.bi-cap-content h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+
+.bi-cap-content p {
+  font-size: 14px;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+.bi-cap-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.bi-cap-card:hover .bi-cap-indicator {
+  background: var(--purple);
+  box-shadow: 0 0 12px var(--purple);
+}
+
+/* Dashboard */
+.bi-dashboard {
+  position: relative;
+}
+
+.bi-dashboard-glow {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  background: radial-gradient(ellipse at center, rgba(83, 24, 235, 0.08), transparent 60%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: dashboardGlow 8s ease-in-out infinite;
+}
+
+@keyframes dashboardGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.bi-dashboard-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 0 8px 40px rgba(83, 24, 235, 0.08);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.bi-dashboard:hover .bi-dashboard-card {
+  box-shadow: 0 16px 60px rgba(83, 24, 235, 0.15);
+}
+
+/* Dashboard Header */
+.bi-dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bi-dash-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.bi-dash-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--green);
+  color: #1a1a2e;
+}
+
+.bi-dash-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.bi-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.bi-status-dot.pulse {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 238, 135, 0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(196, 238, 135, 0); }
+}
+
+/* Sliders */
+.bi-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bi-slider-item {
+  position: relative;
+}
+
+.bi-slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.bi-slider-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bi-slider-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--purple);
+}
+
+.bi-slider-track {
+  position: relative;
   height: 6px;
   background: var(--border);
   border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 50%, var(--border) 50%, var(--border) 100%);
-  transition: background 0.1s ease;
+  overflow: visible;
 }
-.bv-slider-range::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 6px;
+
+.bi-slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
   border-radius: 3px;
+  transition: width 0.3s ease;
 }
-.bv-slider-range::-webkit-slider-thumb {
+
+.bi-slider-range {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 20px;
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--purple);
-  border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(83,24,235,0.3);
-  margin-top: -5px;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-.bv-slider-range::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-  background: var(--purple-light);
-}
-.bv-slider-range::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--purple);
-  border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(83,24,235,0.3);
+  background: transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  z-index: 2;
 }
-.bv-slider-range::-moz-range-thumb:hover {
-  transform: scale(1.2);
-  background: var(--purple-light);
+
+.bi-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--purple);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(83, 24, 235, 0.4);
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.bv-slider-val { font-size: 12px; font-weight: 600; color: var(--text-1); width: 84px; text-align: right; }
-.bv-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
-.bv-tag {
-  font-size: 12px; font-weight: 600;
-  padding: 4px 12px; border-radius: var(--radius-full);
-  background: var(--purple-bg); color: var(--purple);
+
+.bi-slider-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(83, 24, 235, 0.5);
+}
+
+.bi-slider-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+.bi-slider-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--purple);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(83, 24, 235, 0.4);
+  cursor: grab;
+}
+
+.bi-slider-thumb-glow {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(83, 24, 235, 0.3), transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.bi-slider-track:hover .bi-slider-thumb-glow {
+  opacity: 1;
+}
+
+.bi-slider-nodes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--text-4);
+}
+
+/* Live Preview */
+.bi-preview {
+  margin-top: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fafafa, #f5f5f8);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.bi-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bi-preview-status {
+  color: var(--purple);
+  font-weight: 700;
+  font-size: 10px;
+}
+
+.bi-preview-content p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  transition: opacity 0.3s;
+}
+
+/* Metrics */
+.bi-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.bi-metric {
+  text-align: center;
+}
+
+.bi-metric-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.bi-metric-number {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.bi-metric-unit {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.bi-metric-label {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+.bi-metric-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bi-metric-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Success Badge */
+.bi-success-badge {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--green);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a2e;
+  box-shadow: 0 4px 12px rgba(196, 238, 135, 0.4);
+  opacity: 0;
+  animation: successBadge 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.bi-success-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes successBadge {
+  0%, 100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  10%, 20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  30% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  40%, 70% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Expanded Panel */
+.bi-expanded-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.bi-expanded-panel.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bi-expanded-content {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bi-expanded-panel.active .bi-expanded-content {
+  transform: scale(1) translateY(0);
+}
+
+.bi-expanded-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.bi-expanded-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.bi-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--off-white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.bi-close-btn:hover {
+  background: var(--border);
+}
+
+.bi-close-btn svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-2);
+}
+
+.bi-expanded-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.bi-settings-group h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 16px;
+}
+
+.bi-recommendation {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: var(--off-white);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+}
+
+.bi-rec-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--purple-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bi-rec-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--purple);
+}
+
+.bi-recommendation p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.bi-health-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.bi-health-bar {
+  width: 80px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bi-health-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
+  border-radius: 3px;
+}
+
+.bi-health-val {
+  font-weight: 600;
+  color: var(--purple);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.delay-1 { transition-delay: 0.15s; }
+.reveal.delay-2 { transition-delay: 0.3s; }
+.reveal.delay-3 { transition-delay: 0.45s; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bi-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .bi-capabilities {
+    order: 2;
+  }
+  
+  .bi-dashboard {
+    order: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-intelligence {
+    padding: 80px 20px;
+  }
+  
+  .bi-expanded-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .bi-metrics {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 /* ══════════════════════════════════
@@ -1162,7 +1958,7 @@ ul { list-style: none; }
   .usecases-grid { grid-template-columns: repeat(2,1fr); }
   .hw-steps  { grid-template-columns: repeat(2,1fr); gap: 40px; }
   .hw-steps::before { display: none; }
-  .bv-inner  { grid-template-columns: 1fr; gap: 48px; }
+    .bi-grid  { grid-template-columns: 1fr; gap: 48px; }
   .an-inner  { grid-template-columns: 1fr; gap: 48px; }
 }
 @media (max-width: 768px) {
@@ -1967,89 +2763,291 @@ ul { list-style: none; }
 <!-- ═══════════════════════════════════════════
      BRAND VOICE
 ═══════════════════════════════════════════ -->
-<section class="section brand-voice" id="brand">
+<section class="section brand-intelligence" id="brand">
   <div class="section-inner">
-    <div class="bv-inner">
-      <div class="reveal">
-        <span class="section-label">Brand Intelligence</span>
-        <h2 class="section-title" style="text-align:left;">Your brand,<br>memorized.</h2>
-        <p class="section-sub" style="text-align:left;margin:0;">Tell your specialists about your brand once. They learn your voice, tone, and guidelines — keeping every post, email, and ad perfectly on-brand, forever.</p>
-        <div class="bv-points">
-          <div class="bv-point">
-            <div class="bv-icon">🎯</div>
-            <div>
-              <h4>Consistent voice, always</h4>
-              <p>All content automatically matches your tone — whether casual, professional, or anywhere in between.</p>
-            </div>
-          </div>
-          <div class="bv-point">
-            <div class="bv-icon">💾</div>
-            <div>
-              <h4>Full campaign memory</h4>
-              <p>Specialists remember past campaigns, target audiences, and your preferred style — from project to project.</p>
-            </div>
-          </div>
-          <div class="bv-point">
-            <div class="bv-icon">🗂️</div>
-            <div>
-              <h4>Central brand library</h4>
-              <p>Store brand guidelines, logo assets, messaging frameworks, and past content in one secure place.</p>
-            </div>
-          </div>
-        </div>
+    <div class="bi-container">
+      
+      <!-- Ambient Background Elements -->
+      <div class="bi-ambient">
+        <div class="bi-gradient-orb bi-orb-1"></div>
+        <div class="bi-gradient-orb bi-orb-2"></div>
+        <div class="bi-gradient-orb bi-orb-3"></div>
+        <div class="bi-particles" id="bi-particles"></div>
+        <div class="bi-orbital-ring ring-1"></div>
+        <div class="bi-orbital-ring ring-2"></div>
+        <div class="bi-orbital-ring ring-3"></div>
+        <div class="bi-ai-node node-1"></div>
+        <div class="bi-ai-node node-2"></div>
+        <div class="bi-ai-node node-3"></div>
+        <div class="bi-connection-paths"></div>
       </div>
-      <div class="reveal delay-2">
-        <div class="bv-card">
-          <div class="bv-card-title">Brand Voice Configuration</div>
-          
-          <div class="bv-slider-row">
-            <div class="bv-slider-label">Tone</div>
-            <div class="bv-slider-track-wrap">
-              <input type="range" class="bv-slider-range" id="bv-tone" min="0" max="100" value="68">
+
+      <!-- Header -->
+      <div class="bi-header reveal">
+        <span class="section-label">Brand Intelligence</span>
+        <h2 class="section-title">Your brand,<br><em>memorized.</em></h2>
+      </div>
+
+      <!-- Main Content Grid -->
+      <div class="bi-grid">
+        
+        <!-- Left: Core Capabilities -->
+        <div class="bi-capabilities reveal delay-1">
+          <div class="bi-cap-card" data-cap="voice" tabindex="0" role="button" aria-expanded="false">
+            <div class="bi-cap-icon-wrap">
+              <div class="bi-cap-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="22"></line>
+                </svg>
+              </div>
+              <div class="bi-cap-icon-glow"></div>
             </div>
-            <div class="bv-slider-val" id="bv-tone-val">Professional</div>
-          </div>
-          
-          <div class="bv-slider-row">
-            <div class="bv-slider-label">Style</div>
-            <div class="bv-slider-track-wrap">
-              <input type="range" class="bv-slider-range" id="bv-style" min="0" max="100" value="82">
+            <div class="bi-cap-content">
+              <h3>Consistent Voice</h3>
+              <p>Every word, every channel, perfectly aligned.</p>
             </div>
-            <div class="bv-slider-val" id="bv-style-val">Modern</div>
-          </div>
-          
-          <div class="bv-slider-row">
-            <div class="bv-slider-label">Energy</div>
-            <div class="bv-slider-track-wrap">
-              <input type="range" class="bv-slider-range" id="bv-energy" min="0" max="100" value="55">
-            </div>
-            <div class="bv-slider-val" id="bv-energy-val">Dynamic</div>
-          </div>
-          
-          <div class="bv-slider-row">
-            <div class="bv-slider-label">Formality</div>
-            <div class="bv-slider-track-wrap">
-              <input type="range" class="bv-slider-range" id="bv-formality" min="0" max="100" value="45">
-            </div>
-            <div class="bv-slider-val" id="bv-formality-val">Balanced</div>
+            <div class="bi-cap-indicator"></div>
           </div>
 
-          <div class="bv-preview-box" style="margin-top: 20px; padding: 16px; background: #fdfdfd; border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.01);">
-            <div style="font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-              <span>Brand Voice Output Sample</span>
-              <span style="color: var(--purple); font-weight: 700; font-size: 10px;" id="bv-status">✓ On-brand</span>
+          <div class="bi-cap-card" data-cap="memory" tabindex="0" role="button" aria-expanded="false">
+            <div class="bi-cap-icon-wrap">
+              <div class="bi-cap-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <div class="bi-cap-icon-glow"></div>
             </div>
-            <p id="bv-preview-text" style="font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0; min-height: 60px; transition: opacity 0.25s; font-family: inherit; font-weight: 500;"></p>
+            <div class="bi-cap-content">
+              <h3>Campaign Memory</h3>
+              <p>Specialists remember everything, forever.</p>
+            </div>
+            <div class="bi-cap-indicator"></div>
           </div>
-          
-          <div class="bv-tags">
-            <span class="bv-tag">✓ On-brand</span>
-            <span class="bv-tag">✓ Consistent</span>
-            <span class="bv-tag">✓ Memorized</span>
-            <span class="bv-tag">✓ All channels</span>
+
+          <div class="bi-cap-card" data-cap="library" tabindex="0" role="button" aria-expanded="false">
+            <div class="bi-cap-icon-wrap">
+              <div class="bi-cap-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  <line x1="8" y1="7" x2="16" y2="7"></line>
+                  <line x1="8" y1="11" x2="16" y2="11"></line>
+                </svg>
+              </div>
+              <div class="bi-cap-icon-glow"></div>
+            </div>
+            <div class="bi-cap-content">
+              <h3>Brand Library</h3>
+              <p>Guidelines, assets, and content — unified.</p>
+            </div>
+            <div class="bi-cap-indicator"></div>
+          </div>
+        </div>
+
+        <!-- Right: Brand Voice Dashboard -->
+        <div class="bi-dashboard reveal delay-2" id="bi-dashboard">
+          <div class="bi-dashboard-glow"></div>
+          <div class="bi-dashboard-card" id="bi-dashboard-card">
+            
+            <!-- Dashboard Header -->
+            <div class="bi-dash-header">
+              <div class="bi-dash-title">
+                <span class="bi-dash-badge">Live</span>
+                <span>Brand Voice</span>
+              </div>
+              <div class="bi-dash-status">
+                <div class="bi-status-dot pulse"></div>
+                <span>Optimizing</span>
+              </div>
+            </div>
+
+            <!-- Sliders -->
+            <div class="bi-sliders">
+              <div class="bi-slider-item" data-slider="tone">
+                <div class="bi-slider-meta">
+                  <span class="bi-slider-label">Tone</span>
+                  <span class="bi-slider-value" id="bi-tone-val">Professional</span>
+                </div>
+                <div class="bi-slider-track">
+                  <div class="bi-slider-fill" id="bi-tone-fill" style="width: 68%"></div>
+                  <input type="range" class="bi-slider-range" id="bi-tone" min="0" max="100" value="68" aria-label="Tone">
+                  <div class="bi-slider-thumb-glow"></div>
+                </div>
+                <div class="bi-slider-nodes">
+                  <span>Playful</span>
+                  <span>Formal</span>
+                </div>
+              </div>
+
+              <div class="bi-slider-item" data-slider="style">
+                <div class="bi-slider-meta">
+                  <span class="bi-slider-label">Style</span>
+                  <span class="bi-slider-value" id="bi-style-val">Modern</span>
+                </div>
+                <div class="bi-slider-track">
+                  <div class="bi-slider-fill" id="bi-style-fill" style="width: 82%"></div>
+                  <input type="range" class="bi-slider-range" id="bi-style" min="0" max="100" value="82" aria-label="Style">
+                  <div class="bi-slider-thumb-glow"></div>
+                </div>
+                <div class="bi-slider-nodes">
+                  <span>Minimal</span>
+                  <span>Bold</span>
+                </div>
+              </div>
+
+              <div class="bi-slider-item" data-slider="energy">
+                <div class="bi-slider-meta">
+                  <span class="bi-slider-label">Energy</span>
+                  <span class="bi-slider-value" id="bi-energy-val">Dynamic</span>
+                </div>
+                <div class="bi-slider-track">
+                  <div class="bi-slider-fill" id="bi-energy-fill" style="width: 55%"></div>
+                  <input type="range" class="bi-slider-range" id="bi-energy" min="0" max="100" value="55" aria-label="Energy">
+                  <div class="bi-slider-thumb-glow"></div>
+                </div>
+                <div class="bi-slider-nodes">
+                  <span>Calm</span>
+                  <span>Intense</span>
+                </div>
+              </div>
+
+              <div class="bi-slider-item" data-slider="formality">
+                <div class="bi-slider-meta">
+                  <span class="bi-slider-label">Formality</span>
+                  <span class="bi-slider-value" id="bi-formality-val">Balanced</span>
+                </div>
+                <div class="bi-slider-track">
+                  <div class="bi-slider-fill" id="bi-formality-fill" style="width: 45%"></div>
+                  <input type="range" class="bi-slider-range" id="bi-formality" min="0" max="100" value="45" aria-label="Formality">
+                  <div class="bi-slider-thumb-glow"></div>
+                </div>
+                <div class="bi-slider-nodes">
+                  <span>Casual</span>
+                  <span>Academic</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="bi-preview" id="bi-preview">
+              <div class="bi-preview-header">
+                <span>Live Preview</span>
+                <span class="bi-preview-status" id="bi-preview-status">✓ On-Brand</span>
+              </div>
+              <div class="bi-preview-content">
+                <p id="bi-preview-text">Enrich Labs is the first autonomous marketing platform. Deploy customized AI specialists, authorize their weekly roadmaps, and watch them execute your end-to-end multi-channel strategy 24/7.</p>
+              </div>
+            </div>
+
+            <!-- Metrics Row -->
+            <div class="bi-metrics">
+              <div class="bi-metric">
+                <div class="bi-metric-value">
+                  <span class="bi-metric-number" id="bi-metric-consistency">94</span>
+                  <span class="bi-metric-unit">%</span>
+                </div>
+                <div class="bi-metric-label">Consistency</div>
+                <div class="bi-metric-bar">
+                  <div class="bi-metric-fill" style="width: 94%"></div>
+                </div>
+              </div>
+              <div class="bi-metric">
+                <div class="bi-metric-value">
+                  <span class="bi-metric-number" id="bi-metric-coverage">100</span>
+                  <span class="bi-metric-unit">%</span>
+                </div>
+                <div class="bi-metric-label">Coverage</div>
+                <div class="bi-metric-bar">
+                  <div class="bi-metric-fill" style="width: 100%"></div>
+                </div>
+              </div>
+              <div class="bi-metric">
+                <div class="bi-metric-value">
+                  <span class="bi-metric-number" id="bi-metric-health">98</span>
+                  <span class="bi-metric-unit">%</span>
+                </div>
+                <div class="bi-metric-label">Health</div>
+                <div class="bi-metric-bar">
+                  <div class="bi-metric-fill" style="width: 98%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success Badge (animated) -->
+            <div class="bi-success-badge" id="bi-success-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Brand optimized</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Expanded Settings Panel (hidden by default) -->
+      <div class="bi-expanded-panel" id="bi-expanded-panel">
+        <div class="bi-expanded-content">
+          <div class="bi-expanded-header">
+            <h3>Brand Settings</h3>
+            <button class="bi-close-btn" id="bi-close-panel" aria-label="Close panel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="bi-expanded-grid">
+            <div class="bi-settings-group">
+              <h4>AI Recommendations</h4>
+              <div class="bi-recommendation">
+                <div class="bi-rec-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </div>
+                <p>Consider increasing Energy to better match your social engagement goals.</p>
+              </div>
+              <div class="bi-recommendation">
+                <div class="bi-rec-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <p>Brand consistency is excellent across all active channels.</p>
+              </div>
+            </div>
+            <div class="bi-settings-group">
+              <h4>Brand Health</h4>
+              <div class="bi-health-item">
+                <span>Voice Alignment</span>
+                <div class="bi-health-bar"><div class="bi-health-fill" style="width: 96%"></div></div>
+                <span class="bi-health-val">96%</span>
+              </div>
+              <div class="bi-health-item">
+                <span>Channel Sync</span>
+                <div class="bi-health-bar"><div class="bi-health-fill" style="width: 98%"></div></div>
+                <span class="bi-health-val">98%</span>
+              </div>
+              <div class="bi-health-item">
+                <span>Content Match</span>
+                <div class="bi-health-bar"><div class="bi-health-fill" style="width: 94%"></div></div>
+                <span class="bi-health-val">94%</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -3076,19 +4074,47 @@ ul { list-style: none; }
     { el: document.querySelector('.asc-task:nth-child(1)'), texts: ['Writing: "AI Marketing Trends 2026"', 'Writing: "10 Ways AI Beats Agencies"', 'Optimizing: Meta ad copy (3 variants)'] },
   ];
 
-  /* ── Brand Voice Interactive Sliders ── */
-  const toneSlider = document.getElementById('bv-tone');
-  const styleSlider = document.getElementById('bv-style');
-  const energySlider = document.getElementById('bv-energy');
-  const formalitySlider = document.getElementById('bv-formality');
+  /* ── Brand Intelligence Interactive ── */
+  
+  // Create floating particles
+  function createParticles() {
+    const particlesContainer = document.getElementById('bi-particles');
+    if (!particlesContainer) return;
+    
+    for (let i = 0; i < 15; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'bi-particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+  }
+  createParticles();
 
-  const toneVal = document.getElementById('bv-tone-val');
-  const styleVal = document.getElementById('bv-style-val');
-  const energyVal = document.getElementById('bv-energy-val');
-  const formalityVal = document.getElementById('bv-formality-val');
+  // Slider elements
+  const toneSlider = document.getElementById('bi-tone');
+  const styleSlider = document.getElementById('bi-style');
+  const energySlider = document.getElementById('bi-energy');
+  const formalitySlider = document.getElementById('bi-formality');
 
-  const statusLabel = document.getElementById('bv-status');
-  const previewText = document.getElementById('bv-preview-text');
+  const toneVal = document.getElementById('bi-tone-val');
+  const styleVal = document.getElementById('bi-style-val');
+  const energyVal = document.getElementById('bi-energy-val');
+  const formalityVal = document.getElementById('bi-formality-val');
+
+  const toneFill = document.getElementById('bi-tone-fill');
+  const styleFill = document.getElementById('bi-style-fill');
+  const energyFill = document.getElementById('bi-energy-fill');
+  const formalityFill = document.getElementById('bi-formality-fill');
+
+  const previewText = document.getElementById('bi-preview-text');
+  const previewStatus = document.getElementById('bi-preview-status');
+
+  // Metric elements
+  const metricConsistency = document.getElementById('bi-metric-consistency');
+  const metricCoverage = document.getElementById('bi-metric-coverage');
+  const metricHealth = document.getElementById('bi-metric-health');
 
   function getLabel(value, type) {
     if (type === 'tone') {
@@ -3118,19 +4144,19 @@ ul { list-style: none; }
   }
 
   const samples = {
-    'Playful-Friendly-Dynamic': "Hey there! 👋 Guess what? Enrich Labs is here to take marketing off your plate. Helena, Sam, Kai, and Angela are ready to jump in and do all the writing, optimizing, and tracking. Pretty cool, right?",
-    'Playful-Bold-Intense': "Boring marketing? No thanks! 💥 Enrich Labs unleashes a pack of AI marketing specialists that crush copy, dominate SEO, and optimize campaigns 24/7. Let's make something epic happen today!",
-    'Casual-Friendly-Balanced': "We built Enrich Labs so you don't have to worry about marketing. Just outline your goals once, and our AI specialists will keep everything running smoothly. No dashboard log-ins required.",
-    'Professional-Modern-Dynamic': "Enrich Labs is the first autonomous marketing platform. Deploy customized AI specialists, authorize their weekly roadmaps, and watch them execute your end-to-end multi-channel strategy 24/7.",
-    'Professional-Bold-Intense': "Deploy autonomous AI specialists that execute your entire marketing strategy around the clock. Helena, Sam, Kai, and Angela work in synchronization to maximize SEO rankings, copy conversions, and paid ad spend.",
-    'Authoritative-Modern-Calm': "Enrich Labs operates as a decentralized autonomous marketing agent framework. By utilizing targeted deep reinforcement models, the platform synthesizes strategy, optimizes budget allocations, and publishes across channels without manual intervention.",
-    'Authoritative-Bold-Intense': "Achieve absolute marketing automation. Enrich Labs deploys specialized AI agents that memorize your brand constraints, continuously generate verified copy, and optimize keyword bids to outperform traditional agencies.",
-    'default': "Enrich Labs aligns your brand guidelines with autonomous execution. Our specialized AI marketers work around the clock, continuously writing copy, running optimizations, and delivering insights straight to your team."
+    'Playful-Friendly-Dynamic': "Hey there! Enrich Labs is here to take marketing off your plate. Helena, Sam, Kai, and Angela are ready to handle everything.",
+    'Playful-Bold-Intense': "Boring marketing? No thanks! Enrich Labs unleashes AI specialists that crush copy, dominate SEO, and optimize campaigns 24/7.",
+    'Casual-Friendly-Balanced': "We built Enrich Labs so you don't have to worry about marketing. Just outline your goals, and our AI specialists keep everything running.",
+    'Professional-Modern-Dynamic': "Enrich Labs is the first autonomous marketing platform. Deploy customized AI specialists and watch them execute your strategy 24/7.",
+    'Professional-Bold-Intense': "Deploy autonomous AI specialists that execute your entire marketing strategy. Helena, Sam, Kai, and Angela maximize your impact.",
+    'Authoritative-Modern-Calm': "Enrich Labs operates as a decentralized autonomous marketing framework. The platform synthesizes strategy and optimizes across channels.",
+    'Authoritative-Bold-Intense': "Achieve absolute marketing automation. Enrich Labs deploys specialized AI agents that memorize your brand and outperform agencies.",
+    'default': "Enrich Labs aligns your brand guidelines with autonomous execution. Our specialized AI marketers work around the clock."
   };
 
   let updateTimeout;
   function updatePreview() {
-    if (!toneSlider || !styleSlider || !energySlider || !formalitySlider) return;
+    if (!toneSlider) return;
     
     const tone = getLabel(toneSlider.value, 'tone');
     const style = getLabel(styleSlider.value, 'style');
@@ -3142,15 +4168,16 @@ ul { list-style: none; }
     if (energyVal) energyVal.textContent = energy;
     if (formalityVal) formalityVal.textContent = formality;
 
-    [toneSlider, styleSlider, energySlider, formalitySlider].forEach(slider => {
-      const val = slider.value;
-      slider.style.background = `linear-gradient(90deg, var(--purple) 0%, var(--purple-light) ${val}%, var(--border) ${val}%, var(--border) 100%)`;
-    });
+    // Update fills
+    if (toneFill) toneFill.style.width = toneSlider.value + '%';
+    if (styleFill) styleFill.style.width = styleSlider.value + '%';
+    if (energyFill) energyFill.style.width = energySlider.value + '%';
+    if (formalityFill) formalityFill.style.width = formalitySlider.value + '%';
 
     let matchKey = `${tone}-${style}-${energy}`;
     let text = samples[matchKey] || samples[`${tone}-Friendly-Balanced`] || samples[`Professional-Modern-Dynamic`];
 
-    if (statusLabel) statusLabel.textContent = "Writing...";
+    if (previewStatus) previewStatus.textContent = "Generating...";
     if (previewText) {
       previewText.style.opacity = 0.3;
       
@@ -3158,7 +4185,7 @@ ul { list-style: none; }
       updateTimeout = setTimeout(() => {
         previewText.textContent = text;
         previewText.style.opacity = 1;
-        if (statusLabel) statusLabel.textContent = "✓ On-Brand";
+        if (previewStatus) previewStatus.textContent = "✓ On-Brand";
       }, 200);
     }
   }
@@ -3170,6 +4197,152 @@ ul { list-style: none; }
   });
 
   updatePreview();
+
+  // Auto-adjusting sliders (demonstration)
+  let autoAdjust = true;
+  function autoAdjustSliders() {
+    if (!autoAdjust) return;
+    
+    const sliders = [
+      { el: toneSlider, fill: toneFill, val: toneVal, type: 'tone', base: 68 },
+      { el: styleSlider, fill: styleFill, val: styleVal, type: 'style', base: 82 },
+      { el: energySlider, fill: energyFill, val: energyVal, type: 'energy', base: 55 },
+      { el: formalitySlider, fill: formalityFill, val: formalityVal, type: 'formality', base: 45 }
+    ];
+    
+    const time = Date.now() / 1000;
+    sliders.forEach((slider, i) => {
+      if (!slider.el) return;
+      const variation = Math.sin(time * 0.5 + i * 1.5) * 5;
+      const newVal = Math.max(0, Math.min(100, slider.base + variation));
+      slider.el.value = newVal;
+      if (slider.fill) slider.fill.style.width = newVal + '%';
+      if (slider.val) slider.val.textContent = getLabel(newVal, slider.type);
+    });
+    
+    // Update preview based on adjusted values
+    const tone = getLabel(toneSlider.value, 'tone');
+    const style = getLabel(styleSlider.value, 'style');
+    const energy = getLabel(energySlider.value, 'energy');
+    let matchKey = `${tone}-${style}-${energy}`;
+    let text = samples[matchKey] || samples[`Professional-Modern-Dynamic`];
+    if (previewText) previewText.textContent = text;
+    
+    requestAnimationFrame(autoAdjustSliders);
+  }
+  
+  // Start auto-adjust after a delay
+  setTimeout(() => {
+    autoAdjustSliders();
+  }, 3000);
+
+  // Stop auto-adjust on user interaction
+  [toneSlider, styleSlider, energySlider, formalitySlider].forEach(slider => {
+    if (slider) {
+      slider.addEventListener('mousedown', () => { autoAdjust = false; });
+      slider.addEventListener('touchstart', () => { autoAdjust = false; });
+    }
+  });
+
+  // Metric counting animation
+  function animateMetrics() {
+    const metrics = [
+      { el: metricConsistency, target: 94 },
+      { el: metricCoverage, target: 100 },
+      { el: metricHealth, target: 98 }
+    ];
+    
+    metrics.forEach(metric => {
+      if (!metric.el) return;
+      const current = parseInt(metric.el.textContent);
+      if (current < metric.target) {
+        const increment = Math.ceil((metric.target - current) / 10);
+        let newVal = current + increment;
+        if (newVal > metric.target) newVal = metric.target;
+        metric.el.textContent = newVal;
+      } else if (current > metric.target) {
+        const decrement = Math.ceil((current - metric.target) / 10);
+        let newVal = current - decrement;
+        if (newVal < metric.target) newVal = metric.target;
+        metric.el.textContent = newVal;
+      }
+    });
+  }
+
+  setInterval(animateMetrics, 3000);
+
+  // Dashboard perspective effect on mouse move
+  const dashboardCard = document.getElementById('bi-dashboard-card');
+  if (dashboardCard) {
+    dashboardCard.addEventListener('mousemove', (e) => {
+      const rect = dashboardCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      dashboardCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    dashboardCard.addEventListener('mouseleave', () => {
+      dashboardCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  }
+
+  // Capability cards click to expand
+  const capCards = document.querySelectorAll('.bi-cap-card');
+  const expandedPanel = document.getElementById('bi-expanded-panel');
+  const closePanelBtn = document.getElementById('bi-close-panel');
+
+  capCards.forEach(card => {
+    card.addEventListener('click', () => {
+      if (expandedPanel) {
+        expandedPanel.classList.add('active');
+      }
+    });
+    
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (expandedPanel) {
+          expandedPanel.classList.add('active');
+        }
+      }
+    });
+  });
+
+  if (closePanelBtn) {
+    closePanelBtn.addEventListener('click', () => {
+      if (expandedPanel) {
+        expandedPanel.classList.remove('active');
+      }
+    });
+  }
+
+  if (expandedPanel) {
+    expandedPanel.addEventListener('click', (e) => {
+      if (e.target === expandedPanel) {
+        expandedPanel.classList.remove('active');
+      }
+    });
+  }
+
+  // Smooth reveal on scroll for Brand Intelligence section
+  const biSection = document.querySelector('.brand-intelligence');
+  if (biSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    const reveals = biSection.querySelectorAll('.reveal');
+    reveals.forEach(el => observer.observe(el));
+  }
 })();
 </script>
 <script src="js/solutions.js"></script>
