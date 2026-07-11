@@ -2773,19 +2773,64 @@ ul { list-style: none; }
     nav.classList.toggle('scrolled', window.scrollY > 10);
   }, { passive: true });
 
-  /* ── Toolkit tabs ── */
+  /* ── Toolkit tabs (auto-cycling) ── */
   const tabs   = document.querySelectorAll('.tk-tab');
   const panels = document.querySelectorAll('.tk-panel');
+  const tabContainer = document.querySelector('.toolkit-tabs');
+  const panelContainer = document.querySelector('.toolkit-panels');
+  let tkCycleInterval = null;
+  let tkPaused = false;
+  const TK_CYCLE_DELAY = 3000; // ms between tab switches
+
+  function activateTab(tab) {
+    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected','true');
+    const target = document.querySelector(`.tk-panel[data-panel="${tab.dataset.tab}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  function getNextTabIndex() {
+    const tabArr = Array.from(tabs);
+    const currentIdx = tabArr.findIndex(t => t.classList.contains('active'));
+    return (currentIdx + 1) % tabArr.length;
+  }
+
+  function startTkCycle() {
+    stopTkCycle();
+    tkCycleInterval = setInterval(() => {
+      if (!tkPaused) {
+        const nextIdx = getNextTabIndex();
+        activateTab(tabs[nextIdx]);
+      }
+    }, TK_CYCLE_DELAY);
+  }
+
+  function stopTkCycle() {
+    if (tkCycleInterval) {
+      clearInterval(tkCycleInterval);
+      tkCycleInterval = null;
+    }
+  }
+
+  // Manual click: activate tab and restart timer
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected','true');
-      const target = document.querySelector(`.tk-panel[data-panel="${tab.dataset.tab}"]`);
-      if (target) target.classList.add('active');
+      activateTab(tab);
+      startTkCycle(); // reset the timer on manual click
     });
   });
+
+  // Pause cycling on hover over tabs or panels
+  [tabContainer, panelContainer].forEach(el => {
+    if (!el) return;
+    el.addEventListener('mouseenter', () => { tkPaused = true; });
+    el.addEventListener('mouseleave', () => { tkPaused = false; });
+  });
+
+  // Start auto-cycling
+  startTkCycle();
 
   /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-btn').forEach(btn => {
