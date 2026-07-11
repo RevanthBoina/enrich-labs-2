@@ -527,4 +527,217 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ═══════════════════════════════════════════
+     AUTONOMOUS AI MARKETING PIPELINE
+  ═══════════════════════════════════════════ */
+  
+  const pipelineStages = document.querySelectorAll('.pipeline-stage');
+  const timelineEvents = document.querySelectorAll('.timeline-event');
+  const workflowCards = document.querySelectorAll('.workflow-card');
+  const pipelineSection = document.querySelector('.ai-marketing-pipeline');
+  
+  // Stage connections map
+  const stageConnections = {
+    'research': ['strategy'],
+    'strategy': ['content'],
+    'content': ['distribution'],
+    'distribution': ['optimization'],
+    'optimization': []
+  };
+  
+  // Pipeline animation state
+  let currentPipelineStage = 0;
+  let pipelineInterval = null;
+  let isUserHovering = false;
+  
+  // Workflow demo events
+  const workflowDemos = {
+    'keyword-research': '12 keywords discovered',
+    'competitor-analysis': 'Ranking change: +3',
+    'audience-tracking': 'New segment: SMB',
+    'trend-detection': 'Trending: AI tools',
+    'content-gap': '5 opportunities found',
+    'performance-dashboard': 'Metrics updated',
+    'roi-tracking': 'Campaign ROI: +127%',
+    'geo-optimization': 'Local rank: #4',
+    'internal-linking': '8 links found',
+    'blog-writing': 'Section 2 of 5',
+    'product-copy': 'Headline generated',
+    'meta-tags': '12 tags optimized',
+    'ad-copy': '3 variants ready',
+    'landing-copy': 'CTA optimized',
+    'newsletter': 'Personalized',
+    'content-publishing': 'Deployed to 3 channels',
+    'email-sequences': 'Stage 2 of 4',
+    'social-posts': 'Scheduled for 9AM',
+    'reddit-monitoring': '15 mentions',
+    'influencer-outreach': '8 profiles analyzed',
+    'content-refresh': 'Updated 3 articles',
+    'ab-testing': 'Variant B leading',
+    'monthly-reports': 'Compiling...',
+    'optimization-alerts': 'CTR dropped -2%',
+    'growth-forecasting': 'Chart redrawn'
+  };
+  
+  // Timeline events for idle demo
+  const timelineSequence = ['research', 'strategy', 'content', 'distribution', 'optimization'];
+  
+  // Animate pipeline execution
+  const runPipeline = () => {
+    if (isUserHovering || !pipelineStages.length) return;
+    
+    // Reset all stages
+    pipelineStages.forEach(stage => {
+      stage.classList.remove('active');
+      stage.querySelectorAll('.workflow-card').forEach(card => {
+        card.classList.remove('active', 'completed');
+      });
+    });
+    timelineEvents.forEach(event => {
+      event.classList.remove('active', 'completed', 'visible');
+    });
+    
+    // Animate through stages
+    let stageIndex = 0;
+    const animateStage = () => {
+      if (isUserHovering) {
+        pipelineInterval = setTimeout(animateStage, 500);
+        return;
+      }
+      
+      if (stageIndex >= timelineSequence.length) {
+        // Reset and restart after delay
+        setTimeout(runPipeline, 5000);
+        return;
+      }
+      
+      const stageName = timelineSequence[stageIndex];
+      
+      // Activate stage
+      const stage = document.querySelector(`[data-stage="${stageName}"]`);
+      if (stage) {
+        stage.classList.add('active');
+        
+        // Activate one workflow card
+        const cards = stage.querySelectorAll('.workflow-card');
+        if (cards.length > 0) {
+          const cardIndex = stageIndex % cards.length;
+          cards[cardIndex].classList.add('active');
+          
+          // Update demo text
+          const demo = cards[cardIndex].querySelector('.card-demo');
+          if (demo && workflowDemos[cards[cardIndex].dataset.workflow]) {
+            demo.textContent = workflowDemos[cards[cardIndex].dataset.workflow];
+          }
+        }
+      }
+      
+      // Update timeline
+      const timelineEvent = document.querySelector(`[data-event="${stageName}"]`);
+      if (timelineEvent) {
+        // Make visible with delay
+        setTimeout(() => timelineEvent.classList.add('visible'), 200);
+        
+        // Mark as active
+        timelineEvent.classList.add('active');
+        
+        // Mark previous as completed
+        if (stageIndex > 0) {
+          const prevEvent = document.querySelector(`[data-event="${timelineSequence[stageIndex - 1]}"]`);
+          if (prevEvent) {
+            prevEvent.classList.remove('active');
+            prevEvent.classList.add('completed');
+          }
+        }
+      }
+      
+      // Mark previous stage as completed
+      if (stageIndex > 0) {
+        const prevStage = document.querySelector(`[data-stage="${timelineSequence[stageIndex - 1]}"]`);
+        if (prevStage) {
+          prevStage.classList.remove('active');
+          prevStage.classList.add('highlighted');
+          setTimeout(() => prevStage.classList.remove('highlighted'), 500);
+        }
+      }
+      
+      stageIndex++;
+      pipelineInterval = setTimeout(animateStage, 2000);
+    };
+    
+    animateStage();
+  };
+  
+  // Stage hover effects
+  pipelineStages.forEach(stage => {
+    stage.addEventListener('mouseenter', () => {
+      isUserHovering = true;
+      clearTimeout(pipelineInterval);
+      
+      // Dim other stages
+      pipelineStages.forEach(s => {
+        if (s !== stage) {
+          const connections = s.dataset.connections?.split(',') || [];
+          if (!connections.includes(stage.dataset.stage) && 
+              !stage.dataset.connections?.split(',').includes(s.dataset.stage)) {
+            s.classList.add('dimmed');
+          }
+        }
+      });
+    });
+    
+    stage.addEventListener('mouseleave', () => {
+      isUserHovering = false;
+      pipelineStages.forEach(s => s.classList.remove('dimmed'));
+      
+      // Resume pipeline after delay
+      setTimeout(runPipeline, 3000);
+    });
+  });
+  
+  // Workflow card interactions
+  workflowCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.classList.add('active');
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      if (!isUserHovering) {
+        card.classList.remove('active');
+      }
+    });
+  });
+  
+  // Start pipeline animation when section is visible
+  if (pipelineSection) {
+    const pipelineObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Stagger timeline events appearance
+          timelineEvents.forEach((event, i) => {
+            setTimeout(() => event.classList.add('visible'), i * 150);
+          });
+          
+          // Start pipeline after brief delay
+          setTimeout(runPipeline, 1000);
+          pipelineObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    pipelineObs.observe(pipelineSection);
+  }
+  
+  // Update stats periodically
+  const updatePipelineStats = () => {
+    const tasksEl = document.querySelector('.stat-item:nth-child(4) .stat-value');
+    if (tasksEl) {
+      const current = parseInt(tasksEl.textContent) || 847;
+      const change = Math.floor(Math.random() * 5) + 1;
+      tasksEl.textContent = current + change;
+    }
+  };
+  
+  setInterval(updatePipelineStats, 15000);
+
 });
